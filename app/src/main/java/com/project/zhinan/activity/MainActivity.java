@@ -53,7 +53,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         switch (i) {
             case 0:
                 if (homeFragment == null) {
-                    homeFragment = new HomeFragment(this);
+                    homeFragment = new HomeFragment();
                     ft.replace(R.id.fragment_container, homeFragment);
                 } else {
                     ft.show(homeFragment);
@@ -77,7 +77,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 break;
             case 3:
                 if (settingFragment == null) {
-                    settingFragment = new SettingFragment(this);
+                    settingFragment = new SettingFragment();
                     ft.add(R.id.fragment_container, settingFragment);
                 } else {
                     ft.show(settingFragment);
