@@ -31,27 +31,33 @@ import java.io.IOException;
 public class LoginActivity extends AppCompatActivity {
 
     private static final int POSTED = 1;
+    private static final int NETWORK_EORR = 2;
     private EditText mNameEditText;
     private EditText mPassEditText;
     private Button mLoginButton;
     private ProgressBar mProgressProgressBar;
-    public static final MediaType JSON=MediaType.parse("application/json; charset=utf-8");
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private String json;
-    Handler handler =new Handler(){
+    Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            switch (msg.what){
+            switch (msg.what) {
                 case POSTED:
                     showProgress(false);
-                    if (success.contains("success")){
-                        Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
+                    if (success.contains("success")) {
+                        Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                         finish();
-                    }else {
-                        Toast.makeText(LoginActivity.this,"用户名或密码错误",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "用户名或密码错误", Toast.LENGTH_SHORT).show();
                     }
 
                     break;
-                default:break;
+                case NETWORK_EORR:
+                    showProgress(false);
+                    Toast.makeText(LoginActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
+                    break;
+                default:
+                    break;
             }
         }
     };
@@ -61,7 +67,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
 
 
         initView();
@@ -80,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
     private void attemptLogin() {
 
 
@@ -88,17 +94,17 @@ public class LoginActivity extends AppCompatActivity {
         mPassEditText.setError(null);
 
         // Store values at the time of the login attempt.
-        String name =  mNameEditText.getText().toString();
+        String name = mNameEditText.getText().toString();
         String password = mPassEditText.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
-        if (TextUtils.isEmpty(name)){
+        if (TextUtils.isEmpty(name)) {
             mNameEditText.setError(getString(R.string.error_no_name));
             focusView = mNameEditText;
             cancel = true;
         }
-        if (TextUtils.isEmpty(password)){
+        if (TextUtils.isEmpty(password)) {
             mPassEditText.setError(getString(R.string.error_no_pass));
             focusView = mPassEditText;
             cancel = true;
@@ -127,8 +133,8 @@ public class LoginActivity extends AppCompatActivity {
             JSONObject jsonObject = new JSONObject();
 
             try {
-                jsonObject.put("name",name);
-                jsonObject.put("pass",password);
+                jsonObject.put("name", name);
+                jsonObject.put("pass", password);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -162,20 +168,15 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
         //发送请求获取响应
         try {
-            Response response=okHttpClient.newCall(request).execute();
+            Response response = okHttpClient.newCall(request).execute();
             //判断请求是否成功
-            if(response.isSuccessful()){
+            if (response.isSuccessful()) {
                 //打印服务端返回结果
                 success = response.body().string();
-                Log.i("123", success);
-//               if (s.contains("success")){
-//                   Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
-//               }else {
-//                   Toast.makeText(LoginActivity.this,"用户名或密码错误",Toast.LENGTH_SHORT).show();
-//
-//               }
-//                showProgress(false);
+                Log.i("success", success);
                 handler.sendEmptyMessage(POSTED);
+            } else {
+                handler.sendEmptyMessage(NETWORK_EORR);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -191,6 +192,7 @@ public class LoginActivity extends AppCompatActivity {
         //TODO: Replace this with your own logic
         return password.length() > 4;
     }
+
     /**
      * Shows the progress UI and hides the login form.
      */
