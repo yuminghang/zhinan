@@ -29,4 +29,5 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile files('src/main/libs/systembartint-1.0.4.jar')
     compile 'de.hdodenhof:circleimageview:2.0.0'
+    compile 'com.squareup.okhttp:okhttp:2.7.5'
 }

@@ -5,51 +5,78 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.project.zhinan.activity.LoginActivity">
-    <LinearLayout
-        android:layout_margin="@dimen/sp_12"
+    <!-- Login progress -->
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:textColor="@color/black"
-            android:padding="@dimen/sp_16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="帐号"/>
-        <EditText
-            android:hint="手机号/邮箱号"
-            android:id="@+id/et_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_margin="@dimen/sp_12"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:textColor="@color/black"
-            android:padding="@dimen/sp_16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="密码"/>
-        <EditText
-            android:hint="登录密码"
-            android:inputType="textPassword"
-            android:id="@+id/et_pass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+        android:layout_height="match_parent">
 
-    <Button
-        android:layout_margin="@dimen/sp_16"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="登录"
-        android:textColor="@color/white"
-        android:id="@+id/button"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/bt_login" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/sp_12"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/sp_16"
+                    android:text="帐号"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/et_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="手机号/邮箱号"
+                    android:inputType="text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/sp_12"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/sp_16"
+                    android:text="密码"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/et_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="登录密码"
+                    android:inputType="textPassword" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/bt_login"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/sp_16"
+                android:background="@drawable/bt_login"
+                android:text="登 录"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/login_progress"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone" />
+    </FrameLayout>
+
+
 
 </LinearLayout>
