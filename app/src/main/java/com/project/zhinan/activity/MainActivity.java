@@ -61,7 +61,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 break;
             case 1:
                 if (fabuFragment == null) {
-                    fabuFragment = new FabuFragment(this);
+                    fabuFragment = new FabuFragment();
                     ft.add(R.id.fragment_container, fabuFragment);
                 } else {
                     ft.show(fabuFragment);
