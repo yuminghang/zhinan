@@ -4,17 +4,20 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
 import com.project.zhinan.fragment.FabuFragment;
 import com.project.zhinan.fragment.FaxianFragment;
 import com.project.zhinan.fragment.HomeFragment;
 import com.project.zhinan.fragment.SettingFragment;
+import com.project.zhinan.utils.FileUtil;
 
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener {
@@ -32,10 +35,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MyApplication.getInstance().addActivity(this);
         setContentView(R.layout.activity_main);
         fragment_container = (FrameLayout) findViewById(R.id.fragment_container);
         initRadioButton();
         select(0);
+        Log.e("tttt", getApplicationContext().getPackageResourcePath() + "/");
     }
 
     private void select(int i) {
@@ -135,7 +140,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
                 exitTime = System.currentTimeMillis();
             } else {
-                finish();
+                MyApplication.getInstance().exit();
             }
             return true;
         }
