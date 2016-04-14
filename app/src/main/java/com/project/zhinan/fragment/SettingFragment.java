@@ -10,14 +10,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.project.zhinan.R;
+import com.project.zhinan.activity.AboutActivity;
+import com.project.zhinan.activity.AccountActivity;
 import com.project.zhinan.activity.LoginActivity;
+import com.project.zhinan.activity.MyAssets;
+import com.project.zhinan.activity.MyCollection;
 import com.project.zhinan.activity.RegisterActivity;
+import com.project.zhinan.activity.ServiceActivity;
 import com.project.zhinan.utils.StatusBarUtil;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
@@ -34,6 +40,8 @@ public class SettingFragment extends Fragment {
     private ListView mListViewListView;
     private LinearLayout mLayoutContentLinearLayout;
     private ArrayList<String> strings;
+    private SharedPreferences sharedPreferences;
+    private boolean isLogin;
     //    private Context context;
 //
 //    public SettingFragment(Context context) {
@@ -67,12 +75,12 @@ public class SettingFragment extends Fragment {
             listems.add(listem);
         }
 
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
-        boolean isLogin = sharedPreferences.getBoolean("isLogin", false);
+        sharedPreferences = getContext().getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
+        isLogin = sharedPreferences.getBoolean("isLogin", false);
         String name = sharedPreferences.getString("name", null);
         String userNo = sharedPreferences.getString("userNo", null);
         int account = sharedPreferences.getInt("account", 0);
-        mListViewListView.setAdapter(new SimpleAdapter(getContext(),listems,R.layout.settingitem,new String[]{"name"},new int[]{R.id.item_name}));
+        mListViewListView.setAdapter(new SimpleAdapter(getContext(), listems, R.layout.settingitem, new String[]{"name"}, new int[]{R.id.item_name}));
         if (isLogin) {
             mLayoutEmptyinclude.setVisibility(View.GONE);
             mLayoutUserinclude.setVisibility(View.VISIBLE);
@@ -82,10 +90,50 @@ public class SettingFragment extends Fragment {
             mLayoutUserinclude.setVisibility(View.GONE);
             initUnLoginData();
         }
+        mListViewListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
+
+                switch (position) {
+                    case 0:
+                        iftoDetail(AccountActivity.class);
+                        break;
+                    case 1:
+                        iftoDetail(MyAssets.class);
+                        break;
+                    case 2:
+                        iftoDetail(MyCollection.class);
+                        break;
+                    case 3:
+                        intent.setClass(getContext(), ServiceActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 4:
+                        intent.setClass(getContext(), AboutActivity.class);
+                        startActivity(intent);
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+        });
+    }
+
+    private void iftoDetail(Class c) {
+        Intent intent = new Intent();
+        if (isLogin) {
+            intent.setClass(getContext(), c);
+        } else {
+            intent.setClass(getContext(), LoginActivity.class);
+        }
+        startActivity(intent);
     }
 
     /**
      * 已经登录的操作
+     *
      * @param name
      * @param account
      */
@@ -121,6 +169,12 @@ public class SettingFragment extends Fragment {
                 startActivity(intent);
             }
         });
+    }
+
+    private void tologin() {
+        Intent intent = new Intent(getContext(), LoginActivity.class);
+        startActivity(intent);
+
     }
 
     private void initView() {
