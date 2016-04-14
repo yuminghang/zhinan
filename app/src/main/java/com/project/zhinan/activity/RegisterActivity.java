@@ -3,6 +3,7 @@ package com.project.zhinan.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -49,10 +50,18 @@ public class RegisterActivity extends AppCompatActivity {
                 case POSTED:
                     showProgress(false);
                     if (success.contains("success")) {
-                        Toast.makeText(RegisterActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
                         finish();
                     } else {
-                        Toast.makeText(RegisterActivity.this, "用户名或密码错误", Toast.LENGTH_SHORT).show();
+                        try {
+                            JSONObject jsonObject = new JSONObject(success);
+                            String error = jsonObject.getString("error");
+                            Toast.makeText(RegisterActivity.this, error, Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                     }
 
                     break;
@@ -176,8 +185,8 @@ public class RegisterActivity extends AppCompatActivity {
             try {
                 jsonObject.put("loginname", name);
                 jsonObject.put("pass", pass);
-                jsonObject.put("rePass", re_pass);
-                jsonObject.put("email", re_pass);
+                jsonObject.put("re_pass", re_pass);
+                jsonObject.put("email", email);
                 jsonObject.put("phone", phone);
             } catch (JSONException e) {
                 e.printStackTrace();
