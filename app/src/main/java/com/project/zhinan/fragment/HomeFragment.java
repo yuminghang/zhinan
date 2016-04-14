@@ -39,7 +39,7 @@ import java.util.ArrayList;
 
 
 public class HomeFragment extends Fragment {
-    Context context;
+//    Context context;
     LayoutInflater mlayoutInflater;
     private View view;
     private TabLayout mTabLayout;
@@ -49,9 +49,9 @@ public class HomeFragment extends Fragment {
     MyFragmentPagerAdapter myFragmentPagerAdapter;
     static ArrayList<String> titleContainer = new ArrayList<String>();
 
-    public HomeFragment(Context context) {
-        this.context = context;
-    }
+//    public HomeFragment(Context context) {
+//        this.context = context;
+//    }
 
 
     @Override

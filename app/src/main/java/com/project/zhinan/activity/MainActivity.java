@@ -1,5 +1,6 @@
 package com.project.zhinan.activity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -7,6 +8,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -17,7 +20,11 @@ import com.project.zhinan.fragment.FabuFragment;
 import com.project.zhinan.fragment.FaxianFragment;
 import com.project.zhinan.fragment.HomeFragment;
 import com.project.zhinan.fragment.SettingFragment;
+<<<<<<< HEAD
 import com.project.zhinan.utils.FileUtil;
+=======
+import com.readystatesoftware.systembartint.SystemBarTintManager;
+>>>>>>> 203080b2bd06914ca6a10b8cd863deeb95ee1a40
 
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener {
@@ -37,6 +44,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         MyApplication.getInstance().addActivity(this);
         setContentView(R.layout.activity_main);
+        initStatusBar();
+
         fragment_container = (FrameLayout) findViewById(R.id.fragment_container);
         initRadioButton();
         select(0);
@@ -52,7 +61,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         switch (i) {
             case 0:
                 if (homeFragment == null) {
-                    homeFragment = new HomeFragment(this);
+                    homeFragment = new HomeFragment();
                     ft.replace(R.id.fragment_container, homeFragment);
                 } else {
                     ft.show(homeFragment);
@@ -60,7 +69,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 break;
             case 1:
                 if (fabuFragment == null) {
-                    fabuFragment = new FabuFragment(this);
+                    fabuFragment = new FabuFragment();
                     ft.add(R.id.fragment_container, fabuFragment);
                 } else {
                     ft.show(fabuFragment);
@@ -76,7 +85,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 break;
             case 3:
                 if (settingFragment == null) {
-                    settingFragment = new SettingFragment(this);
+                    settingFragment = new SettingFragment();
                     ft.add(R.id.fragment_container, settingFragment);
                 } else {
                     ft.show(settingFragment);
@@ -145,6 +154,26 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+    private void initStatusBar() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            setTranslucentStatus(true);
+        }
+        SystemBarTintManager tintManager = new SystemBarTintManager(this);
+        tintManager.setStatusBarTintEnabled(true);
+        tintManager.setStatusBarTintResource(R.color.title_color);//通知栏所需颜色
+    }
+
+    private void setTranslucentStatus(boolean on) {
+        Window win = getWindow();
+        WindowManager.LayoutParams winParams = win.getAttributes();
+        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+        if (on) {
+            winParams.flags |= bits;
+        } else {
+            winParams.flags &= ~bits;
+        }
+        win.setAttributes(winParams);
     }
 
 }

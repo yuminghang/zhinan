@@ -27,8 +27,14 @@ dependencies {
     compile 'com.android.support:support-v4:23.2.1'
     compile 'com.android.support:design:23.2.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
+<<<<<<< HEAD
     compile 'in.srain.cube:ultra-ptr:1.0.11'
     compile 'com.squareup.okhttp:okhttp:2.7.5'
     compile 'com.jakewharton:disklrucache:2.0.2'
     compile 'com.bartoszlipinski:recyclerviewheader2:2.0.0'
+=======
+    compile files('src/main/libs/systembartint-1.0.4.jar')
+    compile 'de.hdodenhof:circleimageview:2.0.0'
+    compile 'com.squareup.okhttp:okhttp:2.7.5'
+>>>>>>> 203080b2bd06914ca6a10b8cd863deeb95ee1a40
 }

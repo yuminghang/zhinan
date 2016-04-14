@@ -9,8 +9,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+<<<<<<< HEAD
  * Created by IntelliJ IDEA.
  * 字符串的处理类
+=======
+ * Created by deng on 16-4-12.
+>>>>>>> 203080b2bd06914ca6a10b8cd863deeb95ee1a40
  */
 public class StringUtil {
     /**
@@ -127,4 +131,7 @@ public class StringUtil {
         }
     }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 203080b2bd06914ca6a10b8cd863deeb95ee1a40
