@@ -3,6 +3,8 @@ package com.project.zhinan.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                     showProgress(false);
                     if (success.contains("success")) {
                         Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                        resetAccount();
                         finish();
                     } else {
                         Toast.makeText(LoginActivity.this, "用户名或密码错误", Toast.LENGTH_SHORT).show();
@@ -62,6 +65,24 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     };
+
+    private void resetAccount() {
+        try {
+            JSONObject jsonObject = new JSONObject(success);
+            String name = jsonObject.getString("name");
+            SharedPreferences sharedPreferences = this.getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
+            SharedPreferences.Editor edit = sharedPreferences.edit();
+            edit.putBoolean("isLogin",true);
+            edit.putString("name",name);
+            edit.putString("userNo",name);
+            edit.putInt("account",0);
+            edit.commit();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     private String success;
 
     @Override
@@ -164,7 +185,7 @@ public class LoginActivity extends AppCompatActivity {
         RequestBody requestBody = RequestBody.create(JSON, json);
         //创建一个请求对象
         Request request = new Request.Builder()
-                .url("http://119.29.191.229:2888/users/login")
+                .url("http://192.168.199.127:2888/users/login")
                 .post(requestBody)
                 .build();
         //发送请求获取响应
