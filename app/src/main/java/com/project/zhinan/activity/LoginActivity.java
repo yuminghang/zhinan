@@ -185,7 +185,7 @@ public class LoginActivity extends AppCompatActivity {
         RequestBody requestBody = RequestBody.create(JSON, json);
         //创建一个请求对象
         Request request = new Request.Builder()
-                .url("http://199.29.191.229:2888/users/login")
+                .url("http://119.29.191.229:2888/users/login")
                 .post(requestBody)
                 .build();
         //发送请求获取响应
