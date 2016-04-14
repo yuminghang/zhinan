@@ -60,7 +60,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 } else {
                     ft.show(homeFragment);
                 }
-                StatusBarUtil.initStatusBar(this, R.color.mediumvioletred);
+                StatusBarUtil.initStatusBar(this, R.color.almost_white);
                 break;
             case 1:
                 if (fabuFragment == null) {
@@ -69,7 +69,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 } else {
                     ft.show(fabuFragment);
                 }
-                StatusBarUtil.initStatusBar(this, R.color.mediumvioletred);
+                StatusBarUtil.initStatusBar(this, R.color.almost_white);
                 break;
             case 2:
                 if (faxianFragment == null) {
@@ -78,7 +78,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 } else {
                     ft.show(faxianFragment);
                 }
-                StatusBarUtil.initStatusBar(this, R.color.mediumvioletred);
+                StatusBarUtil.initStatusBar(this, R.color.almost_white);
                 break;
             case 3:
                 if (settingFragment == null) {

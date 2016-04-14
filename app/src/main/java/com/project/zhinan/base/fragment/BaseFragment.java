@@ -43,6 +43,7 @@ public class BaseFragment extends Fragment {
     private ViewPager viewPager;
     private ArrayList<ImageView> mImageViewList;
     private static int[] mImageIds = new int[]{R.mipmap.pic2, R.mipmap.pic1, R.mipmap.pic3};
+    private LinearLayout ll_LinearLayout;
 
     public BaseFragment(String url) {
         this.url = url;
@@ -54,9 +55,9 @@ public class BaseFragment extends Fragment {
             super.handleMessage(msg);
             datas = (gson.fromJson(msg.getData().getString("content"), new TypeToken<jsonbean>() {
             }.getType()));
-            mAdapter = new BaseFragment_MyRecyclerViewAdapter(getActivity(), datas);
+//            mAdapter = new BaseFragment_MyRecyclerViewAdapter(getActivity(), datas);
+//            mAdapter.
             mAdapter.notifyDataSetChanged();
-            mRecyclerView.setAdapter(mAdapter);
         }
     };
 
@@ -64,7 +65,7 @@ public class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_base, container, false);
-        RecyclerViewHeader header = (RecyclerViewHeader) view.findViewById(R.id.header);
+        ll_LinearLayout = (LinearLayout) view.findViewById(R.id.ll_LinearLayout);
         viewPager = (ViewPager) view.findViewById(R.id.viewPager);
         gson = new Gson();
 //        getCacheData(); //获取缓存数据
@@ -73,12 +74,12 @@ public class BaseFragment extends Fragment {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        header.attachTo(mRecyclerView);
         initViewPager();
-        header.requestDisallowInterceptTouchEvent(true);
-
+        ll_LinearLayout.requestDisallowInterceptTouchEvent(true);
         datas = (gson.fromJson(Cache.data, new TypeToken<jsonbean>() {
         }.getType()));
+        mAdapter = new BaseFragment_MyRecyclerViewAdapter(getActivity(), datas);
+        mRecyclerView.setAdapter(mAdapter);
         return view;
     }
 

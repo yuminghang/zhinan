@@ -26,11 +26,7 @@ import java.util.List;
  */
 public class BaseFragment_MyRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
-    private List<Integer> list;
     private jsonbean datas;
-    private TextView newstitle_TextView, tv1, tv2, tv3;
-    private final int THREE_PIC = 1;
-    private final int SINGL_EPIC = 0;
 
     public BaseFragment_MyRecyclerViewAdapter(Context context, jsonbean datas) {
         this.context = context;
@@ -61,7 +57,6 @@ public class BaseFragment_MyRecyclerViewAdapter extends RecyclerView.Adapter<Rec
             singlePicViewHolder.tv1.setVisibility(View.GONE);
         }
         singlePicViewHolder.tv2.setText(s.getBrand_name());
-//        tv3.setText(s.);
         Glide.with(context).load(s.getMobile_image_one()).into(singlePicViewHolder.iv_Pic);
     }
 
@@ -86,7 +81,6 @@ public class BaseFragment_MyRecyclerViewAdapter extends RecyclerView.Adapter<Rec
                 @Override
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
-//                    datas.getResult().getItems().getBrands().get(getLayoutPosition()).getDetailurl()
                     bundle.putString("url", Urls.DetailUrl);
                     Intent intent = new Intent(context, WebviewActivity.class);
                     intent.putExtras(bundle);
