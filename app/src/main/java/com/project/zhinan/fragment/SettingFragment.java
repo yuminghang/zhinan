@@ -3,8 +3,10 @@ package com.project.zhinan.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,8 @@ import android.widget.TextView;
 import com.project.zhinan.R;
 import com.project.zhinan.activity.LoginActivity;
 import com.project.zhinan.activity.RegisterActivity;
+import com.project.zhinan.utils.StatusBarUtil;
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,7 +50,6 @@ public class SettingFragment extends Fragment {
     @Override
     public void onResume() {
         initData();
-
         super.onResume();
     }
 

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,12 +35,13 @@ import com.project.zhinan.fragment.HomeTabFragmentSons.Xiuxian;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Yiyao;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Zhaopin;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Zhaoshang;
+import com.project.zhinan.utils.StatusBarUtil;
 
 import java.util.ArrayList;
 
 
 public class HomeFragment extends Fragment {
-//    Context context;
+    //    Context context;
     LayoutInflater mlayoutInflater;
     private View view;
     private TabLayout mTabLayout;
@@ -60,6 +62,11 @@ public class HomeFragment extends Fragment {
         findViews();
         initViewpager();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     private void findViews() {

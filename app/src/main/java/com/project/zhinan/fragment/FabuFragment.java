@@ -2,11 +2,13 @@ package com.project.zhinan.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.project.zhinan.R;
+import com.project.zhinan.utils.StatusBarUtil;
 
 
 /**
@@ -25,6 +27,10 @@ public class FabuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fabufragment_layout, container, false);
         return view;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
 
