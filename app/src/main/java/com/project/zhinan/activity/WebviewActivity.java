@@ -1,16 +1,18 @@
 package com.project.zhinan.activity;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
@@ -34,17 +36,28 @@ public class WebviewActivity extends Activity {
 //    };//HttpUtils.getHtml(content)
     private SwipeRefreshLayout swipeRefreshLayout;
     private static ProgressBar pb;
+    private WebView mWebView1WebView;
+    private Button mGetRmbButton;
+    private ProgressBar mPbProgressBar;
 
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.webview_layout);
+        mGetRmbButton = (Button) findViewById(R.id.get_rmb);
         MyApplication.getInstance().addActivity(this);
         url = getIntent().getStringExtra("url");
         webview = (WebView) findViewById(R.id.webView1);
         webview.getSettings().setJavaScriptEnabled(true);
         webview.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        mGetRmbButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(WebviewActivity.this,"金币领取成功",Toast.LENGTH_SHORT).show();
+            }
+        });
         pb = (ProgressBar) findViewById(R.id.pb);
         pb.setVisibility(View.VISIBLE);
 //        HttpUtils.getData(url, handler);
@@ -63,6 +76,23 @@ public class WebviewActivity extends Activity {
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 //开始
                 super.onPageStarted(view, url, favicon);
+            }
+        });
+        webview.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+//                if (i3-i2>0){
+//                    mGetRmbButton.setVisibility(View.VISIBLE);
+//                }else {
+//                    mGetRmbButton.setVisibility(View.GONE);
+//                }
+                if (webview.getContentHeight() * webview.getScale() == (webview.getHeight() + webview.getScrollY())) {
+                    mGetRmbButton.setVisibility(View.VISIBLE);
+                    mGetRmbButton.setClickable(true);
+                }else {
+                    mGetRmbButton.setVisibility(View.GONE);
+                    mGetRmbButton.setClickable(false);
+                }
             }
         });
     }
