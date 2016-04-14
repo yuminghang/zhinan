@@ -4,9 +4,9 @@ import com.project.zhinan.base.fragment.BaseFragment;
 
 
 public class Huodong extends BaseFragment {
-    public Huodong(String url)
+    public Huodong()
     {
-        super(url);
+        this.url="http://119.29.191.229:2888/com/try";
     }
 
 }

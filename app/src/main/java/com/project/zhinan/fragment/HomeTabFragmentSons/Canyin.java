@@ -4,9 +4,9 @@ import com.project.zhinan.base.fragment.BaseFragment;
 
 
 public class Canyin extends BaseFragment {
-    public Canyin(String url)
+    public Canyin()
     {
-        super(url);
+        this.url="http://119.29.191.229:2888/com/try";
     }
 
 }

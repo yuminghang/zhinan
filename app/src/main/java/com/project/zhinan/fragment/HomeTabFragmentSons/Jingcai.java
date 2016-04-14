@@ -4,9 +4,9 @@ import com.project.zhinan.base.fragment.BaseFragment;
 
 
 public class Jingcai extends BaseFragment {
-    public Jingcai(String url)
+    public Jingcai()
     {
-        super(url);
+        this.url="http://119.29.191.229:2888/com/try";
     }
 
 }

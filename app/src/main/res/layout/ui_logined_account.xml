@@ -45,9 +45,10 @@
                     android:layout_marginBottom="8dip"
                     android:ellipsize="end"
                     android:singleLine="true"
+                    android:textSize="@dimen/sp_20"
                     android:text="名字"
                     android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="@dimen/textsize_primary" />
+                    />
 
                 <TextView
                     android:id="@+id/txtJifen"

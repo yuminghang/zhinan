@@ -4,9 +4,9 @@ import com.project.zhinan.base.fragment.BaseFragment;
 
 
 public class Qiche extends BaseFragment {
-    public Qiche(String url)
+    public Qiche()
     {
-        super(url);
+        this.url="http://119.29.191.229:2888/com/try";
     }
 
 }

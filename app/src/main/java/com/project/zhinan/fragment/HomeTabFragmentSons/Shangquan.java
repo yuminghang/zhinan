@@ -4,9 +4,9 @@ import com.project.zhinan.base.fragment.BaseFragment;
 
 
 public class Shangquan extends BaseFragment {
-    public Shangquan(String url)
+    public Shangquan()
     {
-        super(url);
+        this.url="http://119.29.191.229:2888/com/try";
     }
 
 }

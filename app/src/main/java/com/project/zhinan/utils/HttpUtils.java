@@ -4,20 +4,18 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-import com.jakewharton.disklrucache.DiskLruCache;
-import com.project.zhinan.MyApplication;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
-import java.io.File;
 import java.io.IOException;
 
 /**
  * Created by ymh on 2016/4/11.
  */
 public class HttpUtils {
+    public static final int DATA_GET = 2;
     private static OkHttpClient client;
     private static String resString;
 
@@ -42,6 +40,7 @@ public class HttpUtils {
                     Bundle b = new Bundle();
                     b.putString("content", resString);
                     msg.setData(b);
+                    msg.what=DATA_GET;
                     handler.sendMessage(msg);
                 }
             }

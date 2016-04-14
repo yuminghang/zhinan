@@ -4,9 +4,9 @@ import com.project.zhinan.base.fragment.BaseFragment;
 
 
 public class Jinrong extends BaseFragment {
-    public Jinrong(String url)
+    public Jinrong()
     {
-        super(url);
+        this.url="http://119.29.191.229:2888/com/try";
     }
 
 }

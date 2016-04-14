@@ -1,7 +1,7 @@
 package com.project.zhinan.base.fragment;
 
 import android.annotation.TargetApi;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,56 +9,68 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ListView;
 
-import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.project.zhinan.R;
-import com.project.zhinan.adapter.BaseFragment_MyRecyclerViewAdapter;
+import com.project.zhinan.activity.WebviewActivity;
+import com.project.zhinan.adapter.NewsinglepicLayoutAdapter;
+import com.project.zhinan.api.Urls;
 import com.project.zhinan.bean.jsonbean;
 import com.project.zhinan.utils.Cache;
 import com.project.zhinan.utils.HttpUtils;
 import com.project.zhinan.view.HomeFragment_MyViewPager;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by ymh on 2016/4/11.
  */
 public class BaseFragment extends Fragment {
-    private RecyclerView mRecyclerView;
-    private BaseFragment_MyRecyclerViewAdapter mAdapter;
-    private LinearLayoutManager mLayoutManager;
+    private static final int VPRUN = 1;
+    private ListView mlv;
     public jsonbean datas;
     private String resString;
     private Gson gson;
-    private String url;
+    public String url;
     private HomeFragment_MyViewPager viewPager;
     private ArrayList<ImageView> mImageViewList;
     private static int[] mImageIds = new int[]{R.mipmap.pic2, R.mipmap.pic1, R.mipmap.pic3};
-    private LinearLayout ll_LinearLayout;
+    private ArrayList<jsonbean.ResultEntity.ItemsEntity.BrandsEntity> objects;
+    private View home_vp;
 
-    public BaseFragment(String url) {
-        this.url = url;
-    }
+
 
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            datas = (gson.fromJson(msg.getData().getString("content"), new TypeToken<jsonbean>() {
-            }.getType()));
-//            mAdapter = new BaseFragment_MyRecyclerViewAdapter(getActivity(), datas);
-//            mAdapter.
-            mAdapter.notifyDataSetChanged();
+            switch (msg.what) {
+                case VPRUN:
+                    int currentItem = viewPager.getCurrentItem();
+                    if (currentItem < mImageIds.length - 1) {
+                        viewPager.setCurrentItem(currentItem + 1);
+                    } else {
+                        viewPager.setCurrentItem(0);
+                    }
+                    break;
+                case HttpUtils.DATA_GET:
+                    datas = (gson.fromJson(msg.getData().getString("content"), new TypeToken<jsonbean>() {
+                    }.getType()));
+                    break;
+                default:
+                    break;
+            }
+
+
         }
     };
 
@@ -66,21 +78,47 @@ public class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_base, container, false);
-        ll_LinearLayout = (LinearLayout) view.findViewById(R.id.ll_LinearLayout);
-        viewPager = (HomeFragment_MyViewPager) view.findViewById(R.id.viewPager);
+//        ll_LinearLayout = (LinearLayout) view.findViewById(R.id.ll_LinearLayout);
+
+        home_vp = inflater.inflate(R.layout.homefragment_myviewpager, null, false);
+        viewPager = (HomeFragment_MyViewPager) home_vp.findViewById(R.id.home_viewPager);
+
         gson = new Gson();
 //        getCacheData(); //获取缓存数据
         HttpUtils.getData(url, handler); //获取网络数据
-//        mAdapter.notifyDataSetChanged();
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
-        mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        mlv = (ListView) view.findViewById(R.id.recyclerview);
+
+
         initViewPager();
-        ll_LinearLayout.requestDisallowInterceptTouchEvent(true);
+//        ll_LinearLayout.requestDisallowInterceptTouchEvent(true);
         datas = (gson.fromJson(Cache.data, new TypeToken<jsonbean>() {
         }.getType()));
-        mAdapter = new BaseFragment_MyRecyclerViewAdapter(getActivity(), datas);
-        mRecyclerView.setAdapter(mAdapter);
+        objects = new ArrayList<jsonbean.ResultEntity.ItemsEntity.BrandsEntity>();
+        objects.addAll(datas.getResult().getItems().getBrands());
+
+//        mAdapter = new BaseFragment_MyRecyclerViewAdapter(getActivity(), datas);
+        mlv.setAdapter(new NewsinglepicLayoutAdapter(getContext(), objects));
+        mlv.addHeaderView(viewPager);
+        mlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                System.out.println("-----------------" + i + "---------------------");
+                Bundle bundle = new Bundle();
+                bundle.putString("url", Urls.DetailUrl);
+                Intent intent = new Intent(getContext(), WebviewActivity.class);
+                intent.putExtras(bundle);
+                getContext().startActivity(intent);
+            }
+        });
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.sendEmptyMessage(VPRUN);
+            }
+
+
+        }, 0, 2000);
         return view;
     }
 
@@ -90,6 +128,7 @@ public class BaseFragment extends Fragment {
         for (int i = 0; i < mImageIds.length; i++) {
             ImageView iv = new ImageView(getActivity());
             iv.setImageResource(mImageIds[i]);
+            iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
             mImageViewList.add(iv);
         }
         viewPager.setAdapter(new PagerAdapter() {
@@ -124,28 +163,20 @@ public class BaseFragment extends Fragment {
                 return super.getItemPosition(object);
             }
         });
-//        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrollStateChanged(int arg0) {
-//                Log.e("test", arg0 + " ");
-//
-//            }
-//
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-////                Log.e("caonima", position + " " + positionOffset + " " + positionOffsetPixels);
-////                if (position == mImageIds.length - 1 && lastPos == positionOffset && !isScroll) {
-////                    viewPager.setCurrentItem(0);
-////                    isScroll = true;
-////                } else if (position == 0 && lastPos == positionOffset && !isScroll) {
-////                    viewPager.setCurrentItem(mImageIds.length - 1);
-////                    isScroll = true;
-////                }
-////                lastPos = positionOffset;
-//            }
-//
-//            @Override
-//            public void onPageSelected(int arg0) {
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+                Log.e("test", arg0 + " ");
+
+            }
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int arg0) {
 //                if (arg0 == 0) {
 //                    len = 0;
 //                } else {
@@ -157,7 +188,7 @@ public class BaseFragment extends Fragment {
 //                params.leftMargin = len;// 设置左边距
 //                params.bottomMargin = DensityUtils.dp2px(getActivity(), 2);
 //                viewBluePoint.setLayoutParams(params);// 重新给小红点设置布局参数
-//            }
-//        });
+            }
+        });
     }
 }
