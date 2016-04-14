@@ -26,6 +26,7 @@ import com.project.zhinan.adapter.BaseFragment_MyRecyclerViewAdapter;
 import com.project.zhinan.bean.jsonbean;
 import com.project.zhinan.utils.Cache;
 import com.project.zhinan.utils.HttpUtils;
+import com.project.zhinan.view.HomeFragment_MyViewPager;
 
 import java.util.ArrayList;
 
@@ -40,7 +41,7 @@ public class BaseFragment extends Fragment {
     private String resString;
     private Gson gson;
     private String url;
-    private ViewPager viewPager;
+    private HomeFragment_MyViewPager viewPager;
     private ArrayList<ImageView> mImageViewList;
     private static int[] mImageIds = new int[]{R.mipmap.pic2, R.mipmap.pic1, R.mipmap.pic3};
     private LinearLayout ll_LinearLayout;
@@ -66,7 +67,7 @@ public class BaseFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_base, container, false);
         ll_LinearLayout = (LinearLayout) view.findViewById(R.id.ll_LinearLayout);
-        viewPager = (ViewPager) view.findViewById(R.id.viewPager);
+        viewPager = (HomeFragment_MyViewPager) view.findViewById(R.id.viewPager);
         gson = new Gson();
 //        getCacheData(); //获取缓存数据
         HttpUtils.getData(url, handler); //获取网络数据
