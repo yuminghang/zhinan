@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.project.zhinan.view.HomeFragment_MyViewPager
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/home_viewPager"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <com.project.zhinan.view.HomeFragment_MyViewPager
-        android:id="@+id/home_viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="150dp" />
+    android:layout_height="150dp">
 
 
-</LinearLayout>
+
+
+</com.project.zhinan.view.HomeFragment_MyViewPager>
 

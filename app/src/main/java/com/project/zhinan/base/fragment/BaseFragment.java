@@ -49,7 +49,6 @@ public class BaseFragment extends Fragment {
     private View home_vp;
 
 
-
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -96,9 +95,9 @@ public class BaseFragment extends Fragment {
         objects = new ArrayList<jsonbean.ResultEntity.ItemsEntity.BrandsEntity>();
         objects.addAll(datas.getResult().getItems().getBrands());
 
-//        mAdapter = new BaseFragment_MyRecyclerViewAdapter(getActivity(), datas);
-        mlv.setAdapter(new NewsinglepicLayoutAdapter(getContext(), objects));
         mlv.addHeaderView(viewPager);
+        mlv.setAdapter(new NewsinglepicLayoutAdapter(getContext(), objects));
+
         mlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
