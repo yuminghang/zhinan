@@ -71,7 +71,6 @@ public class WebviewActivity extends Activity {
                 if (isLogin){
 
                     rbs=1;
-                    addRMB(rbs);
                     new Thread() {
                         @Override
                         public void run() {
@@ -153,8 +152,8 @@ public class WebviewActivity extends Activity {
             Toast.makeText(WebviewActivity.this,"已经领取过了",Toast.LENGTH_SHORT).show();
             return;
         }
+        addRMB(rbs);
         ContentValues initialValues = new ContentValues();
-
         initialValues.put("ad_id", adID);
         initialValues.put("rbs", rbs);
         initialValues.put("ad_url", url);
