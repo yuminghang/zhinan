@@ -2,8 +2,12 @@ package com.project.zhinan.activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,6 +24,7 @@ import android.widget.Toast;
 
 import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
+import com.project.zhinan.dao.HistorySqlliteHelper;
 import com.project.zhinan.view.ScrollWebView;
 
 /**
@@ -40,10 +45,11 @@ public class WebviewActivity extends Activity {
 //        }
 //    };//HttpUtils.getHtml(content)
     private SwipeRefreshLayout swipeRefreshLayout;
-    private  ProgressBar pb;
+    private ProgressBar pb;
     private Button mGetRmbButton;
     private SharedPreferences sharedPreferences;
     private boolean isLogin;
+    private int rbs;
 
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -60,8 +66,24 @@ public class WebviewActivity extends Activity {
         mGetRmbButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(WebviewActivity.this,"金币领取成功",Toast.LENGTH_SHORT).show();
-                addRMB(1);
+                sharedPreferences = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
+                isLogin = sharedPreferences.getBoolean("isLogin", false);
+                if (isLogin){
+
+                    rbs=1;
+                    addRMB(rbs);
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            AddHistory();
+
+                        }
+                    }.run();
+                }else {
+                    Toast.makeText(WebviewActivity.this,"您还未登陆。。。", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(WebviewActivity.this,LoginActivity.class));
+                }
+
             }
         });
         pb = (ProgressBar) findViewById(R.id.pb);
@@ -100,35 +122,59 @@ public class WebviewActivity extends Activity {
         webview.setOnScrollChangedCallback(new ScrollWebView.OnScrollChangedCallback() {
             @Override
             public void onScroll(int dx, int dy) {
-                if (dy>0){
-                    System.out.println("----------上滑-------------");
+                if (dy > 0) {
+//                    System.out.println("----------上滑-------------");
                     mGetRmbButton.setVisibility(View.VISIBLE);
                     if (webview.getContentHeight() * webview.getScale() == (webview.getHeight() + webview.getScrollY())) {
                         mGetRmbButton.setClickable(true);
                         mGetRmbButton.setTextColor(0xFF000000);
                     }
-                }else {
+                } else {
                     mGetRmbButton.setVisibility(View.GONE);
                     mGetRmbButton.setClickable(false);
                     mGetRmbButton.setTextColor(0xFF778899);
-                    System.out.println("----------下滑-------------");
+//                    System.out.println("----------下滑-------------");
                 }
 
             }
         });
 
     }
-    public void addRMB(int rmbs){
-        try{
+
+    private void AddHistory() {
+        /**
+         * 增加领取记录
+         */
+        String adID = "12313132";
+        HistorySqlliteHelper historySqlliteHelper = new HistorySqlliteHelper(WebviewActivity.this);
+        SQLiteDatabase writableDatabase = historySqlliteHelper.getWritableDatabase();
+        Cursor cursor = writableDatabase.rawQuery("select * from history_table where ad_id= " + adID, null);
+        if (cursor.getCount()>0){
+            Toast.makeText(WebviewActivity.this,"已经领取过了",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        ContentValues initialValues = new ContentValues();
+
+        initialValues.put("ad_id", adID);
+        initialValues.put("rbs", rbs);
+        initialValues.put("ad_url", url);
+        initialValues.put("if_get", 1);
+        Toast.makeText(WebviewActivity.this,"领取成功",Toast.LENGTH_SHORT).show();
+        writableDatabase.insert("history_table", null, initialValues);
+        writableDatabase.close();
+    }
+
+    public void addRMB(int rmbs) {
+        try {
             sharedPreferences = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
             isLogin = sharedPreferences.getBoolean("isLogin", false);
-            if (isLogin){
+            if (isLogin) {
                 int account = sharedPreferences.getInt("account", 0);
-                account=account+rmbs;
-                sharedPreferences.edit().putInt("account",account).commit();
+                account = account + rmbs;
+                sharedPreferences.edit().putInt("account", account).commit();
             }
-        }catch (Exception e){
-            Log.d("加钱错误",e.toString());
+        } catch (Exception e) {
+            Log.d("加钱错误", e.toString());
         }
 
     }
