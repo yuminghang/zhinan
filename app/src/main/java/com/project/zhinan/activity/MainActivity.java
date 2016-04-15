@@ -1,15 +1,11 @@
 package com.project.zhinan.activity;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -21,7 +17,6 @@ import com.project.zhinan.fragment.FaxianFragment;
 import com.project.zhinan.fragment.HomeFragment;
 import com.project.zhinan.fragment.SettingFragment;
 import com.project.zhinan.utils.StatusBarUtil;
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener {
@@ -44,7 +39,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         fragment_container = (FrameLayout) findViewById(R.id.fragment_container);
         initRadioButton();
         select(0);
-        Log.e("tttt", getApplicationContext().getPackageResourcePath() + "/");
+//        Log.e("tttt", getApplicationContext().getPackageResourcePath() + "/");
     }
 
     private void select(int i) {

@@ -9,14 +9,12 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -25,7 +23,6 @@ import com.project.zhinan.activity.WebviewActivity;
 import com.project.zhinan.adapter.NewsinglepicLayoutAdapter;
 import com.project.zhinan.api.Urls;
 import com.project.zhinan.bean.jsonbean;
-import com.project.zhinan.utils.Cache;
 import com.project.zhinan.utils.HttpUtils;
 import com.project.zhinan.view.HomeFragment_MyViewPager;
 
@@ -168,7 +165,7 @@ public class BaseFragment extends Fragment {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrollStateChanged(int arg0) {
-                Log.e("test", arg0 + " ");
+//                Log.e("test", arg0 + " ");
 
             }
 
