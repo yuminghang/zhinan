@@ -95,7 +95,7 @@ public class BaseFragment extends Fragment {
         objects = new ArrayList<jsonbean.ResultEntity.ItemsEntity.BrandsEntity>();
         objects.addAll(datas.getResult().getItems().getBrands());
 
-        mlv.addHeaderView(viewPager);
+        mlv.addHeaderView(home_vp);
         mlv.setAdapter(new NewsinglepicLayoutAdapter(getContext(), objects));
 
         mlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

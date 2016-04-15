@@ -56,10 +56,12 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
 
     private void initializeViews(jsonbean.ResultEntity.ItemsEntity.BrandsEntity object, ViewHolder holder) {
         //TODO implement
+
         if (!StringUtil.isNullOrEmpty(object.getPms_activetips())) {
+            holder.newstitleTextView.setVisibility(View.VISIBLE);
             holder.newstitleTextView.setText(object.getPms_activetips());
         } else {
-            holder.newstitleTextView.setVisibility(View.GONE);
+            holder.newstitleTextView.setVisibility(View.INVISIBLE);
         }
         int index1 = object.getAgio().indexOf(">");
         int index2 = object.getAgio().indexOf("</span>");
