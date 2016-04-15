@@ -84,7 +84,6 @@ public class BaseFragment extends Fragment {
 
         gson = new Gson();
 //        getCacheData(); //获取缓存数据
-        HttpUtils.getData(url, handler); //获取网络数据
         mlv = (ListView) view.findViewById(R.id.recyclerview);
 
 
@@ -118,6 +117,8 @@ public class BaseFragment extends Fragment {
 
 
         }, 0, 2000);
+        HttpUtils.getData(url, handler); //获取网络数据
+
         return view;
     }
 
