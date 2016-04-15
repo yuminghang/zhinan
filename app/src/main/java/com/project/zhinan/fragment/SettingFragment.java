@@ -142,6 +142,12 @@ public class SettingFragment extends Fragment {
         TextView txtJifen = (TextView) mLayoutUserinclude.findViewById(R.id.txtJifen);
         txtName.setText(name);
         txtJifen.setText("积分：" + account);
+        mLayoutUserinclude.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(),AccountActivity.class));
+            }
+        });
 
     }
 

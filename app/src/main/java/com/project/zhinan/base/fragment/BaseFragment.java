@@ -64,6 +64,7 @@ public class BaseFragment extends Fragment {
                 case HttpUtils.DATA_GET:
                     datas = (gson.fromJson(msg.getData().getString("content"), new TypeToken<jsonbean>() {
                     }.getType()));
+                    objects.addAll(datas.getResult().getItems().getBrands());
                     break;
                 default:
                     break;
@@ -78,7 +79,7 @@ public class BaseFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_base, container, false);
 //        ll_LinearLayout = (LinearLayout) view.findViewById(R.id.ll_LinearLayout);
-
+        datas=new jsonbean();
         home_vp = inflater.inflate(R.layout.homefragment_myviewpager, null, false);
         viewPager = (HomeFragment_MyViewPager) home_vp.findViewById(R.id.home_viewPager);
 
@@ -89,10 +90,10 @@ public class BaseFragment extends Fragment {
 
         initViewPager();
 //        ll_LinearLayout.requestDisallowInterceptTouchEvent(true);
-        datas = (gson.fromJson(Cache.data, new TypeToken<jsonbean>() {
-        }.getType()));
+//        datas = (gson.fromJson(Cache.data, new TypeToken<jsonbean>() {
+//        }.getType()));
         objects = new ArrayList<jsonbean.ResultEntity.ItemsEntity.BrandsEntity>();
-        objects.addAll(datas.getResult().getItems().getBrands());
+
 
         mlv.addHeaderView(home_vp);
         mlv.setAdapter(new NewsinglepicLayoutAdapter(getContext(), objects));
