@@ -33,7 +33,8 @@
         <activity android:name=".activity.MyAssets" />
         <activity android:name=".activity.MyCollection" />
         <activity android:name=".activity.ServiceActivity" />
-        <activity android:name=".activity.AboutActivity"></activity>
+        <activity android:name=".activity.AboutActivity" />
+        <activity android:name=".activity.ChangePassActivity"></activity>
     </application>
 
 </manifest>

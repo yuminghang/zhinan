@@ -139,9 +139,9 @@ public class RegisterActivity extends AppCompatActivity {
             focusView = mPassEditText;
             cancel = true;
         }
-        if (TextUtils.isEmpty(name)) {
-            mUsernameEditText.setError(getString(R.string.error_no_repass));
-            focusView = mUsernameEditText;
+        if (TextUtils.isEmpty(re_pass)) {
+            mRePassEditText.setError(getString(R.string.error_no_repass));
+            focusView = mRePassEditText;
             cancel = true;
         }
 

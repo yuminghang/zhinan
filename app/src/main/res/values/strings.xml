@@ -27,4 +27,7 @@
     <string name="error_invalid_repassword">重复密码太短</string>
     <string name="error_invalid_phone">请输入正确的手机号</string>
     <string name="QianggouUrl">http://119.29.191.229:2888/com/try</string>
+    <string name="error_no_newpass">新密码为空</string>
+    <string name="error_no_renewpass">新密码重复为空</string>
+    <string name="error_nosame_password">两次密码不一致</string>
 </resources>

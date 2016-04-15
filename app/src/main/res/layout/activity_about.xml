@@ -13,9 +13,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="关于"
+        android:text="关于指南"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="185dp" />
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="首页的广告分类中的商圈模块，因为此功能可能需要嵌入百度地图的相关地图界面， 	需要向百度公司申请，需要一周左右时间才会通过审核，所以此功能放在这个阶段."
+        android:id="@+id/textView3"
+        android:layout_margin="45dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
