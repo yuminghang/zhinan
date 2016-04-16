@@ -63,6 +63,7 @@ public class BaseFragment extends Fragment {
                     datas = (gson.fromJson(msg.getData().getString("content"), new TypeToken<jsonbean>() {
                     }.getType()));
                     objects.addAll(datas.getResult().getItems().getBrands());
+                    adapter.notifyDataSetChanged();
                     break;
                 default:
                     break;
@@ -71,6 +72,7 @@ public class BaseFragment extends Fragment {
 
         }
     };
+    private NewsinglepicLayoutAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -94,7 +96,8 @@ public class BaseFragment extends Fragment {
 
 
         mlv.addHeaderView(home_vp);
-        mlv.setAdapter(new NewsinglepicLayoutAdapter(getContext(), objects));
+        adapter = new NewsinglepicLayoutAdapter(getContext(), objects);
+        mlv.setAdapter(adapter);
 
         mlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
