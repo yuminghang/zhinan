@@ -3,6 +3,7 @@ package com.project.zhinan.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.zhinan.R;
+import com.project.zhinan.dao.CollectionSqlliteHelper;
+import com.project.zhinan.dao.HistorySqlliteHelper;
 
 public class AccountActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -54,6 +57,14 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.clear();
         edit.commit();
+        CollectionSqlliteHelper collectionSqlliteHelper = new CollectionSqlliteHelper(AccountActivity.this);
+        SQLiteDatabase writableDatabase = collectionSqlliteHelper.getWritableDatabase();
+        writableDatabase.execSQL("delete from collection_table");
+        writableDatabase.close();
+        HistorySqlliteHelper historySqlliteHelper = new HistorySqlliteHelper(AccountActivity.this);
+        SQLiteDatabase writableDatabase1 = historySqlliteHelper.getWritableDatabase();
+        writableDatabase1.execSQL("delete from history_table");
+        writableDatabase1.close();
         Toast.makeText(AccountActivity.this,"账户退出登录",Toast.LENGTH_SHORT).show();
         finish();
     }
