@@ -24,6 +24,7 @@ import com.project.zhinan.adapter.NewsinglepicLayoutAdapter;
 import com.project.zhinan.api.Urls;
 import com.project.zhinan.bean.jsonbean;
 import com.project.zhinan.utils.HttpUtils;
+import com.project.zhinan.view.CircleIndicatorHelper;
 import com.project.zhinan.view.HomeFragment_MyViewPager;
 
 import java.util.ArrayList;
@@ -133,6 +134,7 @@ public class BaseFragment extends Fragment {
             iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
             mImageViewList.add(iv);
         }
+
         viewPager.setAdapter(new PagerAdapter() {
 
             //viewpager中的组件数量
@@ -165,6 +167,11 @@ public class BaseFragment extends Fragment {
                 return super.getItemPosition(object);
             }
         });
+        CircleIndicatorHelper circleIndicatorHelper = new CircleIndicatorHelper(getContext());
+        circleIndicatorHelper.setViewpager(viewPager);
+        circleIndicatorHelper.setFillColor("#FFD547EB");
+        circleIndicatorHelper.setDefaultColor("#FFD547EB");
+        circleIndicatorHelper.setRadius(4);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrollStateChanged(int arg0) {
@@ -193,4 +200,6 @@ public class BaseFragment extends Fragment {
             }
         });
     }
+
+
 }
