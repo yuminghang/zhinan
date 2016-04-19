@@ -34,4 +34,5 @@ dependencies {
     compile files('src/main/libs/systembartint-1.0.4.jar')
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'fr.baloomba:viewpagerindicator:2.4.2'
+    compile project(path: ':library')
 }

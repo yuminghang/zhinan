@@ -56,6 +56,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     ft.show(homeFragment);
                 }
                 StatusBarUtil.initStatusBar(this, R.color.almost_white);
+
                 break;
             case 1:
                 if (fabuFragment == null) {

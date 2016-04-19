@@ -1,7 +1,9 @@
 package com.project.zhinan.base.fragment;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,12 +11,17 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -31,20 +38,22 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import cn.refactor.library.SmoothCheckBox;
+
 /**
  * Created by ymh on 2016/4/11.
  */
 public class BaseFragment extends Fragment {
     private static final int VPRUN = 1;
     private ListView mlv;
-    public jsonbean datas;
+    public static jsonbean datas;
     private String resString;
     private Gson gson;
     public String url;
     private HomeFragment_MyViewPager viewPager;
     private ArrayList<ImageView> mImageViewList;
     private static int[] mImageIds = new int[]{R.mipmap.pic2, R.mipmap.pic1, R.mipmap.pic3};
-    private ArrayList<jsonbean.ResultEntity.ItemsEntity.BrandsEntity> objects;
+    public ArrayList<jsonbean.ResultEntity.ItemsEntity.BrandsEntity> objects;
     private View home_vp;
 
 
@@ -69,18 +78,17 @@ public class BaseFragment extends Fragment {
                 default:
                     break;
             }
-
-
         }
     };
     private NewsinglepicLayoutAdapter adapter;
+    private SharedPreferences sharedPreferences;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_base, container, false);
 //        ll_LinearLayout = (LinearLayout) view.findViewById(R.id.ll_LinearLayout);
-        datas=new jsonbean();
+        datas = new jsonbean();
         home_vp = inflater.inflate(R.layout.homefragment_myviewpager, null, false);
         viewPager = (HomeFragment_MyViewPager) home_vp.findViewById(R.id.home_viewPager);
 
@@ -117,8 +125,6 @@ public class BaseFragment extends Fragment {
             public void run() {
                 handler.sendEmptyMessage(VPRUN);
             }
-
-
         }, 0, 2000);
         HttpUtils.getData(url, handler); //获取网络数据
 
@@ -200,6 +206,5 @@ public class BaseFragment extends Fragment {
             }
         });
     }
-
 
 }

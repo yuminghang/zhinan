@@ -20,9 +20,10 @@ import com.project.zhinan.utils.StringUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.refactor.library.SmoothCheckBox;
-
-public class NewsinglepicLayoutAdapter extends BaseAdapter {
+/**
+ * Created by ymh on 2016/4/19.
+ */
+public class CollectionAdapter extends BaseAdapter {
 
     private List<jsonbean.ResultEntity.ItemsEntity.BrandsEntity> objects;
 
@@ -32,7 +33,7 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
     private SharedPreferences.Editor edit;
     private SharedPreferences sharedPreferences;
 
-    public NewsinglepicLayoutAdapter(Context context, ArrayList<jsonbean.ResultEntity.ItemsEntity.BrandsEntity> objects) {
+    public CollectionAdapter(Context context, ArrayList<jsonbean.ResultEntity.ItemsEntity.BrandsEntity> objects) {
         this.objects = objects;
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
@@ -61,8 +62,6 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
             convertView = layoutInflater.inflate(R.layout.newsinglepic_layout, null);
             convertView.setTag(new ViewHolder(convertView));
         }
-
-
         initializeViews((jsonbean.ResultEntity.ItemsEntity.BrandsEntity) getItem(position), (ViewHolder) convertView.getTag(), position);
         return convertView;
     }
@@ -93,7 +92,6 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
                 }
             }
         });
-//        holder.cb.setChecked(true);
         if (!StringUtil.isNullOrEmpty(object.getPms_activetips())) {
             holder.newstitleTextView.setVisibility(View.VISIBLE);
             holder.newstitleTextView.setText(object.getPms_activetips());

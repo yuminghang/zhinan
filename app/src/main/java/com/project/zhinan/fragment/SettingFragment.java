@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
 import com.project.zhinan.activity.AboutActivity;
 import com.project.zhinan.activity.AccountActivity;
@@ -78,10 +79,10 @@ public class SettingFragment extends Fragment {
         sharedPreferences = getContext().getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
         isLogin = sharedPreferences.getBoolean("isLogin", false);
         String name = sharedPreferences.getString("name", null);
-        String userNo = sharedPreferences.getString("userNo", null);
         int account = sharedPreferences.getInt("account", 0);
         mListViewListView.setAdapter(new SimpleAdapter(getContext(), listems, R.layout.settingitem, new String[]{"name"}, new int[]{R.id.item_name}));
         if (isLogin) {
+            MyApplication.getInstance().setLoginIn();
             mLayoutEmptyinclude.setVisibility(View.GONE);
             mLayoutUserinclude.setVisibility(View.VISIBLE);
             initLoginData(name, account);
@@ -94,7 +95,6 @@ public class SettingFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent();
-
                 switch (position) {
                     case 0:
                         iftoDetail(AccountActivity.class);
@@ -145,7 +145,7 @@ public class SettingFragment extends Fragment {
         mLayoutUserinclude.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(),AccountActivity.class));
+                startActivity(new Intent(getContext(), AccountActivity.class));
             }
         });
 
@@ -177,11 +177,6 @@ public class SettingFragment extends Fragment {
         });
     }
 
-    private void tologin() {
-        Intent intent = new Intent(getContext(), LoginActivity.class);
-        startActivity(intent);
-
-    }
 
     private void initView() {
         mLayoutEmptyinclude = (LinearLayout) view.findViewById(R.id.layoutEmpty);

@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by deng on 16-4-15.
  */
-public class CollectionSqlliteHelper extends SQLiteOpenHelper{
+public class CollectionSqlliteHelper extends SQLiteOpenHelper {
     public CollectionSqlliteHelper(Context context) {
         super(context, "CollectionDb", null, 1);
     }
@@ -20,7 +20,7 @@ public class CollectionSqlliteHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE IF NOT EXISTS collection_table ( id integer primary key autoincrement, ad_id integer, " +
-                "ad_url text UNIQUE ," +
+                "ad_url text UNIQUE ,isCollect integer" +
                 " create_time text , update_time text )";
         db.execSQL(sql);
     }

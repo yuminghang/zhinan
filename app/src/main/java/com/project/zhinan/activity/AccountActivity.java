@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
 import com.project.zhinan.dao.CollectionSqlliteHelper;
 import com.project.zhinan.dao.HistorySqlliteHelper;
@@ -39,9 +40,9 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.tvchangepass:
-                startActivity(new Intent(AccountActivity.this,ChangePassActivity.class));
+                startActivity(new Intent(AccountActivity.this, ChangePassActivity.class));
                 finish();
                 break;
             case R.id.bt_unlogin:
@@ -57,6 +58,7 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.clear();
         edit.commit();
+        MyApplication.getInstance().setLoginOut();
         CollectionSqlliteHelper collectionSqlliteHelper = new CollectionSqlliteHelper(AccountActivity.this);
         SQLiteDatabase writableDatabase = collectionSqlliteHelper.getWritableDatabase();
         writableDatabase.execSQL("delete from collection_table");
@@ -65,7 +67,7 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
         SQLiteDatabase writableDatabase1 = historySqlliteHelper.getWritableDatabase();
         writableDatabase1.execSQL("delete from history_table");
         writableDatabase1.close();
-        Toast.makeText(AccountActivity.this,"账户退出登录",Toast.LENGTH_SHORT).show();
+        Toast.makeText(AccountActivity.this, "退出登录成功", Toast.LENGTH_SHORT).show();
         finish();
     }
 }

@@ -7,36 +7,27 @@
     android:orientation="vertical"
     tools:context="com.project.zhinan.activity.AccountActivity">
 
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/titlebar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="我的收藏"
+        android:textColor="@color/colorAccent"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:translationZ="2dp" />
 
-        <TextView
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray" />
 
-            android:id="@+id/titlebar"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center"
-            android:text="我的收藏"
-            android:textColor="@color/colorAccent"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:translationZ="2dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray" />
-        <ListView
-            android:id="@+id/lv_mycollection"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"></ListView>
-
-    </LinearLayout>
-
+    <ListView
+        android:id="@+id/lv_mycollection"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></ListView>
 
 </LinearLayout>
 

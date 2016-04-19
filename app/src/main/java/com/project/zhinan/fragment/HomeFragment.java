@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.project.zhinan.R;
 import com.project.zhinan.adapter.MyFragmentPagerAdapter;
@@ -47,9 +48,8 @@ public class HomeFragment extends Fragment {
     MyFragmentPagerAdapter myFragmentPagerAdapter;
     static ArrayList<String> titleContainer = new ArrayList<String>();
 
-//    public HomeFragment(Context context) {
-//        this.context = context;
-//    }
+    public HomeFragment() {
+    }
 
 
     @Override

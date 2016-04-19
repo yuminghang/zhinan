@@ -203,7 +203,7 @@ public class jsonbean {
             }
 
             public static class BrandsEntity {
-                private String brand_id;
+                public String brand_id;
                 private String brand_name;
                 private String sell_time_from;
                 private String sell_time_to;

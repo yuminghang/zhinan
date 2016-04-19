@@ -41,6 +41,8 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressBar mProgressProgressBar;
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private String json;
+    private String success;
+
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -65,32 +67,29 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     };
+    private String name;
+    private String password;
 
     private void resetAccount() {
         try {
-            JSONObject jsonObject = new JSONObject(success);
-            String name = jsonObject.getString("name");
-            SharedPreferences sharedPreferences = this.getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
             SharedPreferences.Editor edit = sharedPreferences.edit();
-            edit.putBoolean("isLogin",true);
-            edit.putString("name",name);
-            edit.putString("userNo",name);
-            edit.putInt("account",0);
+            edit.putBoolean("isLogin", true);
+            edit.putString("name", name);
+            edit.putString("password", password);
+            edit.putInt("account", 0);
             edit.commit();
-        } catch (JSONException e) {
+            MyApplication.getInstance().setLoginIn();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
-    private String success;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MyApplication.getInstance().addActivity(this);
         setContentView(R.layout.activity_login);
-
         initView();
     }
 
@@ -110,14 +109,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private void attemptLogin() {
 
-
         // Reset errors.
         mNameEditText.setError(null);
         mPassEditText.setError(null);
 
         // Store values at the time of the login attempt.
-        String name = mNameEditText.getText().toString();
-        String password = mPassEditText.getText().toString();
+        name = mNameEditText.getText().toString();
+        password = mPassEditText.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -166,13 +164,10 @@ public class LoginActivity extends AppCompatActivity {
             new Thread() {
                 @Override
                 public void run() {
-
                     postJson();
                 }
             }.start();
 
-//            mAuthTask = new UserLoginTask(email, password);
-//            mAuthTask.execute((Void) null);
         }
     }
 
@@ -180,8 +175,8 @@ public class LoginActivity extends AppCompatActivity {
         //申明给服务端传递一个json串
         //创建一个OkHttpClient对象
         OkHttpClient okHttpClient = new OkHttpClient();
-        //创建一个RequestBody(参数1：数据类型 参数2传递的json串)
 
+        //创建一个RequestBody(参数1：数据类型 参数2传递的json串)
         RequestBody requestBody = RequestBody.create(JSON, json);
         //创建一个请求对象
         Request request = new Request.Builder()

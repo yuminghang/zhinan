@@ -2,6 +2,9 @@ package com.project.zhinan;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +15,21 @@ import java.util.List;
 public class MyApplication extends Application {
     private static List<Activity> activities = new ArrayList<Activity>();
     private static MyApplication myApplication = new MyApplication();
+    private static boolean isLogin = false;
+    private SharedPreferences sharedPreferences;
 
     public MyApplication() {
 
     }
 
-    public static MyApplication getInstance() {
+    @Override
+    public void onCreate() {
+        sharedPreferences = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
+        isLogin = sharedPreferences.getBoolean("isLogin", false);
+        super.onCreate();
+    }
 
+    public static MyApplication getInstance() {
         return myApplication;
     }
 
@@ -42,4 +53,15 @@ public class MyApplication extends Application {
         activities.add(activity);
     }
 
+    public void setLoginIn() {
+        isLogin = true;
+    }
+
+    public void setLoginOut() {
+        isLogin = false;
+    }
+
+    public boolean isLogin() {
+        return isLogin;
+    }
 }
