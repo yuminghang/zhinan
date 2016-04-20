@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
+import com.project.zhinan.activity.MainActivity;
 import com.project.zhinan.bean.jsonbean;
 import com.project.zhinan.utils.StringUtil;
 
@@ -67,9 +68,9 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private void initializeViews(jsonbean.ResultEntity.ItemsEntity.BrandsEntity object, final ViewHolder holder, final int position) {
+    private void initializeViews(final jsonbean.ResultEntity.ItemsEntity.BrandsEntity object, final ViewHolder holder, final int position) {
         //TODO implement
-        if (sharedPreferences.getInt("" + position, 0) == 1) {
+        if (sharedPreferences.getInt("" + object.getBrand_id(), 0) == 1) {
             holder.cb.setChecked(true);
         } else {
             holder.cb.setChecked(false);
@@ -80,12 +81,14 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
                 if (MyApplication.getInstance().isLogin()) {
                     if (holder.cb.isChecked()) {
                         Toast.makeText(context, "收藏成功", Toast.LENGTH_SHORT).show();
-                        edit.putInt(position + "", 1);
+                        edit.putInt(object.getBrand_id() + "", 1);
                         edit.commit();
+                        MyApplication.count++;
                     } else {
                         Toast.makeText(context, "取消收藏", Toast.LENGTH_SHORT).show();
-                        edit.putInt(position + "", 0);
+                        edit.putInt(object.getBrand_id() + "", 0);
                         edit.commit();
+                        MyApplication.count++;
                     }
                 } else {
                     holder.cb.setChecked(false);

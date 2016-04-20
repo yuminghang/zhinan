@@ -17,6 +17,7 @@ public class MyApplication extends Application {
     private static MyApplication myApplication = new MyApplication();
     private static boolean isLogin = false;
     private SharedPreferences sharedPreferences;
+    public static int count = 0;
 
     public MyApplication() {
 

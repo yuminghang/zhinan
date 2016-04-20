@@ -30,6 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.IdentityHashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -142,7 +143,6 @@ public class LoginActivity extends AppCompatActivity {
             focusView = mPassEditText;
             cancel = true;
         }
-
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.

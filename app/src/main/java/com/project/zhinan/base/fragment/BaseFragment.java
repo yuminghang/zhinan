@@ -83,6 +83,7 @@ public class BaseFragment extends Fragment {
     private NewsinglepicLayoutAdapter adapter;
     private SharedPreferences sharedPreferences;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -105,7 +106,7 @@ public class BaseFragment extends Fragment {
 
 
         mlv.addHeaderView(home_vp);
-        adapter = new NewsinglepicLayoutAdapter(getContext(), objects);
+        adapter = new NewsinglepicLayoutAdapter(getActivity(), objects);
         mlv.setAdapter(adapter);
 
         mlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

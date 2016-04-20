@@ -1,35 +1,68 @@
 package com.project.zhinan.activity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
+import com.project.zhinan.base.fragment.BaseFragment;
 import com.project.zhinan.fragment.FabuFragment;
 import com.project.zhinan.fragment.FaxianFragment;
 import com.project.zhinan.fragment.HomeFragment;
 import com.project.zhinan.fragment.SettingFragment;
 import com.project.zhinan.utils.StatusBarUtil;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.IdentityHashMap;
+import java.util.Map;
 
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener {
 
     private long exitTime;
-
+    private static final int POSTED = 1;
     FrameLayout fragment_container;
     HomeFragment homeFragment;
     SettingFragment settingFragment;
     FaxianFragment faxianFragment;
     FabuFragment fabuFragment;
     RadioButton btn_home, btn_dongtu, btn_faxian, btn_setting;
-
+    private ArrayList<String> myCollects;
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case POSTED:
+                    if (success.contains("success")) {
+                        Toast.makeText(MainActivity.this, "收藏信息上传成功", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+    private String success;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +138,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         }
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -113,14 +147,63 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 break;
             case R.id.btn_dongtu:
                 select(1);
+                if (MyApplication.count > 0) {
+                    sendCollectInfo();
+                }
                 break;
             case R.id.btn_faxian:
                 select(2);
+                if (MyApplication.count > 0) {
+                    sendCollectInfo();
+                }
                 break;
             case R.id.btn_setting:
                 select(3);
+                if (MyApplication.count > 0) {
+                    sendCollectInfo();
+                }
                 break;
         }
+    }
+
+    public static final MediaType TEXT
+            = MediaType.parse("text/plain; charset=utf-8");
+
+    private void sendCollectInfo() {
+        new Thread() {
+            @Override
+            public void run() {
+                SharedPreferences sharedPreferences = getSharedPreferences("collect", Context.MODE_PRIVATE);
+                Map<String, Integer> allContent = (HashMap<String, Integer>) sharedPreferences.getAll();
+                StringBuilder sb = new StringBuilder();
+                //注意遍历map的方法
+                for (Map.Entry<String, Integer> entry : allContent.entrySet()) {
+                    if (entry.getValue() == 1) {
+                        sb.append(entry.getKey() + ",");
+                    }
+                }
+                OkHttpClient okHttpClient = new OkHttpClient();
+
+                //创建一个请求对象
+                Request request = new Request.Builder()
+                        .url("https://api.github.com/markdown/raw")
+                        .post(RequestBody.create(TEXT, sb.toString()))
+                        .build();
+                //发送请求获取响应
+                try {
+                    Response response = okHttpClient.newCall(request).execute();
+                    //判断请求是否成功
+                    if (response.isSuccessful()) {
+                        //打印服务端返回结果
+                        success = response.body().string();
+                        Log.i("success", success);
+                        handler.sendEmptyMessage(POSTED);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
     }
 
     private void initRadioButton() {
