@@ -183,9 +183,9 @@ public class RegisterActivity extends AppCompatActivity {
             JSONObject jsonObject = new JSONObject();
 
             try {
-                jsonObject.put("loginname", name);
-                jsonObject.put("pass", pass);
-                jsonObject.put("re_pass", re_pass);
+                jsonObject.put("name", name);
+                jsonObject.put("password", pass);
+                jsonObject.put("password-repeat", re_pass);
                 jsonObject.put("email", email);
                 jsonObject.put("phone", phone);
             } catch (JSONException e) {
@@ -261,7 +261,7 @@ public class RegisterActivity extends AppCompatActivity {
         RequestBody requestBody = RequestBody.create(JSON, json);
         //创建一个请求对象
         Request request = new Request.Builder()
-                .url("http://119.29.191.229:2888/users/signup")
+                .url("http://123.206.84.242:2888/reg")
                 .post(requestBody)
                 .build();
         //发送请求获取响应
