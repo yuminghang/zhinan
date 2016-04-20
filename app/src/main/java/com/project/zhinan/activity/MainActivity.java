@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -48,6 +49,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     FabuFragment fabuFragment;
     RadioButton btn_home, btn_dongtu, btn_faxian, btn_setting;
     private ArrayList<String> myCollects;
+    private int currentTab = 0;
+
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -88,8 +91,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 } else {
                     ft.show(homeFragment);
                 }
+                if (currentTab == 1) {
+                    homeFragment.fragmentList.get(homeFragment.mViewPager.getCurrentItem()).mlv.setSelection(0);
+                }
                 StatusBarUtil.initStatusBar(this, R.color.almost_white);
-
+                currentTab = 1;
                 break;
             case 1:
                 if (fabuFragment == null) {
@@ -99,6 +105,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     ft.show(fabuFragment);
                 }
                 StatusBarUtil.initStatusBar(this, R.color.almost_white);
+                currentTab = 2;
                 break;
             case 2:
                 if (faxianFragment == null) {
@@ -108,6 +115,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     ft.show(faxianFragment);
                 }
                 StatusBarUtil.initStatusBar(this, R.color.almost_white);
+                currentTab = 3;
                 break;
             case 3:
                 if (settingFragment == null) {
@@ -116,7 +124,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 } else {
                     ft.show(settingFragment);
                 }
-                StatusBarUtil.initStatusBar(this, R.color.ivory);
+                StatusBarUtil.initStatusBar(this, R.color.almost_white);
+                currentTab = 4;
                 break;
         }
         ft.commit();   //提交事务

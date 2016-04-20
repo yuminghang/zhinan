@@ -189,7 +189,8 @@ public class LoginActivity extends AppCompatActivity {
             //判断请求是否成功
             if (response.isSuccessful()) {
                 //打印服务端返回结果
-                success = response.body().string();
+                success = response.body().toString();
+                String header=response.header("set-cookie");
                 Log.i("success", success);
                 handler.sendEmptyMessage(POSTED);
             } else {

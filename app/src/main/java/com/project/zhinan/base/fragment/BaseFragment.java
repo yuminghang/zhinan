@@ -45,7 +45,7 @@ import cn.refactor.library.SmoothCheckBox;
  */
 public class BaseFragment extends Fragment {
     private static final int VPRUN = 1;
-    private ListView mlv;
+    public ListView mlv;
     public static jsonbean datas;
     private String resString;
     private Gson gson;
@@ -57,7 +57,7 @@ public class BaseFragment extends Fragment {
     private View home_vp;
     private NewsinglepicLayoutAdapter adapter;
     private SharedPreferences sharedPreferences;
-    public static ImageView back_to_top;
+    public ImageView back_to_top;
 
     Handler handler = new Handler() {
         @Override
@@ -88,7 +88,6 @@ public class BaseFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_base, container, false);
         datas = new jsonbean();
-        back_to_top = (ImageView) view.findViewById(R.id.back_to_top);
         home_vp = inflater.inflate(R.layout.homefragment_myviewpager, null, false);
         viewPager = (HomeFragment_MyViewPager) home_vp.findViewById(R.id.home_viewPager);
         gson = new Gson();
@@ -103,7 +102,7 @@ public class BaseFragment extends Fragment {
 
 
         mlv.addHeaderView(home_vp);
-        adapter = new NewsinglepicLayoutAdapter(getActivity(), objects);
+        adapter = new NewsinglepicLayoutAdapter(getActivity(), objects, this);
         mlv.setAdapter(adapter);
 
         mlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -125,12 +124,6 @@ public class BaseFragment extends Fragment {
             }
         }, 0, 2000);
         HttpUtils.getData(url, handler); //获取网络数据
-        back_to_top.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mlv.setSelection(0);
-            }
-        });
 
         return view;
     }

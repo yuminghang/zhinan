@@ -42,9 +42,9 @@ public class HomeFragment extends Fragment {
     LayoutInflater mlayoutInflater;
     private View view;
     private TabLayout mTabLayout;
-    private ViewPager mViewPager;
+    public ViewPager mViewPager;
     private LinearLayout linear_layout;
-    private ArrayList<BaseFragment> fragmentList;
+    public ArrayList<BaseFragment> fragmentList;
     MyFragmentPagerAdapter myFragmentPagerAdapter;
     static ArrayList<String> titleContainer = new ArrayList<String>();
 

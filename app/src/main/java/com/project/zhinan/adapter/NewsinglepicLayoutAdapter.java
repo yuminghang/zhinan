@@ -33,11 +33,13 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
     private int collect;
     private SharedPreferences.Editor edit;
     private SharedPreferences sharedPreferences;
+    private BaseFragment baseFragment;
 
-    public NewsinglepicLayoutAdapter(Context context, ArrayList<jsonbean.ResultEntity.ItemsEntity.BrandsEntity> objects) {
+    public NewsinglepicLayoutAdapter(Context context, ArrayList<jsonbean.ResultEntity.ItemsEntity.BrandsEntity> objects, BaseFragment baseFragment) {
         this.objects = objects;
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
+        this.baseFragment = baseFragment;
     }
 
     @Override
@@ -57,13 +59,6 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (position > 3) {
-            BaseFragment.back_to_top.setVisibility(View.VISIBLE);
-            BaseFragment.back_to_top.setClickable(true);
-        } else {
-            BaseFragment.back_to_top.setVisibility(View.INVISIBLE);
-            BaseFragment.back_to_top.setClickable(false);
-        }
         sharedPreferences = context.getSharedPreferences("collect", Context.MODE_PRIVATE);
         edit = sharedPreferences.edit();
         if (convertView == null) {
