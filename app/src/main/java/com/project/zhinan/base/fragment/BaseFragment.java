@@ -55,7 +55,9 @@ public class BaseFragment extends Fragment {
     private static int[] mImageIds = new int[]{R.mipmap.pic2, R.mipmap.pic1, R.mipmap.pic3};
     public ArrayList<jsonbean.ResultEntity.ItemsEntity.BrandsEntity> objects;
     private View home_vp;
-
+    private NewsinglepicLayoutAdapter adapter;
+    private SharedPreferences sharedPreferences;
+    public static ImageView back_to_top;
 
     Handler handler = new Handler() {
         @Override
@@ -80,23 +82,18 @@ public class BaseFragment extends Fragment {
             }
         }
     };
-    private NewsinglepicLayoutAdapter adapter;
-    private SharedPreferences sharedPreferences;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_base, container, false);
-//        ll_LinearLayout = (LinearLayout) view.findViewById(R.id.ll_LinearLayout);
         datas = new jsonbean();
+        back_to_top = (ImageView) view.findViewById(R.id.back_to_top);
         home_vp = inflater.inflate(R.layout.homefragment_myviewpager, null, false);
         viewPager = (HomeFragment_MyViewPager) home_vp.findViewById(R.id.home_viewPager);
-
         gson = new Gson();
 //        getCacheData(); //获取缓存数据
         mlv = (ListView) view.findViewById(R.id.recyclerview);
-
 
         initViewPager();
 //        ll_LinearLayout.requestDisallowInterceptTouchEvent(true);
@@ -128,6 +125,12 @@ public class BaseFragment extends Fragment {
             }
         }, 0, 2000);
         HttpUtils.getData(url, handler); //获取网络数据
+        back_to_top.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mlv.setSelection(0);
+            }
+        });
 
         return view;
     }
@@ -193,17 +196,6 @@ public class BaseFragment extends Fragment {
 
             @Override
             public void onPageSelected(int arg0) {
-//                if (arg0 == 0) {
-//                    len = 0;
-//                } else {
-//                    len = mPointWidth * arg0;
-//                }
-//                isScroll = false;
-//                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) viewBluePoint
-//                        .getLayoutParams();// 获取当前红点的布局参数
-//                params.leftMargin = len;// 设置左边距
-//                params.bottomMargin = DensityUtils.dp2px(getActivity(), 2);
-//                viewBluePoint.setLayoutParams(params);// 重新给小红点设置布局参数
             }
         });
     }

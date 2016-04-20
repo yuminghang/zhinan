@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
 import com.project.zhinan.activity.MainActivity;
+import com.project.zhinan.base.fragment.BaseFragment;
 import com.project.zhinan.bean.jsonbean;
 import com.project.zhinan.utils.StringUtil;
 
@@ -56,13 +57,19 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        if (position > 3) {
+            BaseFragment.back_to_top.setVisibility(View.VISIBLE);
+            BaseFragment.back_to_top.setClickable(true);
+        } else {
+            BaseFragment.back_to_top.setVisibility(View.INVISIBLE);
+            BaseFragment.back_to_top.setClickable(false);
+        }
         sharedPreferences = context.getSharedPreferences("collect", Context.MODE_PRIVATE);
         edit = sharedPreferences.edit();
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.newsinglepic_layout, null);
             convertView.setTag(new ViewHolder(convertView));
         }
-
 
         initializeViews((jsonbean.ResultEntity.ItemsEntity.BrandsEntity) getItem(position), (ViewHolder) convertView.getTag(), position);
         return convertView;
