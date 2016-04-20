@@ -70,7 +70,7 @@ public class MyCollection extends AppCompatActivity {
                         JSONObject jsonObject = new JSONObject(getWithCookie);
                         String coll = jsonObject.getString("coll");
                         System.out.println(coll );
-                        finish();
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
