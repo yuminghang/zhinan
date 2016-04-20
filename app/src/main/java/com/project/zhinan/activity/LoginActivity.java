@@ -190,7 +190,13 @@ public class LoginActivity extends AppCompatActivity {
             if (response.isSuccessful()) {
                 //打印服务端返回结果
                 success = response.body().string();
-                String header=response.header("set-cookie");
+                SharedPreferences sharedPreferences = getSharedPreferences("cookie", Context.MODE_PRIVATE);
+                SharedPreferences.Editor edit = sharedPreferences.edit();
+                String value = response.headers("set-cookie").toString();
+                edit.putString("my_cookie", value.substring(1, value.length()));
+                edit.commit();
+
+
                 Log.i("success", success);
                 handler.sendEmptyMessage(POSTED);
             } else {

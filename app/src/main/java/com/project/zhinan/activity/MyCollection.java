@@ -9,12 +9,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.project.zhinan.R;
 import com.project.zhinan.adapter.CollectionAdapter;
 import com.project.zhinan.base.fragment.BaseFragment;
 import com.project.zhinan.bean.jsonbean;
 import com.project.zhinan.dao.HistorySqlliteHelper;
+import com.project.zhinan.net.HttpUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,6 +55,34 @@ public class MyCollection extends AppCompatActivity {
                 myObjects.add(BaseFragment.datas.getResult().getItems().getBrands().get(Integer.parseInt(entry.getKey())));
             }
         }
+
+
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                /**
+                 * 网络查询收藏
+                 */
+                String getWithCookie = HttpUtils.doGetWithCookie("http://123.206.84.242:2888/collection", getApplicationContext());
+                if (getWithCookie.contains("success")){
+                    //查询成功
+                    try {
+                        JSONObject jsonObject = new JSONObject(getWithCookie);
+                        String coll = jsonObject.getString("coll");
+                        System.out.println(coll );
+                        finish();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    //没有数据
+                    Toast.makeText(getApplicationContext(),"网路错误",Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        };
+        thread.start();
     }
 
     private void initView() {
