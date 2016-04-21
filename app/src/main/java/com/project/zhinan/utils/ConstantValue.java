@@ -14,5 +14,6 @@ public class ConstantValue {
     public static String UploadUrl=BaseUrl+"upload";
     public static String collection_cUrl=BaseUrl+"collection_c";
     public static String add_account_cUrl=BaseUrl+"add_account";
+    public static String changePassUrl=BaseUrl+"changepass";
 
 }

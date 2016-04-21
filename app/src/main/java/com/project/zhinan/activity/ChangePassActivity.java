@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.zhinan.R;
+import com.project.zhinan.utils.ConstantValue;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -182,8 +183,9 @@ public class ChangePassActivity extends AppCompatActivity {
 
             try {
                 jsonObject.put("name", name);
-                jsonObject.put("pass", pass);
-                jsonObject.put("newpass", newPass);
+                jsonObject.put("password", pass);
+                jsonObject.put("newpassword", newPass);
+                jsonObject.put("newpassword-repeat",reNewPass);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -219,7 +221,7 @@ public class ChangePassActivity extends AppCompatActivity {
         RequestBody requestBody = RequestBody.create(JSON, json);
         //创建一个请求对象
         Request request = new Request.Builder()
-                .url("http://119.29.191.229:2888/users/updatepass")
+                .url(ConstantValue.changePassUrl)
                 .post(requestBody)
                 .build();
         //发送请求获取响应
