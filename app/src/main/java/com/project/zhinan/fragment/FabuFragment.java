@@ -77,7 +77,7 @@ public class FabuFragment extends Fragment {
                             e.printStackTrace();
                         }
 
-                        isFinished=true;
+                        isFinished = true;
 
                     } else {
                         try {
@@ -187,7 +187,9 @@ public class FabuFragment extends Fragment {
         });
     }
 
-
+    /**
+     * 发布新的广告
+     */
     private void uploadInfo() {
 //申明给服务端传递一个json串
         //创建一个OkHttpClient对象
@@ -246,13 +248,13 @@ public class FabuFragment extends Fragment {
         }
     }
 
+    /**
+     * 图片上传
+     * @param path
+     */
     private void uploadImage(String path) {
         isFinished = false;
 
-
-//
-
-//
         //多个图片文件列表
         List<File> list = new ArrayList<File>();
         File file = new File(path);
