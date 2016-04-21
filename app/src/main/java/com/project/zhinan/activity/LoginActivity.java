@@ -98,7 +98,6 @@ public class LoginActivity extends AppCompatActivity {
         mPassEditText = (EditText) findViewById(R.id.et_pass);
         mLoginButton = (Button) findViewById(R.id.bt_login);
         mProgressProgressBar = (ProgressBar) findViewById(R.id.login_progress);
-
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -189,7 +188,12 @@ public class LoginActivity extends AppCompatActivity {
             if (response.isSuccessful()) {
                 //打印服务端返回结果
                 success = response.body().string();
-                String header=response.header("set-cookie");
+                String header = response.header("set-cookie");
+                SharedPreferences cookie = getSharedPreferences("cookie", Context.MODE_PRIVATE);
+                SharedPreferences.Editor edit = cookie.edit();
+                edit.clear();
+                edit.putString("my_cookie",header);
+                edit.commit();
                 Log.i("success", success);
                 handler.sendEmptyMessage(POSTED);
             } else {

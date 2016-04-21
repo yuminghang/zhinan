@@ -1,6 +1,8 @@
 package com.project.zhinan.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -19,7 +21,18 @@ import com.lzy.imagepicker.loader.GlideImageLoader;
 import com.lzy.imagepicker.ui.ImageGridActivity;
 import com.lzy.imagepicker.view.CropImageView;
 import com.project.zhinan.R;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.Headers;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.MultipartBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -35,6 +48,10 @@ public class FabuFragment extends Fragment {
     private Button upload;
     private EditText et_biaoti, et_cuciao, et_zhengwen;
     private String biaoti, cuxiao, zhengwen;
+    private boolean isFinished=false;
+
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -89,6 +106,10 @@ public class FabuFragment extends Fragment {
                 if (!TextUtils.isEmpty(zhengwen)) {
                     cancel = true;
                 }
+                if (!isFinished){
+                    Toast.makeText(getActivity(), "图片还没有上传完！", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (!cancel) {
                     Toast.makeText(getActivity(), "广告信息不能为空！", Toast.LENGTH_SHORT).show();
                     return;
@@ -99,7 +120,9 @@ public class FabuFragment extends Fragment {
         });
     }
 
+
     private void uploadInfo() {
+
 
     }
 
@@ -111,9 +134,56 @@ public class FabuFragment extends Fragment {
             if (data != null && requestCode == IMAGE_PICKER) {
                 ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
                 imagePicker.getImageLoader().displayImage(getActivity(), images.get(0).path, iv, 200, 400);
+                //上传文件
+                    uploadImage(images.get(0).path);
             } else {
                 Toast.makeText(getActivity(), "没有数据", Toast.LENGTH_SHORT).show();
             }
         }
     }
+
+    private void uploadImage(String path)  {
+
+
+        File file = new File(path);
+
+        RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
+        SharedPreferences cookie = getContext().getSharedPreferences("cookie", Context.MODE_PRIVATE);
+        String my_cookie = cookie.getString("my_cookie", null);
+        RequestBody requestBody = new MultipartBuilder()
+                .type(MultipartBuilder.FORM)
+                .addPart(Headers.of(
+                        "Content-Disposition",
+                        "form-data; name= uploadimg; filename=" +
+                                file.getName()), fileBody)
+                .build();
+        Request request = new Request.Builder()
+                .url("http://123.206.84.242:2888/upload")
+                .addHeader("Cookie",my_cookie)
+                .post(requestBody)
+                .build();
+
+
+        OkHttpClient mOkHttpClient=new OkHttpClient();
+        Call call = mOkHttpClient.newCall(request);
+        call.enqueue(new Callback()
+        {
+            @Override
+            public void onFailure(Request request, IOException e) {
+                Toast.makeText(getContext(),"网络错误",Toast.LENGTH_SHORT).show();            }
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+                String string = response.body().string();
+                System.out.println(string+"------------------");
+                if (string.contains("success")){
+
+                }
+            }
+            //...
+        });
+
+
+    }
+
 }
