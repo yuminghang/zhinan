@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
@@ -26,6 +27,7 @@ import com.project.zhinan.activity.MyCollection;
 import com.project.zhinan.activity.RegisterActivity;
 import com.project.zhinan.activity.ServiceActivity;
 import com.project.zhinan.utils.StatusBarUtil;
+import com.project.zhinan.utils.ToolFor9Ge;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.util.ArrayList;
@@ -101,10 +103,18 @@ public class SettingFragment extends Fragment {
                         iftoDetail(AccountActivity.class);
                         break;
                     case 1:
-                        iftoDetail(MyAssets.class);
+                        if (ToolFor9Ge.checkNetworkInfo(getContext())){
+                            iftoDetail(MyAssets.class);
+                        }else {
+                            Toast.makeText(getContext(),"没有网络!",Toast.LENGTH_SHORT).show();
+                        }
                         break;
                     case 2:
-                        iftoDetail(MyCollection.class);
+                        if (ToolFor9Ge.checkNetworkInfo(getContext())){
+                            iftoDetail(MyCollection.class);
+                        }else {
+                            Toast.makeText(getContext(),"没有网络!",Toast.LENGTH_SHORT).show();
+                        }
                         break;
                     case 3:
                         intent.setClass(getContext(), ServiceActivity.class);
