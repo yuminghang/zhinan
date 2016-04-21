@@ -16,7 +16,7 @@ public class MyApplication extends Application {
     private static List<Activity> activities = new ArrayList<Activity>();
     private static MyApplication myApplication = new MyApplication();
     private static boolean isLogin = false;
-    private SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences, sharedPreferences1;
     public static int count = 0;
 
     public MyApplication() {
@@ -27,6 +27,8 @@ public class MyApplication extends Application {
     public void onCreate() {
         sharedPreferences = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
         isLogin = sharedPreferences.getBoolean("isLogin", false);
+        sharedPreferences1 = getSharedPreferences("collect_upload_state", Context.MODE_PRIVATE);
+        count = sharedPreferences1.getInt("isUpload", 0);
         super.onCreate();
     }
 

@@ -67,6 +67,7 @@ public class SettingFragment extends Fragment {
         strings.add("账户与安全");
         strings.add("我的资产");
         strings.add("我的收藏");
+        strings.add("我的上传");
         strings.add("指南客服");
         strings.add("关于指南");
         List<Map<String, Object>> listems = new ArrayList<Map<String, Object>>();

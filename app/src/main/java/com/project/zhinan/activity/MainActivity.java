@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
+import com.project.zhinan.api.Urls;
 import com.project.zhinan.base.fragment.BaseFragment;
 import com.project.zhinan.fragment.FabuFragment;
 import com.project.zhinan.fragment.FaxianFragment;
@@ -57,7 +58,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             switch (msg.what) {
                 case POSTED:
                     if (success.contains("success")) {
-                        Toast.makeText(MainActivity.this, "收藏信息上传成功", Toast.LENGTH_SHORT).show();
+                        edit1.putInt("isUpload", 0);
+                        edit1.commit();
+                        MyApplication.count = 0;
                     }
                     break;
                 default:
@@ -66,16 +69,19 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         }
     };
     private String success;
+    private SharedPreferences sharedPreferences1;
+    private SharedPreferences.Editor edit1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MyApplication.getInstance().addActivity(this);
         setContentView(R.layout.activity_main);
+        sharedPreferences1 = getSharedPreferences("collect_upload_state", Context.MODE_PRIVATE);
+        edit1 = sharedPreferences1.edit();
         fragment_container = (FrameLayout) findViewById(R.id.fragment_container);
         initRadioButton();
         select(0);
-//        Log.e("tttt", getApplicationContext().getPackageResourcePath() + "/");
     }
 
     private void select(int i) {
@@ -95,7 +101,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     homeFragment.fragmentList.get(homeFragment.mViewPager.getCurrentItem()).mlv.setSelection(0);
                 }
                 StatusBarUtil.initStatusBar(this, R.color.almost_white);
-                currentTab = 1;
                 break;
             case 1:
                 if (fabuFragment == null) {
@@ -105,7 +110,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     ft.show(fabuFragment);
                 }
                 StatusBarUtil.initStatusBar(this, R.color.almost_white);
-                currentTab = 2;
                 break;
             case 2:
                 if (faxianFragment == null) {
@@ -115,7 +119,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     ft.show(faxianFragment);
                 }
                 StatusBarUtil.initStatusBar(this, R.color.almost_white);
-                currentTab = 3;
                 break;
             case 3:
                 if (settingFragment == null) {
@@ -125,7 +128,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     ft.show(settingFragment);
                 }
                 StatusBarUtil.initStatusBar(this, R.color.almost_white);
-                currentTab = 4;
                 break;
         }
         ft.commit();   //提交事务
@@ -153,27 +155,32 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.btn_home:
                 select(0);
+                currentTab = 1;
                 break;
             case R.id.btn_dongtu:
                 select(1);
                 if (MyApplication.count > 0) {
                     sendCollectInfo();
                 }
+                currentTab = 2;
                 break;
             case R.id.btn_faxian:
                 select(2);
                 if (MyApplication.count > 0) {
                     sendCollectInfo();
                 }
+                currentTab = 3;
                 break;
             case R.id.btn_setting:
                 select(3);
                 if (MyApplication.count > 0) {
                     sendCollectInfo();
                 }
+                currentTab = 4;
                 break;
         }
     }
+
 
     public static final MediaType TEXT
             = MediaType.parse("text/plain; charset=utf-8");
@@ -195,7 +202,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
                 //创建一个请求对象
                 Request request = new Request.Builder()
-                        .url("https://api.github.com/markdown/raw")
+                        .url(Urls.Collection_Url)
                         .post(RequestBody.create(TEXT, sb.toString()))
                         .build();
                 //发送请求获取响应

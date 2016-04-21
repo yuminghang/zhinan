@@ -26,4 +26,6 @@ public class Urls {
     public static final String ZhaopinUrl = BaseUrl + "123";
     public static final String ZhaoshangUrl = BaseUrl + "123";
     public static final String DetailUrl = "http://119.29.191.229:2888/tryhtml.html";
+    public static final String Collection_Url = "http://123.206.84.242:2888/collection_c";
+
 }

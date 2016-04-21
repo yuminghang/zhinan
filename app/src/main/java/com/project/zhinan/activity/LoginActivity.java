@@ -57,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(LoginActivity.this, "用户名或密码错误", Toast.LENGTH_SHORT).show();
                     }
-
                     break;
                 case NETWORK_EORR:
                     showProgress(false);
@@ -99,7 +98,6 @@ public class LoginActivity extends AppCompatActivity {
         mPassEditText = (EditText) findViewById(R.id.et_pass);
         mLoginButton = (Button) findViewById(R.id.bt_login);
         mProgressProgressBar = (ProgressBar) findViewById(R.id.login_progress);
-
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -190,7 +188,7 @@ public class LoginActivity extends AppCompatActivity {
             if (response.isSuccessful()) {
                 //打印服务端返回结果
                 success = response.body().string();
-                String header=response.header("set-cookie");
+                String header = response.header("set-cookie");
                 Log.i("success", success);
                 handler.sendEmptyMessage(POSTED);
             } else {

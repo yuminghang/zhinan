@@ -50,6 +50,7 @@ public class WebviewActivity extends Activity {
     private SharedPreferences sharedPreferences;
     private boolean isLogin;
     private int rbs;
+    private int flag = 0;
 
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -66,30 +67,23 @@ public class WebviewActivity extends Activity {
         mGetRmbButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (flag == 0) {
+                    Toast.makeText(WebviewActivity.this, "请先看完广告再领金币。。", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 sharedPreferences = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
                 isLogin = sharedPreferences.getBoolean("isLogin", false);
-                if (isLogin){
-
-                    rbs=1;
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            AddHistory();
-
-                        }
-                    }.run();
-                }else {
-                    Toast.makeText(WebviewActivity.this,"您还未登陆。。。", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(WebviewActivity.this,LoginActivity.class));
+                if (isLogin) {
+                    rbs = 1;
+                    AddHistory();
+                } else {
+                    Toast.makeText(WebviewActivity.this, "您还未登陆。。。", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(WebviewActivity.this, LoginActivity.class));
                 }
-
             }
         });
         pb = (ProgressBar) findViewById(R.id.pb);
         pb.setVisibility(View.VISIBLE);
-//        HttpUtils.getData(url, handler);
-//        webview.getSettings().setBuiltInZoomControls(true); //显示放大缩小 controler
-//        webview.getSettings().setSupportZoom(true); //可以缩放
         webview.loadUrl(url);
         webview.setWebViewClient(new WebViewClient() {
             @Override
@@ -105,36 +99,20 @@ public class WebviewActivity extends Activity {
                 super.onPageStarted(view, url, favicon);
             }
         });
-//        webview.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                if (webview.getContentHeight() * webview.getScale() == (webview.getHeight() + webview.getScrollY())) {
-//                    mGetRmbButton.setVisibility(View.VISIBLE);
-//                    mGetRmbButton.setClickable(true);
-//                }else {
-//                    mGetRmbButton.setVisibility(View.GONE);
-//                    mGetRmbButton.setClickable(false);
-//                }
-//                return false;
-//            }
-//        });
         webview.setOnScrollChangedCallback(new ScrollWebView.OnScrollChangedCallback() {
             @Override
             public void onScroll(int dx, int dy) {
                 if (dy > 0) {
 //                    System.out.println("----------上滑-------------");
-                    mGetRmbButton.setVisibility(View.VISIBLE);
                     if (webview.getContentHeight() * webview.getScale() == (webview.getHeight() + webview.getScrollY())) {
-                        mGetRmbButton.setClickable(true);
-                        mGetRmbButton.setTextColor(0xFF000000);
+                        flag = 1;
+                    } else {
+                        flag = 0;
                     }
                 } else {
-                    mGetRmbButton.setVisibility(View.GONE);
-                    mGetRmbButton.setClickable(false);
-                    mGetRmbButton.setTextColor(0xFF778899);
+                    flag = 0;
 //                    System.out.println("----------下滑-------------");
                 }
-
             }
         });
 
@@ -148,17 +126,16 @@ public class WebviewActivity extends Activity {
         HistorySqlliteHelper historySqlliteHelper = new HistorySqlliteHelper(WebviewActivity.this);
         SQLiteDatabase writableDatabase = historySqlliteHelper.getWritableDatabase();
         Cursor cursor = writableDatabase.rawQuery("select * from history_table where ad_id= " + adID, null);
-        if (cursor.getCount()>0){
-            Toast.makeText(WebviewActivity.this,"已经领取过了",Toast.LENGTH_SHORT).show();
+        if (cursor.getCount() > 0) {
+            Toast.makeText(WebviewActivity.this, "已经领取过了", Toast.LENGTH_SHORT).show();
             return;
         }
-        addRMB(rbs);
         ContentValues initialValues = new ContentValues();
         initialValues.put("ad_id", adID);
         initialValues.put("rbs", rbs);
         initialValues.put("ad_url", url);
         initialValues.put("if_get", 1);
-        Toast.makeText(WebviewActivity.this,"领取成功",Toast.LENGTH_SHORT).show();
+        Toast.makeText(WebviewActivity.this, "领取成功", Toast.LENGTH_SHORT).show();
         writableDatabase.insert("history_table", null, initialValues);
         writableDatabase.close();
     }
@@ -175,6 +152,5 @@ public class WebviewActivity extends Activity {
         } catch (Exception e) {
             Log.d("加钱错误", e.toString());
         }
-
     }
 }

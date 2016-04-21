@@ -38,7 +38,6 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import cn.refactor.library.SmoothCheckBox;
 
 /**
  * Created by ymh on 2016/4/11.

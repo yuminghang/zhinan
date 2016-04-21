@@ -22,7 +22,6 @@ import com.project.zhinan.utils.StringUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.refactor.library.SmoothCheckBox;
 
 public class NewsinglepicLayoutAdapter extends BaseAdapter {
 
@@ -85,13 +84,13 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
                         Toast.makeText(context, "收藏成功", Toast.LENGTH_SHORT).show();
                         edit.putInt(object.getBrand_id() + "", 1);
                         edit.commit();
-                        MyApplication.count++;
                     } else {
                         Toast.makeText(context, "取消收藏", Toast.LENGTH_SHORT).show();
                         edit.putInt(object.getBrand_id() + "", 0);
                         edit.commit();
-                        MyApplication.count++;
                     }
+                    MyApplication.count++;
+                    context.getSharedPreferences("collect_upload_state", Context.MODE_PRIVATE).edit().putInt("isUpload", 1).commit();
                 } else {
                     holder.cb.setChecked(false);
                     Toast.makeText(context, "请先登录！", Toast.LENGTH_SHORT).show();
