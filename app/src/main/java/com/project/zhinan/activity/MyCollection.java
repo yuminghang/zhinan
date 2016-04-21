@@ -3,6 +3,8 @@ package com.project.zhinan.activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,11 +25,25 @@ import java.util.Map;
 
 public class MyCollection extends AppCompatActivity {
 
+    private static final int NETWORK_EORR = 1;
     private TextView mTitlebarTextView;
     private ListView mMycollectionListView;
     private CollectionAdapter adapter;
     private ArrayList<jsonbean.ResultEntity.ItemsEntity.BrandsEntity> myObjects = new ArrayList<jsonbean.ResultEntity.ItemsEntity.BrandsEntity>();
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
 
+                case NETWORK_EORR:
+
+                    Toast.makeText(MyCollection.this, "网络错误", Toast.LENGTH_SHORT).show();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +87,7 @@ public class MyCollection extends AppCompatActivity {
                     }
                 }else {
                     //没有数据
-                    Toast.makeText(getApplicationContext(),"网路错误",Toast.LENGTH_SHORT).show();
+                    handler.sendEmptyMessage(NETWORK_EORR);
                 }
 
 
