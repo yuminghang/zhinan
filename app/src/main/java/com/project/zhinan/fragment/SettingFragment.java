@@ -3,10 +3,8 @@ package com.project.zhinan.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +22,10 @@ import com.project.zhinan.activity.AccountActivity;
 import com.project.zhinan.activity.LoginActivity;
 import com.project.zhinan.activity.MyAssets;
 import com.project.zhinan.activity.MyCollection;
+import com.project.zhinan.activity.MyUpload;
 import com.project.zhinan.activity.RegisterActivity;
 import com.project.zhinan.activity.ServiceActivity;
-import com.project.zhinan.utils.StatusBarUtil;
 import com.project.zhinan.utils.ToolFor9Ge;
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -117,10 +114,17 @@ public class SettingFragment extends Fragment {
                         }
                         break;
                     case 3:
+                        if (ToolFor9Ge.checkNetworkInfo(getContext())){
+                            iftoDetail(MyUpload.class);
+                        }else {
+                            Toast.makeText(getContext(),"没有网络!",Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                    case 4:
                         intent.setClass(getContext(), ServiceActivity.class);
                         startActivity(intent);
                         break;
-                    case 4:
+                    case 5:
                         intent.setClass(getContext(), AboutActivity.class);
                         startActivity(intent);
                         break;

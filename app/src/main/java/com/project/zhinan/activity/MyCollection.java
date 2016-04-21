@@ -2,12 +2,9 @@ package com.project.zhinan.activity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,15 +12,13 @@ import com.project.zhinan.R;
 import com.project.zhinan.adapter.CollectionAdapter;
 import com.project.zhinan.base.fragment.BaseFragment;
 import com.project.zhinan.bean.jsonbean;
-import com.project.zhinan.dao.HistorySqlliteHelper;
 import com.project.zhinan.net.HttpUtils;
+import com.project.zhinan.utils.ConstantValue;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MyCollection extends AppCompatActivity {
@@ -63,7 +58,7 @@ public class MyCollection extends AppCompatActivity {
                 /**
                  * 网络查询收藏
                  */
-                String getWithCookie = HttpUtils.doGetWithCookie("http://123.206.84.242:2888/collection", getApplicationContext());
+                String getWithCookie = HttpUtils.doGetWithCookie(ConstantValue.CollectionUrl, getApplicationContext());
                 if (getWithCookie.contains("success")){
                     //查询成功
                     try {

@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
+import com.project.zhinan.utils.ConstantValue;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -30,7 +31,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.IdentityHashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -178,7 +178,7 @@ public class LoginActivity extends AppCompatActivity {
         RequestBody requestBody = RequestBody.create(JSON, json);
         //创建一个请求对象
         Request request = new Request.Builder()
-                .url("http://123.206.84.242:2888/login")
+                .url(ConstantValue.LoginUrl)
                 .post(requestBody)
                 .build();
         //发送请求获取响应

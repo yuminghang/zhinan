@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
+import com.project.zhinan.utils.ConstantValue;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -261,7 +262,7 @@ public class RegisterActivity extends AppCompatActivity {
         RequestBody requestBody = RequestBody.create(JSON, json);
         //创建一个请求对象
         Request request = new Request.Builder()
-                .url("http://123.206.84.242:2888/reg")
+                .url(ConstantValue.RegUrl)
                 .post(requestBody)
                 .build();
         //发送请求获取响应
