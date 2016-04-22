@@ -57,6 +57,8 @@ public class BaseFragment extends Fragment {
     private NewsinglepicLayoutAdapter adapter;
     private SharedPreferences sharedPreferences;
     public ImageView back_to_top;
+    public static int lastRead = 0;
+    public static int[] isRead = new int[20];
 
     Handler handler = new Handler() {
         @Override
@@ -112,6 +114,7 @@ public class BaseFragment extends Fragment {
                 bundle.putString("url", Urls.DetailUrl);
                 Intent intent = new Intent(getContext(), WebviewActivity.class);
                 intent.putExtras(bundle);
+                intent.putExtra("pos", i);
                 getContext().startActivity(intent);
             }
         });
@@ -192,4 +195,12 @@ public class BaseFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Toast.makeText(getActivity(), "回来啦", Toast.LENGTH_SHORT).show();
+        adapter.notifyDataSetChanged();
+        mlv.setSelection(lastRead);
+
+    }
 }

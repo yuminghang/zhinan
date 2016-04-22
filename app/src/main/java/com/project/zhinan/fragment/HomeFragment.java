@@ -33,6 +33,7 @@ import com.project.zhinan.fragment.HomeTabFragmentSons.Xiuxian;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Yiyao;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Zhaopin;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Zhaoshang;
+import com.project.zhinan.view.MyPopupWindow;
 
 import java.util.ArrayList;
 
@@ -57,6 +58,7 @@ public class HomeFragment extends Fragment {
         view = inflater.inflate(R.layout.homefragment_layout, container, false);
         findViews();
         initViewpager();
+
         return view;
     }
 

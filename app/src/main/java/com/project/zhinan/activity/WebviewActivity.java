@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
 import com.project.zhinan.dao.HistorySqlliteHelper;
+import com.project.zhinan.view.MyPopupWindow;
 import com.project.zhinan.view.ScrollWebView;
 
 /**
@@ -51,6 +52,7 @@ public class WebviewActivity extends Activity {
     private boolean isLogin;
     private int rbs;
     private int flag = 0;
+    private int pos;
 
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -58,6 +60,9 @@ public class WebviewActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.webview_layout);
+        Intent intent = getIntent();//getIntent将该项目中包含的原始intent检索出来，将检索出来的intent赋值给一个Intent类型的变量intent
+        Bundle bundle = intent.getExtras();//
+        pos = bundle.getInt("pos");
         mGetRmbButton = (Button) findViewById(R.id.get_rmb);
         MyApplication.getInstance().addActivity(this);
         url = getIntent().getStringExtra("url");
@@ -71,15 +76,16 @@ public class WebviewActivity extends Activity {
                     Toast.makeText(WebviewActivity.this, "请先看完广告再领金币。。", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                sharedPreferences = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
-                isLogin = sharedPreferences.getBoolean("isLogin", false);
-                if (isLogin) {
-                    rbs = 1;
-                    AddHistory();
-                } else {
-                    Toast.makeText(WebviewActivity.this, "您还未登陆。。。", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(WebviewActivity.this, LoginActivity.class));
-                }
+                new MyPopupWindow(WebviewActivity.this, webview, pos);
+//                sharedPreferences = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
+//                isLogin = sharedPreferences.getBoolean("isLogin", false);
+//                if (!isLogin) {
+//                    Toast.makeText(WebviewActivity.this, "您还未登陆。。。", Toast.LENGTH_SHORT).show();
+//                    startActivity(new Intent(WebviewActivity.this, LoginActivity.class));
+//                } else {
+//                    rbs = 1;
+//                    AddHistory();
+//                }
             }
         });
         pb = (ProgressBar) findViewById(R.id.pb);

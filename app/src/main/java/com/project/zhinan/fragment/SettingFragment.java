@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
-import com.project.zhinan.activity.AboutActivity;
 import com.project.zhinan.activity.AccountActivity;
 import com.project.zhinan.activity.LoginActivity;
 import com.project.zhinan.activity.MyAssets;
@@ -26,6 +25,7 @@ import com.project.zhinan.activity.MyUpload;
 import com.project.zhinan.activity.RegisterActivity;
 import com.project.zhinan.activity.ServiceActivity;
 import com.project.zhinan.utils.ToolFor9Ge;
+import com.project.zhinan.view.MyPopupWindow;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -67,6 +67,7 @@ public class SettingFragment extends Fragment {
         strings.add("我的资产");
         strings.add("我的收藏");
         strings.add("我的上传");
+        strings.add("我的红包");
         strings.add("指南客服");
         strings.add("关于指南");
         List<Map<String, Object>> listems = new ArrayList<Map<String, Object>>();
@@ -100,24 +101,24 @@ public class SettingFragment extends Fragment {
                         iftoDetail(AccountActivity.class);
                         break;
                     case 1:
-                        if (ToolFor9Ge.checkNetworkInfo(getContext())){
+                        if (ToolFor9Ge.checkNetworkInfo(getContext())) {
                             iftoDetail(MyAssets.class);
-                        }else {
-                            Toast.makeText(getContext(),"没有网络!",Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), "没有网络!", Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 2:
-                        if (ToolFor9Ge.checkNetworkInfo(getContext())){
+                        if (ToolFor9Ge.checkNetworkInfo(getContext())) {
                             iftoDetail(MyCollection.class);
-                        }else {
-                            Toast.makeText(getContext(),"没有网络!",Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), "没有网络!", Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 3:
-                        if (ToolFor9Ge.checkNetworkInfo(getContext())){
+                        if (ToolFor9Ge.checkNetworkInfo(getContext())) {
                             iftoDetail(MyUpload.class);
-                        }else {
-                            Toast.makeText(getContext(),"没有网络!",Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), "没有网络!", Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 4:
@@ -125,8 +126,10 @@ public class SettingFragment extends Fragment {
                         startActivity(intent);
                         break;
                     case 5:
-                        intent.setClass(getContext(), AboutActivity.class);
-                        startActivity(intent);
+//                        intent.setClass(getContext(), AboutActivity.class);
+//                        startActivity(intent);
+//                        new MyPopupWindow(getActivity(), view, pos);
+
                         break;
                     default:
                         break;

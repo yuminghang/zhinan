@@ -76,6 +76,12 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
         } else {
             holder.cb.setChecked(false);
         }
+        if (1 == (BaseFragment.isRead[position + 1])) {
+            holder.havesee.setVisibility(View.VISIBLE);
+            notifyDataSetChanged();
+        } else {
+            holder.havesee.setVisibility(View.INVISIBLE);
+        }
         holder.cb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,9 +129,11 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
         private TextView tv2;
         private TextView tv3;
         private CheckBox cb;
+        private ImageView havesee;
 
         public ViewHolder(View view) {
             ivPic = (ImageView) view.findViewById(R.id.iv_pic);
+            havesee = (ImageView) view.findViewById(R.id.havesee);
             newstitleTextView = (TextView) view.findViewById(R.id.newstitle_TextView);
             cb = (CheckBox) view.findViewById(R.id.scb);
             tv1 = (TextView) view.findViewById(R.id.tv1);

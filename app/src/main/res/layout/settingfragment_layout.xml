@@ -14,7 +14,7 @@
             android:id="@+id/title_mine"
             layout="@layout/toolbar_common"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:layout_gravity="center_horizontal" />
 
         <include
