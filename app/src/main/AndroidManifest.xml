@@ -36,7 +36,8 @@
         <activity android:name=".activity.ServiceActivity" />
         <activity android:name=".activity.AboutActivity" />
         <activity android:name=".activity.ChangePassActivity" />
-        <activity android:name=".activity.MyUpload"></activity>
+        <activity android:name=".activity.MyUpload" />
+        <activity android:name=".activity.HongBaoActivity"></activity>
     </application>
 
 </manifest>

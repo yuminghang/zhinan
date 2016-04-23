@@ -17,7 +17,9 @@ import android.widget.Toast;
 
 import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
+import com.project.zhinan.activity.AboutActivity;
 import com.project.zhinan.activity.AccountActivity;
+import com.project.zhinan.activity.HongBaoActivity;
 import com.project.zhinan.activity.LoginActivity;
 import com.project.zhinan.activity.MyAssets;
 import com.project.zhinan.activity.MyCollection;
@@ -122,14 +124,20 @@ public class SettingFragment extends Fragment {
                         }
                         break;
                     case 4:
+                        if (ToolFor9Ge.checkNetworkInfo(getContext())) {
+                            iftoDetail(HongBaoActivity.class);
+                        } else {
+                            Toast.makeText(getContext(), "没有网络!", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                    case 5:
                         intent.setClass(getContext(), ServiceActivity.class);
                         startActivity(intent);
                         break;
-                    case 5:
-//                        intent.setClass(getContext(), AboutActivity.class);
-//                        startActivity(intent);
+                    case 6:
+                        intent.setClass(getContext(), AboutActivity.class);
+                        startActivity(intent);
 //                        new MyPopupWindow(getActivity(), view, pos);
-
                         break;
                     default:
                         break;
