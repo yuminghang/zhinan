@@ -5,6 +5,7 @@ package com.project.zhinan.utils;
  */
 public class ConstantValue {
     private static final String BaseUrl="http://123.206.84.242:2888/";
+    public static final String BaseUr12="http://120.27.41.245:2888/";
 //    private static final String BaseUrl="http://10.170.5.108:2888/";
     public static String LoginUrl=BaseUrl+"login";
     public static String RegUrl=BaseUrl+"reg";
