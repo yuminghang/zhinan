@@ -18,8 +18,8 @@
             android:layout_height="40dp"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="8dp"
-            android:src="@mipmap/logo"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:src="@mipmap/logo" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right|center_vertical"
         android:layout_marginRight="16dp"
-        android:src="@mipmap/search_suggestion_icon" />
+        android:src="@mipmap/search_suggestion_icon"
+        android:visibility="invisible" />
 
 </android.support.v7.widget.Toolbar>

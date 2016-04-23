@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.project.zhinan.R;
 import com.project.zhinan.activity.MainActivity;
 import com.project.zhinan.base.fragment.BaseFragment;
+import com.project.zhinan.utils.DensityUtils;
 
 /**
  * Created by ymh on 2016/4/22.
@@ -62,7 +63,7 @@ public class MyPopupWindow {
         et = (EditText) myPopView.findViewById(R.id.et);
         btn = (Button) myPopView.findViewById(R.id.btn);
         // 创建PopupWindow实例,200,LayoutParams.MATCH_PARENT分别是宽度和高度
-        popupwindow = new PopupWindow(myPopView, 1080, 600, true);
+        popupwindow = new PopupWindow(myPopView, DensityUtils.dp2px(activity, 300), DensityUtils.dp2px(activity, 260), true);
         // 设置动画效果
         popupwindow.setAnimationStyle(R.style.AnimationFade);
         //设置在showAtLocation之前才能起作用

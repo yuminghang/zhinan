@@ -198,7 +198,6 @@ public class BaseFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Toast.makeText(getActivity(), "回来啦", Toast.LENGTH_SHORT).show();
         adapter.notifyDataSetChanged();
         mlv.setSelection(lastRead);
 
