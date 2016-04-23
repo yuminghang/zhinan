@@ -96,8 +96,12 @@ public class FabuFragment extends Fragment {
                     break;
                 case POSTSUCCESS:
                     if (success.contains("success")) {
-                        Toast.makeText(getContext(), "发布成功", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(getContext(), "发布成功", Toast.LENGTH_LONG).show();
+                        et_zhengwen.setText("");
+                        et_biaoti.setText("");
+                        et_cuciao.setText("");
+                        iv.setImageResource(R.mipmap.default_image);
+                        isFinished = false;
                     } else {
                         try {
                             JSONObject jsonObject = new JSONObject(imgResponse);
@@ -170,14 +174,14 @@ public class FabuFragment extends Fragment {
                     cancel = true;
                 }
 
-                if (!TextUtils.isEmpty(zhengwen)) {
+                if (TextUtils.isEmpty(zhengwen)) {
                     cancel = true;
                 }
                 if (!isFinished) {
                     Toast.makeText(getActivity(), "图片还没有上传完！", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (!cancel) {
+                if (cancel) {
                     Toast.makeText(getActivity(), "广告信息不能为空！", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
@@ -199,7 +203,7 @@ public class FabuFragment extends Fragment {
         JSONObject jsonObject = new JSONObject();
         try {
 
-            jsonObject.put("addesc", biaoti + "****" + cuxiao + "****" + zhengwen);
+            jsonObject.put("addesc", biaoti + "----" + cuxiao + "----" + zhengwen);
             jsonObject.put("adurl", "www.baidu.com");
             jsonObject.put("imgurl", imgurl);
             jsonObject.put("icons", 2);
