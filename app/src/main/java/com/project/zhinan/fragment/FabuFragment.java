@@ -120,6 +120,7 @@ public class FabuFragment extends Fragment {
     };
     private String imgResponse;
     private String success;
+    private String path;
 
 
     @Override
@@ -177,14 +178,15 @@ public class FabuFragment extends Fragment {
                 if (TextUtils.isEmpty(zhengwen)) {
                     cancel = true;
                 }
-                if (!isFinished) {
-                    Toast.makeText(getActivity(), "图片还没有上传完！", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+//                if (!isFinished) {
+//                    Toast.makeText(getActivity(), "图片还没有上传完！", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
                 if (cancel) {
                     Toast.makeText(getActivity(), "广告信息不能为空！", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
+                    uploadImage(path);
                     uploadInfo();
                 }
             }
@@ -245,7 +247,8 @@ public class FabuFragment extends Fragment {
                 ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
                 imagePicker.getImageLoader().displayImage(getActivity(), images.get(0).path, iv, 200, 400);
                 //上传文件
-                uploadImage(images.get(0).path);
+                path = images.get(0).path;
+
             } else {
                 Toast.makeText(getActivity(), "没有数据", Toast.LENGTH_SHORT).show();
             }
@@ -256,7 +259,7 @@ public class FabuFragment extends Fragment {
      * 图片上传
      * @param path
      */
-    private void uploadImage(String path) {
+    private synchronized void uploadImage(String path) {
         isFinished = false;
 
         //多个图片文件列表
