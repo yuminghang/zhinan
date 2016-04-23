@@ -129,7 +129,6 @@ public class SettingFragment extends Fragment {
 //                        intent.setClass(getContext(), AboutActivity.class);
 //                        startActivity(intent);
 //                        new MyPopupWindow(getActivity(), view, pos);
-
                         break;
                     default:
                         break;

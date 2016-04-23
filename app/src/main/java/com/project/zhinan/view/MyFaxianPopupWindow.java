@@ -1,45 +1,64 @@
 package com.project.zhinan.view;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
-import android.provider.Settings;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.zhinan.R;
-import com.project.zhinan.activity.MainActivity;
 import com.project.zhinan.base.fragment.BaseFragment;
 import com.project.zhinan.utils.DensityUtils;
 
 /**
- * Created by ymh on 2016/4/22.
+ * Created by ymh on 2016/4/23.
  */
-public class MyPopupWindow {
-    private final int pos;
+public class MyFaxianPopupWindow {
     private Activity activity;
     private View myPopView;
     private PopupWindow popupwindow;
     private EditText et;
     private Button btn;
 
-    public MyPopupWindow(Activity activity, View view, int pos) {
+    public MyFaxianPopupWindow(Activity activity, View view) {
         this.activity = activity;
         init(view);
-        this.pos = pos;
     }
 
     private void init(View view) {
         initpopWindow(view);
         initAnimation();
+    }
+
+    private void initpopWindow(View view) {
+        myPopView = LayoutInflater.from(activity).inflate(R.layout.faxianpopupwindow_layout, null, false);
+        et = (EditText) myPopView.findViewById(R.id.et);
+        btn = (Button) myPopView.findViewById(R.id.btn);
+        // 创建PopupWindow实例,200,LayoutParams.MATCH_PARENT分别是宽度和高度
+        popupwindow = new PopupWindow(myPopView, 1080, DensityUtils.dp2px(activity, 350), true);
+        // 设置动画效果
+        popupwindow.setAnimationStyle(R.style.AnimationFade);
+        //设置在showAtLocation之前才能起作用
+        popupwindow.setBackgroundDrawable(new BitmapDrawable());
+//        popupWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.back));
+        popupwindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (TextUtils.isEmpty(et.getText().toString())) {
+                    Toast.makeText(activity, "评论不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Toast.makeText(activity, "评论成功！", Toast.LENGTH_SHORT).show();
+                popupwindow.dismiss();
+            }
+        });
     }
 
     private void initAnimation() {
@@ -57,28 +76,5 @@ public class MyPopupWindow {
         });
     }
 
-    private void initpopWindow(View view) {
-        myPopView = LayoutInflater.from(activity).inflate(R.layout.popupwindow_layout, null, false);
-        et = (EditText) myPopView.findViewById(R.id.et);
-        btn = (Button) myPopView.findViewById(R.id.btn);
-        // 创建PopupWindow实例,200,LayoutParams.MATCH_PARENT分别是宽度和高度
-        popupwindow = new PopupWindow(myPopView, DensityUtils.dp2px(activity, 300), DensityUtils.dp2px(activity, 260), true);
-        // 设置动画效果
-        popupwindow.setAnimationStyle(R.style.AnimationFade);
-        //设置在showAtLocation之前才能起作用
-        popupwindow.setBackgroundDrawable(new BitmapDrawable());
-//        popupWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.back));
-        popupwindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BaseFragment.lastRead = pos;
-                BaseFragment.isRead[pos] = 1;
-                popupwindow.dismiss();
-//                Intent intent = new Intent();
-//                activity.startActivity(new Intent(activity, MainActivity.class));
-                activity.finish();
-            }
-        });
-    }
+
 }
