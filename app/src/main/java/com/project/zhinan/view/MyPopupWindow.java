@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,10 +75,15 @@ public class MyPopupWindow {
             public void onClick(View v) {
                 BaseFragment.lastRead = pos;
                 BaseFragment.isRead[pos] = 1;
-                popupwindow.dismiss();
+                if (TextUtils.equals(et.getText().toString(),"怕上火喝王老吉")){
+                    popupwindow.dismiss();
 //                Intent intent = new Intent();
 //                activity.startActivity(new Intent(activity, MainActivity.class));
-                activity.finish();
+                    activity.finish();
+                }else {
+                    Toast.makeText(activity,"关键词错误",Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }

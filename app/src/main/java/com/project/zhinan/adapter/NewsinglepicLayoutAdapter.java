@@ -90,6 +90,7 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
                         Toast.makeText(context, "收藏成功", Toast.LENGTH_SHORT).show();
                         edit.putInt(object.getBrand_id() + "", 1);
                         edit.commit();
+
                     } else {
                         Toast.makeText(context, "取消收藏", Toast.LENGTH_SHORT).show();
                         edit.putInt(object.getBrand_id() + "", 0);

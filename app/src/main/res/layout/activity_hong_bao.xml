@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.project.zhinan.activity.AccountActivity">
-
+    tools:context="com.project.zhinan.activity.HongBaoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:gravity="center"
-            android:text="我的资产"
+            android:text="我的红包"
             android:textColor="@color/colorAccent"
             android:textSize="22sp"
             android:textStyle="bold"
@@ -40,38 +38,11 @@
             android:padding="10dp"
             android:id="@+id/noCrash"
             android:textColor="@color/black"
-            android:text="口袋里没有一分钱,快去看广告挣零花钱吧~"
+            android:text="你还没有收到过红包，快去看广告收红包啦！"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:padding="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="您的账户余额："
-                android:id="@+id/textView6" />
 
-            <TextView
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:padding="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="0 金币"
-                android:id="@+id/currentAcc"
-                />
-
-
-        </LinearLayout>
 
 
     </LinearLayout>
-
-
 </LinearLayout>
-

@@ -9,7 +9,7 @@
         android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:text="名字"
         android:drawableRight="@mipmap/go"
         android:id="@+id/item_name"/>
