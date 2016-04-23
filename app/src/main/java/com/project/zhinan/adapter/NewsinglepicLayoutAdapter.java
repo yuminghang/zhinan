@@ -76,7 +76,12 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
         } else {
             holder.cb.setChecked(false);
         }
-        if (1 == (BaseFragment.isRead[position + 1])) {
+        int i = 0;
+        if (position<objects.size()-1){
+           i = BaseFragment.isRead[position + 1];
+        }
+
+        if (1 == i) {
             holder.havesee.setVisibility(View.VISIBLE);
             notifyDataSetChanged();
         } else {
