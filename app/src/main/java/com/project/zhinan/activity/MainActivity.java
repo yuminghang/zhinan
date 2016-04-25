@@ -119,7 +119,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 } else {
                     ft.show(faxianFragment);
                 }
-                StatusBarUtil.initStatusBar(this, R.color.almost_white);
+                StatusBarUtil.initStatusBar(this, R.color.title_color);
                 break;
             case 3:
                 if (settingFragment == null) {

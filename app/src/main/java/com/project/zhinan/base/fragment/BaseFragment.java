@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.project.zhinan.R;
+import com.project.zhinan.activity.QianggouDetailActivity;
 import com.project.zhinan.activity.WebviewActivity;
 import com.project.zhinan.adapter.NewsinglepicLayoutAdapter;
 import com.project.zhinan.api.Urls;
@@ -109,10 +110,10 @@ public class BaseFragment extends Fragment {
         mlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                System.out.println("-----------------" + i + "---------------------");
+//                System.out.println("-----------------" + i + "---------------------");
                 Bundle bundle = new Bundle();
-                bundle.putString("url", Urls.DetailUrl);
-                Intent intent = new Intent(getContext(), WebviewActivity.class);
+//                bundle.putString("url", Urls.DetailUrl);
+                Intent intent = new Intent(getContext(), QianggouDetailActivity.class);
                 intent.putExtras(bundle);
                 intent.putExtra("pos", i);
                 getContext().startActivity(intent);

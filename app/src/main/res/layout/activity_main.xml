@@ -22,58 +22,58 @@
         <RadioButton
             android:id="@+id/btn_home"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:button="@null"
             android:checked="true"
             android:drawableTop="@drawable/btn_home"
             android:gravity="center"
             android:paddingBottom="10dp"
-            android:paddingTop="5dp"
+            android:paddingTop="10dp"
             android:text="首页"
             android:textSize="10sp" />
 
         <RadioButton
             android:id="@+id/btn_dongtu"
-
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:button="@null"
             android:drawableTop="@drawable/btn_video"
             android:gravity="center"
             android:paddingBottom="10dp"
-            android:paddingTop="5dp"
+            android:paddingTop="10dp"
             android:text="发布"
             android:textSize="10sp" />
 
 
         <RadioButton
             android:id="@+id/btn_faxian"
-
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:button="@null"
             android:drawableTop="@drawable/btn_huati"
             android:gravity="center"
             android:paddingBottom="10dp"
-
-            android:paddingTop="5dp"
+            android:paddingTop="10dp"
             android:text="发现"
             android:textSize="10sp" />
 
         <RadioButton
             android:id="@+id/btn_setting"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:button="@null"
             android:drawableTop="@drawable/btn_mine"
-
             android:gravity="center"
             android:paddingBottom="10dp"
-            android:paddingTop="5dp"
+            android:paddingTop="10dp"
             android:text="我的"
             android:textSize="10sp" />
 

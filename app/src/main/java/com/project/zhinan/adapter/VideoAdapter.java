@@ -7,25 +7,23 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.project.zhinan.R;
+import com.project.zhinan.bean.shanxiweishibean;
 
 import java.util.List;
-import java.util.Random;
 
 /**
- * Created by ymh on 2016/4/23.
+ * Created by ymh on 2016/4/25.
  */
-public class channelAdapter extends BaseAdapter {
+public class VideoAdapter extends BaseAdapter {
     List<String> list;
     Context context;
     TextView tv;
     private View view;
-//    private int[] colors = new int[]{R.color.title_color, R.color.yellow, R.color.seagreen,R.color.aliceblue, R.color.magenta, R.color.gray};
 
-    public channelAdapter(Context context, List<String> list) {
+    public VideoAdapter(Context context, List<String> list) {
         this.list = list;
         this.context = context;
     }
-
     @Override
     public int getCount() {
         return list.size();
@@ -43,7 +41,7 @@ public class channelAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        view = View.inflate(context, R.layout.channelitem_layout, null);
+        view = View.inflate(context, R.layout.columnitem_layout, null);
         tv = (TextView) view.findViewById(R.id.tv);
         tv.setText(list.get(position));
         return view;
