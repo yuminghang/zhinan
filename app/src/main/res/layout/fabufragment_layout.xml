@@ -6,107 +6,245 @@
     android:background="#dbdbdb"
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:text="广告标题"
-        android:textColor="@color/mediumorchid"
-        android:textSize="16sp" />
-
-    <EditText
-        android:id="@+id/et_biaoti"
+    <ScrollView
+        android:id="@+id/sv_edit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/almost_white"
-        android:gravity="top"
-        android:lines="3"
-        android:textColor="@color/darkgreen"
-        android:textSize="14sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:text="促销信息"
-        android:textColor="@color/mediumorchid"
-        android:textSize="16sp" />
-
-    <EditText
-        android:id="@+id/et_cuciao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/almost_white"
-        android:gravity="top"
-        android:lines="3"
-        android:textColor="@color/darkgreen"
-        android:textSize="14sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:text="广告内容"
-        android:textColor="@color/mediumorchid"
-        android:textSize="16sp" />
-
-    <EditText
-        android:id="@+id/et_zhengwen"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/almost_white"
-        android:gravity="top"
-        android:lines="5"
-        android:textColor="@color/darkgreen"
-        android:textSize="14sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/ll_edit"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/transparent"
-            android:src="@mipmap/add_pic" />
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/iv"
-            android:layout_width="200dp"
-            android:layout_height="130dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:src="@mipmap/default_image" />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/et_biaoti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/almost_white"
+                android:gravity="top"
+                android:hint="在此输入广告信息哦~"
+                android:lines="20"
+                android:textColor="@color/darkgreen"
+                android:textSize="14sp" />
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tag_height"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/sp_16"
+                        android:text="类别"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_16" />
+
+                    <Spinner
+                        android:id="@+id/s_class"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/sp_16"
+                        android:text="年龄"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_16" />
+
+                    <Spinner
+                        android:id="@+id/s_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/sp_16"
+                        android:text="性别"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_16" />
+
+                    <Spinner
+                        android:id="@+id/s_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/transparent"
+                    android:src="@mipmap/add_pic" />
+
+                <ImageView
+                    android:id="@+id/iv"
+                    android:layout_width="200dp"
+                    android:layout_height="130dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/default_image" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/bt_pre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@mipmap/upload"
+                android:text="预览"
+                android:textColor="@color/ivory"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ll_preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="预览"
+                android:textColor="@color/colorAccent"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:translationZ="2dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_adInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="这里是广告信息" />
+
+                <ImageView
+                    android:id="@+id/iv_pre"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/default_image" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_class"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="类型：广告" />
+
+                    <TextView
+                        android:id="@+id/tv_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="年龄：儿童" />
+
+                    <TextView
+                        android:id="@+id/tv_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="性别：全部" />
+                </LinearLayout>
 
 
-    <Button
-        android:id="@+id/upload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="@mipmap/upload"
-        android:text="上传"
-        android:textColor="@color/ivory"
-        android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/bt_re_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="30dp"
+                    android:layout_weight="1"
+                    android:background="@mipmap/upload"
+                    android:text="修改"
+                    android:textColor="@color/ivory"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/bt_fabu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="30dp"
+                    android:layout_weight="1"
+                    android:background="@mipmap/upload"
+                    android:text="发布"
+                    android:textColor="@color/ivory"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout></ScrollView>
+
+
+
+
 
 </LinearLayout>

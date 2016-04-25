@@ -30,4 +30,40 @@
     <string name="error_no_newpass">新密码为空</string>
     <string name="error_no_renewpass">新密码重复为空</string>
     <string name="error_nosame_password">两次密码不一致</string>
+    <string-array name="tag_class">
+        <item>抢购</item>
+        <item>红包</item>
+        <item>宝箱</item>
+        <item>活动</item>
+        <item>商圈</item>
+        <item>教育</item>
+        <item>旅游</item>
+        <item>房产</item>
+        <item>建材</item>
+        <item>医药</item>
+        <item>餐饮</item>
+        <item>招商</item>
+        <item>招聘</item>
+        <item>汽车</item>
+        <item>金融</item>
+        <item>通讯</item>
+        <item>美妆</item>
+        <item>服务</item>
+        <item>公益</item>
+    </string-array>
+    <string-array name="tag_age">
+        <item>全部</item>
+        <item>婴儿</item>
+        <item>幼儿</item>
+        <item>儿童</item>
+        <item>少年</item>
+        <item>青年</item>
+        <item>中年</item>
+        <item>老年</item>
+    </string-array>
+    <string-array name="tag_gender">
+        <item>全部</item>
+        <item>男</item>
+        <item>女</item>
+    </string-array>
 </resources>
