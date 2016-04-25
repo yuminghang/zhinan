@@ -58,7 +58,13 @@ public class ToolFor9Ge {
      */
     public static boolean checkNetworkInfo(Context mContext) {
         ConnectivityManager conMan = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
-        State mobile = conMan.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
+        State mobile = null;
+        try {
+            mobile = conMan.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
+        }catch (Exception e){
+
+        }
+
         State wifi = conMan.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
         if (mobile == State.CONNECTED || mobile == State.CONNECTING)
             return true;
