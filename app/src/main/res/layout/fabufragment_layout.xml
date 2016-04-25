@@ -3,14 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#dbdbdb"
+    android:background="@mipmap/editback"
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
     <ScrollView
+        android:background="@color/transparent"
         android:id="@+id/sv_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
+            android:background="@color/transparent"
             android:id="@+id/ll_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,7 +25,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/almost_white"
+                android:background="#22ffffff"
                 android:gravity="top"
                 android:hint="在此输入广告信息哦~"
                 android:lines="20"
@@ -168,6 +170,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:layout_margin="10dp"
                     android:id="@+id/tv_adInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
