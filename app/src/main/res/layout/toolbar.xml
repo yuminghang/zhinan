@@ -27,7 +27,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="22dp"
-            android:text="陕西"
+            android:text="西安"
             android:textColor="@color/dimgray"
             android:textSize="11sp" />
     </RelativeLayout>
