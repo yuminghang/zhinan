@@ -41,7 +41,7 @@
                     android:id="@+id/et_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="手机号/邮箱号"
+                    android:hint="昵称"
                     android:inputType="text" />
             </LinearLayout>
 

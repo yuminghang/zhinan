@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class NewsActivity extends Activity {
 
-    private ListView listView;
+    private ListView listview_1, listview_2;
     private List<shanxiweishibean> datasWeishi = new ArrayList<shanxiweishibean>();
     private List<String> list1;
     private channelAdapter channeladapter;
@@ -29,7 +30,8 @@ public class NewsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
         MyApplication.addNewsActivity(this);
-        listView = (ListView) findViewById(R.id.listview);
+        listview_1 = (ListView) findViewById(R.id.listview_1);
+        listview_2 = (ListView) findViewById(R.id.listview_2);
         initData();
         initListView();
         addListener();
@@ -39,28 +41,34 @@ public class NewsActivity extends Activity {
         list1 = new ArrayList<String>();
         list1.add(0, "华商报");
         list1.add(1, "陕西农林");
-        list1.add(2, "三秦都市报");
+        list1.add(2, "三秦都市");
         list1.add(3, "西安晚报");
     }
 
     private void initListView() {
         channeladapter = new channelAdapter(this, list1);
-        listView.setAdapter(channeladapter);
+        listview_1.setAdapter(channeladapter);
     }
 
     private void addListener() {
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listview_1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                channeladapter.pos = position;
+                channeladapter.notifyDataSetChanged();
+//                list2.clear();
 //                if (position % 2 == 0) {
-                intent = new Intent(NewsActivity.this, NewsDetailActivity.class);
-//                intent.putExtra("kind", 0);
-                startActivity(intent);
+//                    list2.addAll(datasWeishi);
 //                } else {
-//                    intent = new Intent(NewsActivity.this, TvDetailActivity.class);
-//                    intent.putExtra("kind", 1);
-//                    startActivity(intent);
+//                    list2.addAll(datasNonglin);
 //                }
+//                columnadapter.notifyDataSetChanged();
+            }
+        });
+        listview_2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(NewsActivity.this, MyCommentActivity.class));
             }
         });
     }

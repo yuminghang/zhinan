@@ -17,6 +17,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.jauker.widget.BadgeView;
 import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
 import com.project.zhinan.api.Urls;
@@ -49,7 +50,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     SettingFragment settingFragment;
     FaxianFragment faxianFragment;
     FabuFragment fabuFragment;
-    RadioButton btn_home, btn_dongtu, btn_faxian, btn_setting;
+    RadioButton btn_home, btn_fabu, btn_faxian, btn_setting, btn_fabu_zhanwei;
     private ArrayList<String> myCollects;
     private int currentTab = 0;
 
@@ -72,18 +73,31 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private String success;
     private SharedPreferences sharedPreferences1;
     private SharedPreferences.Editor edit1;
+//    private BadgeView badgeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MyApplication.getInstance().addActivity(this);
         setContentView(R.layout.activity_main);
+
         sharedPreferences1 = getSharedPreferences("collect_upload_state", Context.MODE_PRIVATE);
         edit1 = sharedPreferences1.edit();
         fragment_container = (FrameLayout) findViewById(R.id.fragment_container);
         initRadioButton();
+//        initBadgeView();
         select(0);
     }
+
+//    private void initBadgeView() {
+//        badgeView = new BadgeView(this);
+//        badgeView.setTargetView(btn_fabu);
+//        badgeView.setBadgeCount(1);
+//        badgeView.setBadgeMargin(0, 5, 0, 0);
+//        badgeView.set
+//        badgeView.setVisibility(View.GONE);
+//        badgeView.setFocusableInTouchMode(false);
+//    }
 
     private void select(int i) {
         FragmentManager fm = getSupportFragmentManager();  //获得Fragment管理器
@@ -158,12 +172,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 select(0);
                 currentTab = 1;
                 break;
-            case R.id.btn_dongtu:
+            case R.id.btn_fabu:
                 select(1);
                 if (MyApplication.count > 0) {
                     sendCollectInfo();
                 }
                 currentTab = 2;
+//                badgeView.setVisibility(View.VISIBLE);
                 break;
             case R.id.btn_faxian:
                 select(2);
@@ -225,11 +240,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     private void initRadioButton() {
         btn_home = (RadioButton) findViewById(R.id.btn_home);
-        btn_dongtu = (RadioButton) findViewById(R.id.btn_dongtu);
+        btn_fabu = (RadioButton) findViewById(R.id.btn_fabu);
         btn_faxian = (RadioButton) findViewById(R.id.btn_faxian);
         btn_setting = (RadioButton) findViewById(R.id.btn_setting);
         btn_home.setOnClickListener(this);
-        btn_dongtu.setOnClickListener(this);
+        btn_fabu.setOnClickListener(this);
         btn_faxian.setOnClickListener(this);
         btn_setting.setOnClickListener(this);
     }
@@ -250,6 +265,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         return super.onKeyDown(keyCode, event);
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }
 

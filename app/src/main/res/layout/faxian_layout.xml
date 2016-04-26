@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/line_color"
     android:orientation="vertical">
 
     <TextView
@@ -14,63 +15,83 @@
         android:textColor="@color/almost_white"
         android:textSize="18sp"></TextView>
 
-    <TextView
-        android:id="@+id/tv1"
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/almost_white"
-        android:gravity="center"
-        android:text="电 视"
-        android:textColor="@color/title_color"
-        android:textSize="18sp" />
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/tv_click_background">
 
-    <ImageView
-        android:id="@+id/iv1"
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/tv_icon" />
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left|center"
+            android:paddingLeft="20dp"
+            android:text="电 视"
+            android:textColor="@color/title_color"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:alpha="50"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/tv" />
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/news_click_background">
 
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/news_icon" />
 
-    <TextView
-        android:id="@+id/tv2"
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left|center"
+            android:paddingLeft="20dp"
+            android:text="报 纸"
+            android:textColor="@color/title_color"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/almost_white"
-        android:gravity="center"
-        android:text="广 播"
-        android:textColor="@color/title_color"
-        android:textSize="18sp" />
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/video_click_background">
 
-    <ImageView
-        android:id="@+id/iv2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:alpha="50"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/vedio" />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/video_icon" />
 
-
-    <TextView
-        android:id="@+id/tv3"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/almost_white"
-        android:gravity="center"
-        android:text="报 纸"
-        android:textColor="@color/title_color"
-        android:textSize="18sp" />
-
-    <ImageView
-        android:id="@+id/iv3"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/news" />
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left|center"
+            android:paddingLeft="20dp"
+            android:text="广 播"
+            android:textColor="@color/title_color"
+            android:textSize="18sp" />
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -39,7 +39,6 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
-import com.squareup.okhttp.internal.Util;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -124,7 +123,7 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
                     break;
                 case POSTSUCCESS:
                     if (success.contains("success")) {
-                        Toast.makeText(getContext(), "发布成功", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "发布成功，请等待审核", Toast.LENGTH_LONG).show();
                         resetData();
 
                     } else {
@@ -154,8 +153,8 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
         mIvImageView.setImageResource(R.mipmap.default_image);
         mAdInfoTextView.setText("");
         mBiaotiEditText.setText("");
-        path=null;
-        imgurl=null;
+        path = null;
+        imgurl = null;
         mClassSpinner.setSelection(0);
         mGenderSpinner.setSelection(0);
         mAgeSpinner.setSelection(0);
@@ -267,8 +266,8 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
 
                 SharedPreferences loginSp = getContext().getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
                 boolean isLogin = loginSp.getBoolean("isLogin", false);
-                if (!isLogin){
-                    Toast.makeText(getContext(),"没有登陆！",Toast.LENGTH_SHORT).show();
+                if (!isLogin) {
+                    Toast.makeText(getContext(), "没有登陆！", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getContext(), LoginActivity.class));
                     return;
                 }
@@ -305,9 +304,9 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
         textClass = mClassSpinner.getSelectedItem().toString();
         mClassTextView.setText("类型：" + textClass);
         textAge = mAgeSpinner.getSelectedItem().toString();
-        mAgeTextView.setText("年龄："+ textAge);
+        mAgeTextView.setText("年龄：" + textAge);
         textGender = mGenderSpinner.getSelectedItem().toString();
-        mGenderTextView.setText("性别："+ textGender);
+        mGenderTextView.setText("性别：" + textGender);
         mAdInfoTextView.setText(etAdINfo);
         File file = new File(path);
         Glide.with(getContext()).load(file).placeholder(R.mipmap.default_image).into(mPreImageView);
@@ -318,6 +317,7 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
 
     /**
      * 图片上传
+     *
      * @param path
      */
     private synchronized void uploadImage(String path) {
@@ -355,6 +355,7 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
 
 
     }
+
     /**
      * 发布新的广告
      */
@@ -370,9 +371,9 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
             jsonObject.put("addesc", etAdINfo);
             jsonObject.put("adurl", "www.baidu.com");
             jsonObject.put("imgurl", imgurl);
-            jsonObject.put("tag1",textClass);
-            jsonObject.put("tag2",textAge);
-            jsonObject.put("tag3",textGender);
+            jsonObject.put("tag1", textClass);
+            jsonObject.put("tag2", textAge);
+            jsonObject.put("tag3", textGender);
             jsonObject.put("icons", 2);
 
         } catch (JSONException e) {

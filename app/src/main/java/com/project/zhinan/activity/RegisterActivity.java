@@ -52,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
                     showProgress(false);
                     if (success.contains("success")) {
                         Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                         finish();
                     } else {
                         try {
@@ -217,7 +217,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean isNameValid(String name) {
-        return name.length() > 5;
+        return name.length() >= 1;
     }
 
     private boolean isPasswordValid(String password) {

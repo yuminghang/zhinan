@@ -13,6 +13,7 @@
         android:layout_height="0dp"
         android:layout_weight="0.925"></FrameLayout>
 
+
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -35,7 +36,7 @@
             android:textSize="10sp" />
 
         <RadioButton
-            android:id="@+id/btn_dongtu"
+            android:id="@+id/btn_fabu"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
@@ -47,7 +48,6 @@
             android:paddingTop="10dp"
             android:text="发布"
             android:textSize="10sp" />
-
 
         <RadioButton
             android:id="@+id/btn_faxian"
@@ -76,8 +76,6 @@
             android:paddingTop="10dp"
             android:text="我的"
             android:textSize="10sp" />
-
-
     </RadioGroup>
 
 </LinearLayout>

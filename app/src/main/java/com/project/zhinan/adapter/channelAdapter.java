@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.project.zhinan.R;
@@ -19,7 +20,8 @@ public class channelAdapter extends BaseAdapter {
     Context context;
     TextView tv;
     private View view;
-//    private int[] colors = new int[]{R.color.title_color, R.color.yellow, R.color.seagreen,R.color.aliceblue, R.color.magenta, R.color.gray};
+    private ImageView iv_arrow;
+    public static int pos = 0;
 
     public channelAdapter(Context context, List<String> list) {
         this.list = list;
@@ -45,7 +47,14 @@ public class channelAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         view = View.inflate(context, R.layout.channelitem_layout, null);
         tv = (TextView) view.findViewById(R.id.tv);
+        iv_arrow = (ImageView) view.findViewById(R.id.iv_arrow);
         tv.setText(list.get(position));
+        if (position == pos) {
+            iv_arrow.setVisibility(View.VISIBLE);
+        } else {
+            iv_arrow.setVisibility(View.INVISIBLE);
+        }
         return view;
     }
 }
+

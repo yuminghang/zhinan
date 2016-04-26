@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.project.zhinan.activity.TvActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.project.zhinan.activity.TvActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -15,10 +15,25 @@
         android:text="选择正在看的报纸:"
         android:textColor="@color/almost_white"
         android:textSize="18sp"></TextView>
-    <ListView
-        android:id="@+id/listview"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#ffffff"
-        android:scrollbars="none"></ListView>
+        android:layout_height="wrap_content">
+
+        <ListView
+            android:id="@+id/listview_1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="#96b2b2b2"
+            android:scrollbars="none"></ListView>
+
+        <ListView
+            android:id="@+id/listview_2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:background="#ffffff"
+            android:scrollbars="none"></ListView>
+    </LinearLayout>
 </LinearLayout>

@@ -7,7 +7,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -61,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/white"
                 android:paddingTop="20dp">
 
@@ -121,28 +122,46 @@
                 <EditText
                     android:id="@+id/et"
                     android:layout_width="175dp"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     android:layout_alignLeft="@id/iv1"
                     android:layout_below="@id/iv1"
                     android:layout_marginTop="20dp"
                     android:background="@color/almost_white"
                     android:gravity="top"
                     android:hint="请输入广告语"
+                    android:lines="1"
+                    android:maxLength="7"
                     android:padding="5dp"
                     android:textColor="@color/darkgreen"
                     android:textSize="14sp" />
 
             </RelativeLayout>
 
-            <Button
-                android:id="@+id/get_rmb"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_gravity="bottom"
-                android:background="@color/orange"
-                android:text="赚钱"
-                android:textColor="@color/brown"
-                android:textSize="18sp" />
+                android:background="@color/whitesmoke">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="   "
+                    android:textColor="@color/red"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/get_rmb"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/firebrick"
+                    android:text="去赚钱"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

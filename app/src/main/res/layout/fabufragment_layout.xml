@@ -6,16 +6,18 @@
     android:background="@mipmap/editback"
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
+
     <ScrollView
-        android:background="@color/transparent"
         android:id="@+id/sv_edit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/transparent">
+
         <LinearLayout
-            android:background="@color/transparent"
             android:id="@+id/ll_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/transparent"
             android:orientation="vertical">
 
             <EditText
@@ -27,8 +29,9 @@
                 android:layout_marginTop="10dp"
                 android:background="#22ffffff"
                 android:gravity="top"
-                android:hint="在此输入广告信息哦~"
+                android:hint="在此输入广告信息"
                 android:lines="20"
+                android:padding="5dp"
                 android:textColor="@color/darkgreen"
                 android:textSize="14sp" />
 
@@ -108,10 +111,10 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:orientation="horizontal">
 
                 <ImageButton
@@ -143,6 +146,7 @@
                 android:textSize="18sp" />
         </LinearLayout>
     </ScrollView>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -170,11 +174,13 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_margin="10dp"
                     android:id="@+id/tv_adInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="这里是广告信息" />
+                    android:layout_margin="10dp"
+                    android:text="这里是广告信息"
+                    android:textColor="@color/title_color"
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:id="@+id/iv_pre"
@@ -217,6 +223,11 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/black"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
@@ -244,10 +255,8 @@
                     android:textColor="@color/ivory"
                     android:textSize="18sp" />
             </LinearLayout>
-        </LinearLayout></ScrollView>
-
-
-
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>
