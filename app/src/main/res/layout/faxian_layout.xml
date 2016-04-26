@@ -12,7 +12,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="10dp"
         android:text="选择要评论的栏目:"
-        android:textColor="@color/almost_white"
+        android:textColor="@color/ivory"
         android:textSize="18sp"></TextView>
 
     <LinearLayout

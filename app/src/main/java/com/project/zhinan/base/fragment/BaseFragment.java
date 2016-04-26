@@ -59,7 +59,7 @@ public class BaseFragment extends Fragment {
     private SharedPreferences sharedPreferences;
     public ImageView back_to_top;
     public static int lastRead = 0;
-    public static int[] isRead = new int[20];
+    public static int[] isRead = new int[21];
 
     Handler handler = new Handler() {
         @Override

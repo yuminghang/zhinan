@@ -42,11 +42,11 @@
         <activity android:name=".activity.VideoActivity" />
         <activity android:name=".activity.NewsActivity" />
         <activity android:name=".activity.TvDetailActivity" />
-        <activity android:name=".activity.TvDetailActivity2" />
         <activity android:name=".activity.MyCommentActivity" />
         <activity android:name=".activity.VideoDetailActivity" />
         <activity android:name=".activity.NewsDetailActivity" />
-        <activity android:name=".activity.QianggouDetailActivity"></activity>
+        <activity android:name=".activity.QianggouDetailActivity" />
+        <activity android:name=".activity.BackUpActivity"/>
     </application>
 
 </manifest>
