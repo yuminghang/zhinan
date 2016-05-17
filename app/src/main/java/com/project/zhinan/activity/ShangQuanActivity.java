@@ -43,7 +43,7 @@ public class ShangQuanActivity extends AppCompatActivity {
 
         });
 
-        mMoreInfoWebView.loadUrl("http://coupon.m.jd.com/seckill/seckillList?wareId=2610963");
+        mMoreInfoWebView.loadUrl("file:///android_asset/jd3.html");
 
     }
 
