@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment {
     private TabLayout mTabLayout;
     public ViewPager mViewPager;
     private LinearLayout linear_layout;
-    public ArrayList<BaseFragment> fragmentList;
+    public ArrayList<Fragment> fragmentList;
     MyFragmentPagerAdapter myFragmentPagerAdapter;
     static ArrayList<String> titleContainer = new ArrayList<String>();
 
@@ -75,7 +75,7 @@ public class HomeFragment extends Fragment {
 
     private void initViewpager() {
         initTitle();
-        fragmentList = new ArrayList<BaseFragment>();
+        fragmentList = new ArrayList<Fragment>();
         Qianggou qianggouFragment = new Qianggou();
         Hongbao hongbaoFragment = new Hongbao();
         Baoxiang baoxiangFragment = new Baoxiang();
@@ -128,7 +128,7 @@ public class HomeFragment extends Fragment {
     private static void initTitle() {
         //页签项
         titleContainer.add("抢购");
-        titleContainer.add("红包");
+        titleContainer.add("一元抢购");
         titleContainer.add("宝箱");
         titleContainer.add("活动");
         titleContainer.add("商圈");
