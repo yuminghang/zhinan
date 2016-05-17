@@ -100,8 +100,8 @@ public class HomeFragment extends Fragment {
         fragmentList.add(qianggouFragment);
         fragmentList.add(hongbaoFragment);
         fragmentList.add(shangquan);
-        fragmentList.add(baoxiangFragment);
         fragmentList.add(huodong);
+        fragmentList.add(baoxiangFragment);
         fragmentList.add(jiaoyu);
         fragmentList.add(lvyou);
         fragmentList.add(fangchan);
