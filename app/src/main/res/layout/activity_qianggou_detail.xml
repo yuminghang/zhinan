@@ -68,16 +68,16 @@
 
                 <ImageView
                     android:id="@+id/iv"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="50dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
                     android:src="@mipmap/write" />
 
                 <TextView
                     android:id="@+id/tv1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_toRightOf="@id/iv"
                     android:text="写核心记忆词"
                     android:textColor="@color/purple"
@@ -87,7 +87,7 @@
                     android:id="@+id/tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="8dp"
                     android:layout_toRightOf="@id/tv1"
                     android:text="金币"
@@ -113,17 +113,12 @@
                     android:layout_marginTop="20dp"
                     android:src="@mipmap/pop" />
 
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/iv1"
-                    android:layout_below="@id/iv1" />
 
                 <EditText
                     android:id="@+id/et"
                     android:layout_width="175dp"
                     android:layout_height="50dp"
-                    android:layout_alignLeft="@id/iv1"
+                    android:layout_alignLeft="@id/tv1"
                     android:layout_below="@id/iv1"
                     android:layout_marginTop="20dp"
                     android:background="@color/almost_white"
@@ -135,33 +130,19 @@
                     android:textColor="@color/darkgreen"
                     android:textSize="14sp" />
 
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@color/whitesmoke">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:background="@color/white"
-                    android:gravity="center"
-                    android:text="   "
-                    android:textColor="@color/red"
-                    android:textSize="16sp" />
-
                 <Button
                     android:id="@+id/get_rmb"
-                    android:layout_width="0dp"
+                    android:layout_width="90dp"
                     android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
                     android:layout_weight="1"
                     android:background="@color/firebrick"
                     android:text="去赚钱"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
-            </LinearLayout>
+            </RelativeLayout>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
