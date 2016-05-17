@@ -99,9 +99,9 @@ public class HomeFragment extends Fragment {
 
         fragmentList.add(qianggouFragment);
         fragmentList.add(hongbaoFragment);
+        fragmentList.add(shangquan);
         fragmentList.add(baoxiangFragment);
         fragmentList.add(huodong);
-        fragmentList.add(shangquan);
         fragmentList.add(jiaoyu);
         fragmentList.add(lvyou);
         fragmentList.add(fangchan);
@@ -129,9 +129,9 @@ public class HomeFragment extends Fragment {
         //页签项
         titleContainer.add("抢购");
         titleContainer.add("一元抢购");
+        titleContainer.add("商圈");
         titleContainer.add("宝箱");
         titleContainer.add("活动");
-        titleContainer.add("商圈");
         titleContainer.add("教育");
         titleContainer.add("旅游");
         titleContainer.add("房产");
