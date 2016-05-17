@@ -113,7 +113,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     ft.show(homeFragment);
                 }
                 if (currentTab == 1) {
-                    homeFragment.fragmentList.get(homeFragment.mViewPager.getCurrentItem()).mlv.setSelection(0);
+//                    homeFragment.fragmentList.get(homeFragment.mViewPager.getCurrentItem()).mlv.setSelection(0);
                 }
                 StatusBarUtil.initStatusBar(this, R.color.almost_white);
                 break;

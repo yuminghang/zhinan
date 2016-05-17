@@ -46,7 +46,8 @@
         <activity android:name=".activity.VideoDetailActivity" />
         <activity android:name=".activity.NewsDetailActivity" />
         <activity android:name=".activity.QianggouDetailActivity" />
-        <activity android:name=".activity.BackUpActivity"/>
+        <activity android:name=".activity.BackUpActivity" />
+        <activity android:name=".activity.ShangQuanActivity"></activity>
     </application>
 
 </manifest>

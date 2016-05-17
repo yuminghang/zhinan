@@ -15,11 +15,11 @@ import java.util.ArrayList;
 
 
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
-    ArrayList<BaseFragment> list;
+    ArrayList<Fragment> list;
     ArrayList<String> titlelist;
 
 
-    public MyFragmentPagerAdapter(FragmentManager fm, ArrayList<BaseFragment> fragmentList, ArrayList<String> titleContainer) {
+    public MyFragmentPagerAdapter(FragmentManager fm, ArrayList<Fragment> fragmentList, ArrayList<String> titleContainer) {
         super(fm);
         this.list = fragmentList;
         this.titlelist = titleContainer;
