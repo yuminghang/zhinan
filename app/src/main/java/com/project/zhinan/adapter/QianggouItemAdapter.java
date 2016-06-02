@@ -57,7 +57,7 @@ public class QianggouItemAdapter extends BaseAdapter {
     private void initializeViews(QiangGouBean.SeckillInfoBean.ItemListBean object, ViewHolder holder) {
         //TODO implement
         holder.tvName.setText(object.getWname());
-        Glide.with(context).load(object.getImageurl()).into(holder.ivImg);
+        Glide.with(context).load(object.getImageurl()).placeholder(R.mipmap.zhinan).into(holder.ivImg);
         holder.tvNowPrice.setText(object.getMiaoShaPrice());
         holder.tvOldPrice.setText(object.getJdPrice());
         holder.tvOldPrice.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG);
