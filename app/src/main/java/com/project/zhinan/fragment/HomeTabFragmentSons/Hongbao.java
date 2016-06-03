@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -18,7 +19,9 @@ import com.project.zhinan.activity.WebviewActivity;
 import com.project.zhinan.adapter.HongbaoListAdapter;
 import com.project.zhinan.base.fragment.BaseFragment;
 import com.project.zhinan.bean.hongbaobean;
+import com.project.zhinan.bean.hongbaocache;
 import com.project.zhinan.utils.Cache;
+import com.project.zhinan.utils.Cache1;
 import com.project.zhinan.utils.ConstantValue;
 
 import java.util.List;
@@ -28,7 +31,7 @@ public class Hongbao extends Fragment {
 
     private View view;
     private ListView listView;
-    private hongbaobean list;
+    private hongbaocache list;
 
     @Nullable
     @Override
@@ -41,12 +44,13 @@ public class Hongbao extends Fragment {
 
     private void initData() {
         Gson gson = new Gson();
-        list = (gson.fromJson(Cache.Hongbao_Cache, new TypeToken<hongbaobean>() {
-        }.getType()));
-        }
+        list = gson.fromJson(Cache1.data, hongbaocache.class);
+    }
 
     private void initView() {
         listView = (ListView) view.findViewById(R.id.listView);
+        LinearLayout headerView = (LinearLayout) View.inflate(getActivity(), R.layout.hongbao_head_view, null);
+        listView.addHeaderView(headerView);
         HongbaoListAdapter adapter = new HongbaoListAdapter(getActivity(), list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -58,7 +58,6 @@ public class HomeFragment extends Fragment {
         view = inflater.inflate(R.layout.homefragment_layout, container, false);
         findViews();
         initViewpager();
-
         return view;
     }
 

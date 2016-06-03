@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="250dp"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <ImageView
-        android:id="@+id/iv"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_weight="5"
-        android:scaleType="centerCrop" />
+        android:id="@+id/pic"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/hongbao_top_pic" />
 
     <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="7">
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="5dp">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="10dp"
-            android:text="按时发达撒倒萨大"
-            android:textColor="@color/black"
+            android:layout_alignParentBottom="true"
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/totalnumber"
+            android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/title"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="50dp"
-            android:text=""
-            android:textSize="12sp" />
-    </RelativeLayout>
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="100dp"
+            android:text="￥1.00"
+            android:textColor="@color/tomato"
+            android:textSize="18sp" />
 
-    <ImageView
-        android:id="@+id/add"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginRight="15dp"
-        android:layout_weight="1"
-        android:src="@mipmap/add" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@color/tomato"
+            android:text="立即抽奖"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
 
 </LinearLayout>
