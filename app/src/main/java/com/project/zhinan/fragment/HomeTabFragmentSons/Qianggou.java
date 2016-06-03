@@ -1,5 +1,6 @@
 package com.project.zhinan.fragment.HomeTabFragmentSons;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.project.zhinan.R;
+import com.project.zhinan.activity.HongbaoWebViewActivity;
 import com.project.zhinan.adapter.QianggouItemAdapter;
 import com.project.zhinan.bean.QiangGouBean;
 import com.project.zhinan.net.HttpUtils;
@@ -32,7 +34,7 @@ public class Qianggou extends Fragment {
         mShangquanListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                startActivity(new Intent(getContext(), HongbaoWebViewActivity.class));
 
             }
         });
@@ -58,7 +60,7 @@ public class Qianggou extends Fragment {
                 mShangquanListView.post(new Runnable() {
                     @Override
                     public void run() {
-                     qianggouItemAdapter.notifyDataSetChanged();
+                        qianggouItemAdapter.notifyDataSetChanged();
                     }
                 });
             }
