@@ -72,12 +72,14 @@ public class LoginActivity extends AppCompatActivity {
 
     private void resetAccount() {
         try {
+            JSONObject jsonObject = new JSONObject(success);
+            int account = jsonObject.getInt("account");
             SharedPreferences sharedPreferences = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
             SharedPreferences.Editor edit = sharedPreferences.edit();
             edit.putBoolean("isLogin", true);
             edit.putString("name", name);
             edit.putString("password", password);
-            edit.putInt("account", 0);
+            edit.putInt("account", account);
             edit.commit();
             MyApplication.getInstance().setLoginIn();
         } catch (Exception e) {
