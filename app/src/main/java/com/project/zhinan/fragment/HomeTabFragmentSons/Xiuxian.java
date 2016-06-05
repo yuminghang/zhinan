@@ -7,8 +7,8 @@ import com.project.zhinan.utils.ConstantValue;
 public class Xiuxian extends BaseFragment {
     public Xiuxian()
     {
-        this.url= ConstantValue.BaseUr12 +
-                "com/try?file=e";
+        this.url= "http://120.27.41.245:2888/e.json";
+
     }
 
 }

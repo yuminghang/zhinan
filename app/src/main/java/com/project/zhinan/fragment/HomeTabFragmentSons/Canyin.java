@@ -7,8 +7,7 @@ import com.project.zhinan.utils.ConstantValue;
 public class Canyin extends BaseFragment {
     public Canyin()
     {
-        this.url= ConstantValue.BaseUr12 +
-                "try?file=b";
+        this.url= "http://120.27.41.245:2888/b.json";
     }
 
 }

@@ -9,6 +9,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.project.zhinan.R;
+import com.project.zhinan.net.HttpUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class HongbaoWebViewActivity extends AppCompatActivity {
 
@@ -26,8 +30,33 @@ public class HongbaoWebViewActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HongbaoWebViewActivity.this, paymentActivity.class));
+                startQiangGou();
             }
         });
+    }
+
+    private void startQiangGou() {
+        HttpUtils.doGetAsynwithCookie("http://123.206.84.242:2888/duobao?goodsid=123231321",this, new HttpUtils.CallBack() {
+            @Override
+            public void onRequestComplete(String result) {
+                if (result.contains("success")) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(result);
+                        String order = jsonObject.getString("order");
+                        Intent intent = new Intent(HongbaoWebViewActivity.this, paymentActivity.class);
+                        intent.putExtra("order",order);
+
+                        startActivity(intent);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }else {
+                    System.out.println("抢购失败");
+                }
+            }
+        });
+
     }
 }

@@ -7,8 +7,7 @@ import com.project.zhinan.utils.ConstantValue;
 public class Jingcai extends BaseFragment {
     public Jingcai()
     {
-        this.url= ConstantValue.BaseUr12+
-                "com/try?file=d";
+        this.url= "http://120.27.41.245:2888/c.json";
     }
 
 }

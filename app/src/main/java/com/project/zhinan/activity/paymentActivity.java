@@ -3,6 +3,9 @@ package com.project.zhinan.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,12 +14,36 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.project.zhinan.R;
+import com.project.zhinan.net.HttpUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class paymentActivity extends Activity {
+
+    private static final int SUCCESS = 1;
+    private static final int ERROR = 2;
+    private String order;
+    Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case SUCCESS:
+                    MyToast("支付成功");
+                    break;
+                case ERROR:
+                    MyToast("支付失败"+error);
+                    break;
+            }
+        }
+    };
+    private String error;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        order = intent.getStringExtra("order");
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_payment);
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.LinearLayout4);
@@ -30,7 +57,7 @@ public class paymentActivity extends Activity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 //邓毅要做的事
-                                Toast.makeText(paymentActivity.this, "确认支付成功！", Toast.LENGTH_SHORT).show();
+                                sendPayPost();
                             }
                         })
                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -42,5 +69,34 @@ public class paymentActivity extends Activity {
                         .show();
             }
         });
+    }
+
+    private void sendPayPost() {
+        try {
+            HttpUtils.doGetAsynwithCookie("http://123.206.84.242:2888/pay?odernumber="+order, this, new HttpUtils.CallBack() {
+                @Override
+                public void onRequestComplete(String result) {
+                    if(result.contains("success")){
+                        //成功支付
+                        handler.sendEmptyMessage(SUCCESS);
+                    }else {
+                        try {
+                            JSONObject jsonObject1 = new JSONObject(result);
+                            error = jsonObject1.getString("error");
+                            handler.sendEmptyMessage(ERROR);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void MyToast(String s){
+        Toast.makeText(this,s,Toast.LENGTH_SHORT).show();
     }
 }

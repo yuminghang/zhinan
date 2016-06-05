@@ -7,8 +7,7 @@ import com.project.zhinan.utils.ConstantValue;
 public class Gongyi extends BaseFragment {
     public Gongyi()
     {
-        this.url= ConstantValue.BaseUr12 +
-                "com/try?file=d";
+        this.url= "http://120.27.41.245:2888/e.json";
     }
 
 }

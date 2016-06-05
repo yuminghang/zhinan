@@ -7,8 +7,7 @@ import com.project.zhinan.utils.ConstantValue;
 public class Huodong extends BaseFragment {
     public Huodong()
     {
-        this.url= ConstantValue.BaseUr12 +
-                "com/try?file=b";
+        this.url= "http://120.27.41.245:2888/a.json";
     }
 
 }
