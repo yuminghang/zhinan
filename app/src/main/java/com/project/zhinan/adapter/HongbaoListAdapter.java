@@ -1,6 +1,7 @@
 package com.project.zhinan.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -8,7 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.project.zhinan.R;
+import com.project.zhinan.activity.HongbaoWebViewActivity;
 import com.project.zhinan.bean.hongbaocache;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 
 /**
  * Created by ymh on 2016/5/17.
@@ -50,7 +56,13 @@ public class HongbaoListAdapter extends BaseAdapter {
         } else {
             myHolder = (MyHolder) convertView.getTag();
         }
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.startActivity(new Intent(activity, HongbaoWebViewActivity.class));
 
+            }
+        });
 //        Glide.with(activity).load(list.getList().get(position).getHead_pic()).placeholder(R.drawable.useme).into(myHolder.pic);
         switch (position){
             case 0:myHolder.pic.setImageResource(R.drawable.y1);
@@ -64,7 +76,6 @@ public class HongbaoListAdapter extends BaseAdapter {
             case 4:myHolder.pic.setImageResource(R.drawable.y5);
                 break;
         }
-
         myHolder.desc.setText(list.getList().get(position).getTitle());
         myHolder.price.setText("￥" + list.getList().get(position).getPrice());
 //        add.setOnClickListener(new View.OnClickListener() {

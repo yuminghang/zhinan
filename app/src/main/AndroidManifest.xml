@@ -47,8 +47,9 @@
         <activity android:name=".activity.NewsDetailActivity" />
         <activity android:name=".activity.QianggouDetailActivity" />
         <activity android:name=".activity.BackUpActivity" />
-        <activity android:name=".activity.HongbaoWebViewActivity"></activity>
-        <activity android:name=".activity.ShangQuanActivity"></activity>
+        <activity android:name=".activity.HongbaoWebViewActivity" />
+        <activity android:name=".activity.ShangQuanActivity" />
+        <activity android:name=".activity.paymentActivity"></activity>
     </application>
 
 </manifest>

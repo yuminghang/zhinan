@@ -1,5 +1,6 @@
 package com.project.zhinan.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,7 +26,7 @@ public class HongbaoWebViewActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(HongbaoWebViewActivity.this, "抢购成功！请等待开奖", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(HongbaoWebViewActivity.this, paymentActivity.class));
             }
         });
     }
