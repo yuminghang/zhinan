@@ -5,29 +5,26 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.jauker.widget.BadgeView;
 import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
 import com.project.zhinan.api.Urls;
-import com.project.zhinan.base.fragment.BaseFragment;
 import com.project.zhinan.fragment.FabuFragment;
 import com.project.zhinan.fragment.FaxianFragment;
 import com.project.zhinan.fragment.HomeFragment;
 import com.project.zhinan.fragment.SettingFragment;
 import com.project.zhinan.utils.StatusBarUtil;
-import com.project.zhinan.view.MyPopupWindow;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -37,13 +34,13 @@ import com.squareup.okhttp.Response;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.IdentityHashMap;
 import java.util.Map;
 
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener {
 
-    private long exitTime;
+    public static final MediaType TEXT
+            = MediaType.parse("text/plain; charset=utf-8");
     private static final int POSTED = 1;
     FrameLayout fragment_container;
     HomeFragment homeFragment;
@@ -51,9 +48,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     FaxianFragment faxianFragment;
     FabuFragment fabuFragment;
     RadioButton btn_home, btn_fabu, btn_faxian, btn_setting, btn_fabu_zhanwei;
+    private long exitTime;
     private ArrayList<String> myCollects;
     private int currentTab = 0;
-
+    private String success;
+    private SharedPreferences sharedPreferences1;
+    private SharedPreferences.Editor edit1;
+//    private BadgeView badgeView;
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -70,10 +71,17 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             }
         }
     };
-    private String success;
-    private SharedPreferences sharedPreferences1;
-    private SharedPreferences.Editor edit1;
-//    private BadgeView badgeView;
+
+
+//    private void initBadgeView() {
+//        badgeView = new BadgeView(this);
+//        badgeView.setTargetView(btn_fabu);
+//        badgeView.setBadgeCount(1);
+//        badgeView.setBadgeMargin(0, 5, 0, 0);
+//        badgeView.set
+//        badgeView.setVisibility(View.GONE);
+//        badgeView.setFocusableInTouchMode(false);
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,16 +96,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 //        initBadgeView();
         select(0);
     }
-
-//    private void initBadgeView() {
-//        badgeView = new BadgeView(this);
-//        badgeView.setTargetView(btn_fabu);
-//        badgeView.setBadgeCount(1);
-//        badgeView.setBadgeMargin(0, 5, 0, 0);
-//        badgeView.set
-//        badgeView.setVisibility(View.GONE);
-//        badgeView.setFocusableInTouchMode(false);
-//    }
 
     private void select(int i) {
         FragmentManager fm = getSupportFragmentManager();  //获得Fragment管理器
@@ -164,7 +162,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         }
     }
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -196,10 +193,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 break;
         }
     }
-
-
-    public static final MediaType TEXT
-            = MediaType.parse("text/plain; charset=utf-8");
 
     private void sendCollectInfo() {
         new Thread() {

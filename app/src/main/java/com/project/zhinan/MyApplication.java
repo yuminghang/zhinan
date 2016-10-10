@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import com.baidu.mapapi.SDKInitializer;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,7 @@ public class MyApplication extends Application {
 
     @Override
     public void onCreate() {
+//        SDKInitializer.initialize(getApplicationContext());
         sharedPreferences = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
         isLogin = sharedPreferences.getBoolean("isLogin", false);
         sharedPreferences1 = getSharedPreferences("collect_upload_state", Context.MODE_PRIVATE);

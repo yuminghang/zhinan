@@ -24,15 +24,24 @@ public class paymentActivity extends Activity {
     private static final int SUCCESS = 1;
     private static final int ERROR = 2;
     private String order;
-    Handler handler=new Handler(){
+    Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            switch (msg.what){
+            switch (msg.what) {
                 case SUCCESS:
-                    MyToast("支付成功");
+                    new AlertDialog.Builder(paymentActivity.this)
+                            .setTitle("支付成功")
+                            .setMessage("订单号码：" + order)
+                            .setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            })
+                            .show();
                     break;
                 case ERROR:
-                    MyToast("支付失败"+error);
+                    MyToast("支付失败" + error);
                     break;
             }
         }
@@ -73,13 +82,13 @@ public class paymentActivity extends Activity {
 
     private void sendPayPost() {
         try {
-            HttpUtils.doGetAsynwithCookie("http://123.206.84.242:2888/pay?odernumber="+order, this, new HttpUtils.CallBack() {
+            HttpUtils.doGetAsynwithCookie("http://123.206.84.242:2888/pay?odernumber=" + order, this, new HttpUtils.CallBack() {
                 @Override
                 public void onRequestComplete(String result) {
-                    if(result.contains("success")){
+                    if (result.contains("success")) {
                         //成功支付
                         handler.sendEmptyMessage(SUCCESS);
-                    }else {
+                    } else {
                         try {
                             JSONObject jsonObject1 = new JSONObject(result);
                             error = jsonObject1.getString("error");
@@ -96,7 +105,8 @@ public class paymentActivity extends Activity {
             e.printStackTrace();
         }
     }
-    private void MyToast(String s){
-        Toast.makeText(this,s,Toast.LENGTH_SHORT).show();
+
+    private void MyToast(String s) {
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
 }
