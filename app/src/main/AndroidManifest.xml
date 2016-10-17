@@ -61,7 +61,6 @@
         <activity android:name=".activity.HongbaoWebViewActivity" />
         <activity android:name=".activity.ShangQuanActivity" />
         <activity android:name=".activity.paymentActivity" />
-        <activity android:name=".activity.MapActivity"></activity>
     </application>
 
 </manifest>
