@@ -67,4 +67,5 @@
         <item>女</item>
     </string-array>
     <string name="title_activity_questionnaire_list">QuestionnaireListActivity</string>
+    <string name="questionnaire">问卷调查</string>
 </resources>

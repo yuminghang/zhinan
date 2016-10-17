@@ -12,9 +12,10 @@
         android:layout_height="match_parent"
         android:gravity="left|center"
         android:padding="10dp"
-        android:drawableLeft="@android:drawable/ic_menu_edit"
+        android:textColor="@color/title_color"
+        android:drawableLeft="@mipmap/questionnaire"
+        android:drawablePadding="15dp"
         android:text="问卷调查名称"
-        android:textColor="@color/black"
         android:textSize="18sp"
         />
 </LinearLayout>

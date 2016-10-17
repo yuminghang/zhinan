@@ -44,12 +44,13 @@ public class QuestionnaireListActivity extends AppCompatActivity {
 //            super.handleMessage(msg);
         }
     };
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionnaire_list);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         questionnaireList = (ListView) findViewById(R.id.lv_content_questionnaire_list);
         questionnaires = new ArrayList<>();
@@ -75,6 +76,14 @@ public class QuestionnaireListActivity extends AppCompatActivity {
                 getList();
             }
         }.start();
+        if (toolbar!=null){
+            toolbar.setTitle("问卷调查");
+        }else {
+            toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            toolbar.setTitle("问卷调查");
+        }
+
     }
 
     public void getList() {
