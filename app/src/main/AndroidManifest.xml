@@ -64,7 +64,8 @@
         <activity
             android:name=".activity.QuestionnaireListActivity"
             android:label="@string/title_activity_questionnaire_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.WenjuanDetailActivity"></activity>
     </application>
 
 </manifest>

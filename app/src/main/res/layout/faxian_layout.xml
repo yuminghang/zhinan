@@ -92,6 +92,7 @@
             android:textColor="@color/title_color"
             android:textSize="18sp" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/LinearLayout4"
         android:layout_width="match_parent"
@@ -105,7 +106,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/video_icon" />
+            android:src="@drawable/wenjuan" />
 
         <TextView
             android:id="@+id/tv4"

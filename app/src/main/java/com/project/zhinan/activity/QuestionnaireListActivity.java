@@ -41,7 +41,6 @@ public class QuestionnaireListActivity extends AppCompatActivity {
                 default:
                     break;
             }
-//            super.handleMessage(msg);
         }
     };
     private Toolbar toolbar;
@@ -59,7 +58,7 @@ public class QuestionnaireListActivity extends AppCompatActivity {
         questionnaireList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), TvActivity.class);
+                Intent intent = new Intent(getActivity(), WenjuanDetailActivity.class);
                 intent.putExtra("question_id", questionnaires.get(position).get_id());
                 startActivity(intent);
             }
