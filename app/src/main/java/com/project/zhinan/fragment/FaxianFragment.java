@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.project.zhinan.R;
 import com.project.zhinan.activity.NewsActivity;
+import com.project.zhinan.activity.QuestionnaireListActivity;
 import com.project.zhinan.activity.TvActivity;
 import com.project.zhinan.activity.VideoActivity;
 
@@ -22,7 +23,7 @@ import com.project.zhinan.activity.VideoActivity;
 public class FaxianFragment extends Fragment implements View.OnClickListener {
 
     private View view;
-    private LinearLayout LinearLayout1, LinearLayout2, LinearLayout3;
+    private LinearLayout LinearLayout1, LinearLayout2, LinearLayout3,LinearLayout4;
     //faxianfragment_layout
 
     @Override
@@ -31,9 +32,13 @@ public class FaxianFragment extends Fragment implements View.OnClickListener {
         LinearLayout1 = (LinearLayout) view.findViewById(R.id.LinearLayout1);
         LinearLayout2 = (LinearLayout) view.findViewById(R.id.LinearLayout2);
         LinearLayout3 = (LinearLayout) view.findViewById(R.id.LinearLayout3);
+        LinearLayout4 = (LinearLayout) view.findViewById(R.id.LinearLayout4);
+
         LinearLayout1.setOnClickListener(this);
         LinearLayout2.setOnClickListener(this);
         LinearLayout3.setOnClickListener(this);
+        LinearLayout4.setOnClickListener(this);
+
         return view;
     }
 
@@ -48,6 +53,11 @@ public class FaxianFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.LinearLayout3:
                 startActivity(new Intent(getActivity(), VideoActivity.class));
+                break;
+            case R.id.LinearLayout4:
+                startActivity(new Intent(getActivity(), QuestionnaireListActivity.class));
+                break;
+            default:
                 break;
         }
     }

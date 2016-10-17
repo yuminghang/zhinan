@@ -23,4 +23,8 @@
         <item name="android:windowEnterAnimation">@anim/in_lefttoright</item>
         <item name="android:windowExitAnimation">@anim/out_righttoleft</item>
     </style>
+
+    <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

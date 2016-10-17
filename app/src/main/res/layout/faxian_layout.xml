@@ -92,6 +92,31 @@
             android:textColor="@color/title_color"
             android:textSize="18sp" />
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/LinearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/video_click_background">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/video_icon" />
+
+        <TextView
+            android:id="@+id/tv4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left|center"
+            android:paddingLeft="20dp"
+            android:text="问 卷"
+            android:textColor="@color/title_color"
+            android:textSize="18sp" />
+    </LinearLayout>
 
 
 </LinearLayout>

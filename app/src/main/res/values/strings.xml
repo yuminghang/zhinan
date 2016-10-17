@@ -66,4 +66,5 @@
         <item>男</item>
         <item>女</item>
     </string-array>
+    <string name="title_activity_questionnaire_list">QuestionnaireListActivity</string>
 </resources>
