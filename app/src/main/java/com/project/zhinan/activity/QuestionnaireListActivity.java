@@ -90,7 +90,7 @@ public class QuestionnaireListActivity extends AppCompatActivity {
             Gson gson = new Gson();
             QuestionnaireItem questionnaireItem = gson.fromJson(response.body().string(), QuestionnaireItem.class);
             if (questionnaireItem.isSuccess()) {
-//                questionnaires = questionnaireItem.getQuestionnaires();
+                questionnaires.clear();
                 questionnaires.addAll(questionnaireItem.getQuestionnaires());
                 handler.sendEmptyMessage(GETQUESTIONDATA);
             }

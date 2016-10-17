@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="45dp"
+    android:background="@drawable/tv_click_background"
     android:orientation="vertical">
 
     <TextView
@@ -12,7 +13,6 @@
         android:gravity="left|center"
         android:padding="10dp"
         android:drawableLeft="@android:drawable/ic_menu_edit"
-        android:paddingLeft="20dp"
         android:text="问卷调查名称"
         android:textColor="@color/black"
         android:textSize="18sp"
