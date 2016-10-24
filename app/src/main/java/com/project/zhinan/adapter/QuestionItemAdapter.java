@@ -89,7 +89,7 @@ public class QuestionItemAdapter extends BaseAdapter {
                     if (object.getAnswer().equals(option.get_id())){
                         child.setChecked(true);
                     }
-                    child.setTextColor(context.getResources().getColor(R.color.colorAccent));
+//                    child.setTextColor(context.getResources().getColor(R.color.colorAccent));
                     child.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -112,7 +112,7 @@ public class QuestionItemAdapter extends BaseAdapter {
                     if (object.getAnswer().contains(option.get_id())){
                         child.setChecked(true);
                     }
-                    child.setTextColor(context.getResources().getColor(R.color.colorAccent));
+//                    child.setTextColor(context.getResources().getColor(R.color.colorAccent));
                     child.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
