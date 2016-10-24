@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#ff4081</color>
     <color name="little_black">#515151</color>
+    <color name="green_submit">#81c784</color>
+    <color name="yellow_submit">#ffb74d</color>
     <color name="black">#000000</color>
     <color name="gray">#8a8a8a</color>
     <color name="almost_white">#f3f3f3</color>

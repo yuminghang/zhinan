@@ -10,16 +10,14 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.project.zhinan.activity.DetailActivity"
-    tools:showIn="@layout/activity_questionnaire_list">
-    <ListView
-        android:id="@+id/lv_content_questionnaire_list"
-        android:dividerHeight="@dimen/sp_15"
-        android:divider="@color/transparent"
-        android:scrollbars="none"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    tools:context="com.project.zhinan.activity.QuestionnaireListActivity"
+    tools:showIn="@layout/activity_detail">
 
-    </ListView>
+    <ListView
+        android:id="@+id/lv_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        tools:listfooter="@layout/lv_footer" />
 
 </RelativeLayout>

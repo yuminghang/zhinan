@@ -17,5 +17,7 @@ public class ConstantValue {
     public static String add_account_cUrl = BaseUrl + "add_account";
     public static String changePassUrl = BaseUrl + "changepass";
     public static String CheckUrl = BaseUrl + "wahhh";
+    public static String QUEURL = "http://115.159.0.155:8080";
+
 
 }

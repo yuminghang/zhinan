@@ -58,8 +58,11 @@ public class QuestionnaireListActivity extends AppCompatActivity {
         questionnaireList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), WenjuanDetailActivity.class);
-                intent.putExtra("question_id", questionnaires.get(position).get_id());
+//                Intent intent = new Intent(getActivity(), WenjuanDetailActivity.class);
+//                intent.putExtra("question_id", questionnaires.get(position).get_id());
+//                startActivity(intent);
+                Intent intent = new Intent(QuestionnaireListActivity.this, DetailActivity.class);
+                intent.putExtra("id",questionnaires.get(position).get_id());
                 startActivity(intent);
             }
         });

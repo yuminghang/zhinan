@@ -61,6 +61,7 @@
         <activity android:name=".activity.HongbaoWebViewActivity" />
         <activity android:name=".activity.ShangQuanActivity" />
         <activity android:name=".activity.paymentActivity" />
+        <activity android:name=".activity.DetailActivity"/>
         <activity
             android:name=".activity.QuestionnaireListActivity"
             android:label="@string/title_activity_questionnaire_list"
