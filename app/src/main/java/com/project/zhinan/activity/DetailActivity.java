@@ -66,8 +66,7 @@ public class DetailActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.lv_detail);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        adapter = new QuestionItemAdapter(this);
-        listView.setAdapter(adapter);
+
         LayoutInflater inflater = getLayoutInflater();
         View inflate = inflater.inflate(R.layout.lv_footer, null);
         submitBtn = (Button) inflate.findViewById(R.id.submit_btn);
@@ -83,6 +82,8 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
         listView.addFooterView(inflate);
+        adapter = new QuestionItemAdapter(this);
+        listView.setAdapter(adapter);
     }
 
     private boolean isFinshed() {
