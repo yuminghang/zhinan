@@ -26,6 +26,7 @@ import com.project.zhinan.activity.MyCollection;
 import com.project.zhinan.activity.MyUpload;
 import com.project.zhinan.activity.RegisterActivity;
 import com.project.zhinan.activity.ServiceActivity;
+import com.project.zhinan.activity.ZNActActivity;
 import com.project.zhinan.utils.ToolFor9Ge;
 import com.project.zhinan.view.MyPopupWindow;
 
@@ -71,6 +72,7 @@ public class SettingFragment extends Fragment {
         strings.add("我的上传");
         strings.add("我的红包");
         strings.add("指南客服");
+        strings.add("指南活动");
         strings.add("关于指南");
         List<Map<String, Object>> listems = new ArrayList<Map<String, Object>>();
         for (int i = 0; i < strings.size(); i++) {
@@ -135,6 +137,10 @@ public class SettingFragment extends Fragment {
                         startActivity(intent);
                         break;
                     case 6:
+                        intent.setClass(getContext(), ZNActActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 7:
                         intent.setClass(getContext(), AboutActivity.class);
                         startActivity(intent);
 //                        new MyPopupWindow(getActivity(), view, pos);

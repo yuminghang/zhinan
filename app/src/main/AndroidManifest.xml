@@ -61,12 +61,14 @@
         <activity android:name=".activity.HongbaoWebViewActivity" />
         <activity android:name=".activity.ShangQuanActivity" />
         <activity android:name=".activity.paymentActivity" />
-        <activity android:name=".activity.DetailActivity"/>
+        <activity android:name=".activity.DetailActivity" />
         <activity
             android:name=".activity.QuestionnaireListActivity"
             android:label="@string/title_activity_questionnaire_list"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.WenjuanDetailActivity"></activity>
+        <activity android:name=".activity.WenjuanDetailActivity" />
+        <activity android:name=".activity.ZNActActivity" />
+        <activity android:name=".activity.ZNActDetailActivity"></activity>
     </application>
 
 </manifest>
