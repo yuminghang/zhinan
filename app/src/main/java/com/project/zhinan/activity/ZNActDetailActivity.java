@@ -36,7 +36,6 @@ public class ZNActDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ShareSDK.initSDK(this);
-        copyAssetsFilesToData(this);
         setContentView(R.layout.activity_znact_detail);
         mTextViewTextView = (TextView) findViewById(R.id.textView);
         mDetailImageView = (ImageView) findViewById(R.id.iv_detail);
@@ -161,5 +160,11 @@ public class ZNActDetailActivity extends AppCompatActivity {
                 return false;
             }
         }
+    }
+
+    @Override
+    protected void onResume() {
+        copyAssetsFilesToData(this);
+        super.onResume();
     }
 }
