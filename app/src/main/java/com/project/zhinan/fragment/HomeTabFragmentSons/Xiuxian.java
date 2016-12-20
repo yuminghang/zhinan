@@ -1,14 +1,12 @@
 package com.project.zhinan.fragment.HomeTabFragmentSons;
 
-import com.project.zhinan.base.fragment.BaseFragment;
-import com.project.zhinan.utils.ConstantValue;
+import com.project.zhinan.api.Urls;
+import com.project.zhinan.base.fragment.BaseFragment_version2;
 
 
-public class Xiuxian extends BaseFragment {
-    public Xiuxian()
-    {
-        this.url= "http://120.27.41.245:2888/e.json";
-
+public class Xiuxian extends BaseFragment_version2 {
+    public Xiuxian() {
+        this.url = Urls.XiuxianUrl;
     }
 
 }

@@ -14,10 +14,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
-import com.project.zhinan.activity.MainActivity;
-import com.project.zhinan.base.fragment.BaseFragment;
-import com.project.zhinan.bean.jsonbean;
-import com.project.zhinan.utils.StringUtil;
+import com.project.zhinan.bean.bean_version2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,20 +22,20 @@ import java.util.List;
 
 public class NewsinglepicLayoutAdapter extends BaseAdapter {
 
-    private List<jsonbean.ResultEntity.ItemsEntity.BrandsEntity> objects;
+    private List<bean_version2.DataEntity> objects;
 
     private Context context;
     private LayoutInflater layoutInflater;
     private int collect;
     private SharedPreferences.Editor edit;
     private SharedPreferences sharedPreferences;
-    private BaseFragment baseFragment;
+//    private BaseFragment baseFragment;
 
-    public NewsinglepicLayoutAdapter(Context context, ArrayList<jsonbean.ResultEntity.ItemsEntity.BrandsEntity> objects, BaseFragment baseFragment) {
+    public NewsinglepicLayoutAdapter(Context context, ArrayList<bean_version2.DataEntity> objects) {
         this.objects = objects;
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
-        this.baseFragment = baseFragment;
+//        this.baseFragment = baseFragment;
     }
 
     @Override
@@ -47,7 +44,7 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
     }
 
     @Override
-    public jsonbean.ResultEntity.ItemsEntity.BrandsEntity getItem(int position) {
+    public bean_version2.DataEntity getItem(int position) {
         return objects.get(position);
     }
 
@@ -58,74 +55,45 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        sharedPreferences = context.getSharedPreferences("collect", Context.MODE_PRIVATE);
-        edit = sharedPreferences.edit();
+//        sharedPreferences = context.getSharedPreferences("collect", Context.MODE_PRIVATE);
+//        edit = sharedPreferences.edit();
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.newsinglepic_layout, null);
             convertView.setTag(new ViewHolder(convertView));
         }
-
-        initializeViews((jsonbean.ResultEntity.ItemsEntity.BrandsEntity) getItem(position), (ViewHolder) convertView.getTag(), position);
+        initializeViews(getItem(position), (ViewHolder) convertView.getTag(), position);
         return convertView;
     }
 
-    private void initializeViews(final jsonbean.ResultEntity.ItemsEntity.BrandsEntity object, final ViewHolder holder, final int position) {
-        //TODO implement
-        if (sharedPreferences.getInt("" + object.getBrand_id(), 0) == 1) {
-            holder.cb.setChecked(true);
-        } else {
-            holder.cb.setChecked(false);
-        }
-        int i = 0;
-        if (position<objects.size()-1){
-           i = BaseFragment.isRead[position + 1];
-        }
-
-        if (1 == i) {
-            holder.havesee.setVisibility(View.VISIBLE);
-            notifyDataSetChanged();
-        } else {
-            holder.havesee.setVisibility(View.INVISIBLE);
-        }
+    private void initializeViews(final bean_version2.DataEntity object, final ViewHolder holder, final int position) {
         holder.cb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (MyApplication.getInstance().isLogin()) {
                     if (holder.cb.isChecked()) {
                         Toast.makeText(context, "收藏成功", Toast.LENGTH_SHORT).show();
-                        edit.putInt(object.getBrand_id() + "", 1);
-                        edit.commit();
-
                     } else {
                         Toast.makeText(context, "取消收藏", Toast.LENGTH_SHORT).show();
-                        edit.putInt(object.getBrand_id() + "", 0);
-                        edit.commit();
                     }
-                    MyApplication.count++;
-                    context.getSharedPreferences("collect_upload_state", Context.MODE_PRIVATE).edit().putInt("isUpload", 1).commit();
                 } else {
                     holder.cb.setChecked(false);
                     Toast.makeText(context, "请先登录！", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-//        holder.cb.setChecked(true);
-        if (!StringUtil.isNullOrEmpty(object.getPms_activetips())) {
-            holder.newstitleTextView.setVisibility(View.VISIBLE);
-            holder.newstitleTextView.setText(object.getPms_activetips());
+        holder.newstitleTextView.setText(object.getKey()); //广告关键词
+        holder.tv1.setText((Math.random() * 10 + "").substring(0, 3) + "折起");//折扣
+        holder.tv2.setText(object.getTitle());//广告标题
+        if (object.getImgurls() instanceof String) {
+            Glide.with(context).load(object.getImgurls()).placeholder(R.mipmap.pic1).into(holder.ivPic);//广告图片
         } else {
-            holder.newstitleTextView.setVisibility(View.INVISIBLE);
+            try {
+                Glide.with(context).load(((ArrayList) object.getImgurls()).get(0)).placeholder(R.mipmap.bg).into(holder.ivPic);//广告图片
+            } catch (Exception e) {
+                Glide.with(context).load(R.mipmap.bg).into(holder.ivPic);
+            }
         }
-        int index1 = object.getAgio().indexOf(">");
-        int index2 = object.getAgio().indexOf("</span>");
-        if (index2 - index1 > 1) {
-            String agio = object.getAgio().substring(index1 + 1, index2) + "折起";
-            holder.tv1.setText(agio);
-        } else {
-            holder.tv1.setVisibility(View.GONE);
-        }
-        holder.tv2.setText(object.getBrand_name());
-        Glide.with(context).load(object.getMobile_image_one()).placeholder(R.mipmap.pic1).into(holder.ivPic);
+
     }
 
     protected class ViewHolder {

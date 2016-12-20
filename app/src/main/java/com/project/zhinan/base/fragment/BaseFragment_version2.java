@@ -1,0 +1,197 @@
+package com.project.zhinan.base.fragment;
+
+import android.annotation.TargetApi;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.ListView;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.project.zhinan.R;
+import com.project.zhinan.activity.QianggouDetailActivity;
+import com.project.zhinan.adapter.NewsinglepicLayoutAdapter;
+import com.project.zhinan.bean.bean_version2;
+import com.project.zhinan.bean.jsonbean;
+import com.project.zhinan.utils.HttpUtils;
+import com.project.zhinan.view.CircleIndicatorHelper;
+import com.project.zhinan.view.HomeFragment_MyViewPager;
+
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
+
+/**
+ * Created by ymh on 2016/4/11.
+ */
+public class BaseFragment_version2 extends Fragment {
+    private static final int VPRUN = 1;
+    public static bean_version2 datas;
+    public static int lastRead = 0;
+    public static int[] isRead = new int[21];
+    private static int[] mImageIds = new int[]{R.mipmap.pic2, R.mipmap.pic1, R.mipmap.pic3};
+    public ListView mlv;
+    public String url;
+    public ArrayList<bean_version2.DataEntity> objects;
+    public ImageView back_to_top;
+    private String resString;
+    private Gson gson;
+    private HomeFragment_MyViewPager viewPager;
+    private ArrayList<ImageView> mImageViewList;
+    private View home_vp;
+    private NewsinglepicLayoutAdapter adapter;
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case VPRUN:
+                    int currentItem = viewPager.getCurrentItem();
+                    if (currentItem < mImageIds.length - 1) {
+                        viewPager.setCurrentItem(currentItem + 1);
+                    } else {
+                        viewPager.setCurrentItem(0);
+                    }
+                    break;
+                case HttpUtils.DATA_GET:
+                    datas = (gson.fromJson(msg.getData().getString("content"), new TypeToken<bean_version2>() {}.getType()));
+                    objects.addAll(datas.getData());
+                    adapter.notifyDataSetChanged();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+    private SharedPreferences sharedPreferences;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_base, container, false);
+        datas = new bean_version2();
+        home_vp = inflater.inflate(R.layout.homefragment_myviewpager, null, false);
+        viewPager = (HomeFragment_MyViewPager) home_vp.findViewById(R.id.home_viewPager);
+        gson = new Gson();
+//        getCacheData(); //获取缓存数据
+        mlv = (ListView) view.findViewById(R.id.recyclerview);
+
+        initViewPager();
+//        ll_LinearLayout.requestDisallowInterceptTouchEvent(true);
+//        datas = (gson.fromJson(Cache.data, new TypeToken<jsonbean>() {
+//        }.getType()));
+        objects = new ArrayList<>();
+
+
+        mlv.addHeaderView(home_vp);
+        adapter = new NewsinglepicLayoutAdapter(getActivity(), objects);
+        mlv.setAdapter(adapter);
+
+        mlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                System.out.println("-----------------" + i + "---------------------");
+                Bundle bundle = new Bundle();
+//                bundle.putString("url", Urls.DetailUrl);
+                Intent intent = new Intent(getContext(), QianggouDetailActivity.class);
+                intent.putExtras(bundle);
+                intent.putExtra("pos", i);
+                getContext().startActivity(intent);
+            }
+        });
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.sendEmptyMessage(VPRUN);
+            }
+        }, 0, 2000);
+        HttpUtils.getData(url, handler); //获取网络数据
+
+        return view;
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    private void initViewPager() {
+        mImageViewList = new ArrayList<ImageView>();
+        for (int i = 0; i < mImageIds.length; i++) {
+            ImageView iv = new ImageView(getActivity());
+            iv.setImageResource(mImageIds[i]);
+            iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            mImageViewList.add(iv);
+        }
+
+        viewPager.setAdapter(new PagerAdapter() {
+
+            //viewpager中的组件数量
+            @Override
+            public int getCount() {
+                return mImageIds.length;
+            }
+
+            //滑动切换的时候销毁当前的组件
+            @Override
+            public void destroyItem(ViewGroup container, int position,
+                                    Object object) {
+                container.removeView(mImageViewList.get(position));
+            }
+
+            //每次滑动的时候生成的组件
+            @Override
+            public Object instantiateItem(ViewGroup container, int position) {
+                container.addView(mImageViewList.get(position));
+                return mImageViewList.get(position);
+            }
+
+            @Override
+            public boolean isViewFromObject(View arg0, Object arg1) {
+                return arg0 == arg1;
+            }
+
+            @Override
+            public int getItemPosition(Object object) {
+                return super.getItemPosition(object);
+            }
+        });
+        CircleIndicatorHelper circleIndicatorHelper = new CircleIndicatorHelper(getContext());
+        circleIndicatorHelper.setViewpager(viewPager);
+        circleIndicatorHelper.setFillColor("#FFD547EB");
+        circleIndicatorHelper.setDefaultColor("#FFD547EB");
+        circleIndicatorHelper.setRadius(4);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+//                Log.e("test", arg0 + " ");
+
+            }
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int arg0) {
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        adapter.notifyDataSetChanged();
+//        mlv.setSelection(lastRead);
+
+    }
+}

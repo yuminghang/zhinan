@@ -104,8 +104,8 @@ public class BaseFragment extends Fragment {
 
 
         mlv.addHeaderView(home_vp);
-        adapter = new NewsinglepicLayoutAdapter(getActivity(), objects, this);
-        mlv.setAdapter(adapter);
+//        adapter = new NewsinglepicLayoutAdapter(getActivity(), objects, this);
+//        mlv.setAdapter(adapter);
 
         mlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

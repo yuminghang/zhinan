@@ -13,12 +13,13 @@ import com.google.gson.Gson;
 import com.project.zhinan.R;
 import com.project.zhinan.activity.HongbaoWebViewActivity;
 import com.project.zhinan.adapter.QianggouItemAdapter;
+import com.project.zhinan.base.fragment.BaseFragment_version2;
 import com.project.zhinan.bean.QiangGouBean;
 import com.project.zhinan.net.HttpUtils;
 
 import java.util.ArrayList;
 
-public class Qianggou extends Fragment {
+public class Qianggou extends BaseFragment_version2 {
     private ListView mShangquanListView;
     private ArrayList<QiangGouBean.SeckillInfoBean.ItemListBean> qianggous;
     private QianggouItemAdapter qianggouItemAdapter;

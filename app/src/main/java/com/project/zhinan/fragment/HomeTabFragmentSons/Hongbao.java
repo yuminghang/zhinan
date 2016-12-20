@@ -18,6 +18,7 @@ import com.project.zhinan.activity.HongbaoWebViewActivity;
 import com.project.zhinan.activity.WebviewActivity;
 import com.project.zhinan.adapter.HongbaoListAdapter;
 import com.project.zhinan.base.fragment.BaseFragment;
+import com.project.zhinan.base.fragment.BaseFragment_version2;
 import com.project.zhinan.bean.hongbaobean;
 import com.project.zhinan.bean.hongbaocache;
 import com.project.zhinan.utils.Cache;
@@ -27,7 +28,7 @@ import com.project.zhinan.utils.ConstantValue;
 import java.util.List;
 
 
-public class Hongbao extends Fragment {
+public class Hongbao extends BaseFragment_version2 {
 
     private View view;
     private ListView listView;

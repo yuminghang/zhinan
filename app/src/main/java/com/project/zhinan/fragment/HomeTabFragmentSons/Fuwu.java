@@ -1,13 +1,15 @@
 package com.project.zhinan.fragment.HomeTabFragmentSons;
 
+import com.project.zhinan.api.Urls;
 import com.project.zhinan.base.fragment.BaseFragment;
+import com.project.zhinan.base.fragment.BaseFragment_version2;
 import com.project.zhinan.utils.ConstantValue;
 
 
-public class Fuwu extends BaseFragment {
+public class Fuwu extends BaseFragment_version2 {
     public Fuwu()
     {
-        this.url= "http://120.27.41.245:2888/d.json";
+        this.url= Urls.FuwuUrl;
 
     }
 

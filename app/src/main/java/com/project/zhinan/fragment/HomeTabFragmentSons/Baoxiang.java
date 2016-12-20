@@ -1,12 +1,12 @@
 package com.project.zhinan.fragment.HomeTabFragmentSons;
 
-import com.project.zhinan.base.fragment.BaseFragment;
-import com.project.zhinan.utils.ConstantValue;
+import com.project.zhinan.api.Urls;
+import com.project.zhinan.base.fragment.BaseFragment_version2;
 
 
-public class Baoxiang extends BaseFragment {
+public class Baoxiang extends BaseFragment_version2 {
 
     public Baoxiang() {
-        this.url= "http://120.27.41.245:2888/a.json";
+        this.url = Urls.BaoxiangUrl;
     }
 }
