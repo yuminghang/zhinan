@@ -9,6 +9,7 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.radar.RadarNearbyInfo;
 import com.baidu.mapapi.radar.RadarNearbyResult;
@@ -121,7 +122,7 @@ public class RadarActivity extends Activity {
 
         // 获取本地位置--上传位置信息--等待回调--回调成功--开始查询--等待回调--回调中打印结果
         mManager = RadarSearchManager.getInstance();
-        mManager.setUserID("YrruITZ1iLWFniNspZ4LpX7WkpGAf5jU");
+        mManager.setUserID("");
         mManager.addNearbyInfoListener(mRSListener);
 
         // 定位
@@ -194,9 +195,10 @@ public class RadarActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_radar);
-        mManager = RadarSearchManager.getInstance();
-        mHandler.sendEmptyMessage(0);
-        mHandler.sendEmptyMessage(3);
+        SDKInitializer.initialize(getApplicationContext());
+        // 初始化handler
+        // 开始
+        startRadar();
     }
 
 }
