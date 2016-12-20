@@ -121,7 +121,7 @@ public class RadarActivity extends Activity {
 
         // 获取本地位置--上传位置信息--等待回调--回调成功--开始查询--等待回调--回调中打印结果
         mManager = RadarSearchManager.getInstance();
-        mManager.setUserID("test01");
+        mManager.setUserID("YrruITZ1iLWFniNspZ4LpX7WkpGAf5jU");
         mManager.addNearbyInfoListener(mRSListener);
 
         // 定位
