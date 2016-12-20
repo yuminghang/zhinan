@@ -3,17 +3,14 @@ package com.project.zhinan.fragment.HomeTabFragmentSons;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
 import com.project.zhinan.R;
-import com.project.zhinan.activity.MapActivity;
-import com.project.zhinan.activity.ShangQuanActivity;
+import com.project.zhinan.activity.RadarActivity;
 import com.project.zhinan.adapter.ShangquanItemAdapter;
 import com.project.zhinan.base.fragment.BaseFragment_version2;
 import com.project.zhinan.bean.ShangquanBean;
@@ -35,7 +32,7 @@ public class Shangquan extends BaseFragment_version2 {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), MapActivity.class));
+                startActivity(new Intent(getActivity(), RadarActivity.class));
             }
         });
         return view;

@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.widget.Toast;
 
 
+import com.baidu.mapapi.SDKInitializer;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +32,9 @@ public class MyApplication extends Application {
 
     @Override
     public void onCreate() {
-//        SDKInitializer.initialize(getApplicationContext());
+        //在使用SDK各组件之前初始化context信息，传入ApplicationContext
+        //注意该方法要再setContentView方法之前实现
+        SDKInitializer.initialize(getApplicationContext());
         sharedPreferences = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
         isLogin = sharedPreferences.getBoolean("isLogin", false);
         sharedPreferences1 = getSharedPreferences("collect_upload_state", Context.MODE_PRIVATE);
