@@ -104,7 +104,8 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name=".activity.MapActivity"></activity>
+        <activity android:name=".activity.MapActivity" />
+        <activity android:name=".activity.RadarActivity"></activity>
     </application>
 
 </manifest>
