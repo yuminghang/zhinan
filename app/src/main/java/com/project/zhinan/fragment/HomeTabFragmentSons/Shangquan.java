@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.project.zhinan.R;
+import com.project.zhinan.activity.MapActivity;
 import com.project.zhinan.activity.RadarActivity;
 import com.project.zhinan.adapter.ShangquanItemAdapter;
 import com.project.zhinan.base.fragment.BaseFragment_version2;
@@ -32,7 +33,7 @@ public class Shangquan extends BaseFragment_version2 {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), RadarActivity.class));
+                startActivity(new Intent(getActivity(), MapActivity.class));
             }
         });
         return view;

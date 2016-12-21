@@ -63,6 +63,8 @@ public class RadarActivity extends Activity {
                     Log.i(TAG, "info distance:" + info.distance);   // 距离
                     Log.i(TAG, "info comments:" + info.comments);   // 备注
                     Log.i(TAG, "info timeStamp:" + info.timeStamp); // 上传位置时的时间戳
+                    Log.i(TAG, "info latitude:" + info.pt.latitude); // 经度
+                    Log.i(TAG, "info longitude:" + info.pt.longitude); // 纬度
                 }
             } else {
                 Log.i(TAG, "NearbyInfoList err:" + err);
@@ -155,9 +157,8 @@ public class RadarActivity extends Activity {
 
     private void goUploadInfo(LatLng ll) {
         Log.i(TAG, "goUploadInfo");
-
         RadarUploadInfo info = new RadarUploadInfo();
-        info.comments = "m";
+        info.comments = "哈哈哈";
         info.pt = ll;
 
         mManager.uploadInfoRequest(info);
@@ -168,7 +169,7 @@ public class RadarActivity extends Activity {
 
         RadarNearbySearchOption option = new RadarNearbySearchOption();
         option.centerPt(ll);    // 中心点
-        option.pageCapacity(10);    // 每页包含的结果数
+        option.pageCapacity(5);    // 每页包含的结果数
         option.pageNum(0);  // 当前需要查询的页码index，从0开始
         option.radius(1000);    // 搜索半径
 
@@ -177,13 +178,11 @@ public class RadarActivity extends Activity {
 
     private void goClear() {
         Log.i(TAG, "goClear");
-
         mManager.clearUserInfo();
     }
 
     private void goDestory() {
         Log.i(TAG, "goDestory");
-
         mManager.removeNearbyInfoListener(mRSListener);
         mManager.destroy();
     }

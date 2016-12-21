@@ -118,6 +118,7 @@ public class HomeFragment extends Fragment {
 
 
         fragmentList.add(jiaoyu);
+        fragmentList.add(shangquan);
         fragmentList.add(lvyou);
         fragmentList.add(fangchan);
         fragmentList.add(jiancai);
@@ -125,7 +126,6 @@ public class HomeFragment extends Fragment {
         fragmentList.add(canyin);
         fragmentList.add(qianggouFragment);
         fragmentList.add(hongbaoFragment);
-        fragmentList.add(shangquan);
         fragmentList.add(huodong);
         fragmentList.add(baoxiangFragment);
         fragmentList.add(xiuxian);
