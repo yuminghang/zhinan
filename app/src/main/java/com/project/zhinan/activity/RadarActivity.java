@@ -113,18 +113,15 @@ public class RadarActivity extends Activity {
 
     public void startRadar() {
         Log.i(TAG, "startRadar");
-
         mHandler.sendEmptyMessage(0);
     }
 
     private void goStartRadar() {
         Log.i(TAG, "goStartRadar");
-
         // 获取本地位置--上传位置信息--等待回调--回调成功--开始查询--等待回调--回调中打印结果
         mManager = RadarSearchManager.getInstance();
         mManager.setUserID("");
         mManager.addNearbyInfoListener(mRSListener);
-
         // 定位
         mHandler.sendEmptyMessage(1);
     }
