@@ -7,168 +7,202 @@
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
-    <ScrollView
-        android:id="@+id/sv_edit"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/transparent">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/ll_edit"
+        <ScrollView
+            android:id="@+id/sv_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="广告名称"
-                android:textColor="#000" />
-
-            <EditText
-                android:id="@+id/et_ad_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="广告图片"
-                android:textColor="#000" />
+            android:background="@color/transparent">
 
             <LinearLayout
-                android:id="@+id/img_container"
+                android:id="@+id/ll_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"></LinearLayout>
-
-            <ImageButton
-                android:id="@+id/add_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
                 android:background="@color/transparent"
-                android:src="@mipmap/add_pic" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="广告关键词"
-                android:textColor="#000" />
-
-            <EditText
-                android:id="@+id/et_ad_key"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="广告投放时间"
-                android:textColor="#000" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/start_time"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="开始时间" />
+                    android:text="广告名称"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_ad_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
                 <TextView
-                    android:id="@+id/end_time"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="开始时间" />
+                    android:text="广告图片"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
 
+                <LinearLayout
+                    android:id="@+id/img_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"></LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/add_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@color/transparent"
+                        android:src="@mipmap/add_pic" />
+
+                    <Button
+                        android:id="@+id/clear_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@color/transparent"
+                        android:text="清空图片" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="广告关键词"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_ad_key"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="广告投放时间"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:id="@+id/time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/start_time"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="开始时间" />
+
+                    <TextView
+                        android:id="@+id/end_time"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="开始时间" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="广告预算金币"
+                    android:textColor="#000" />
+
+                <EditText
+                    android:id="@+id/budget"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="单笔奖励金币"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/sig_money"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="投放分类"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
+
+
+                <com.project.zhinan.view.AutoLinefeedLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:id="@+id/cb_edu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="教育" />
+
+                    <CheckBox
+                        android:id="@+id/cb_tour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="旅游" />
+
+                    <CheckBox
+                        android:id="@+id/cb_build"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="建材" />
+
+                    <CheckBox
+                        android:id="@+id/cb_med"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="医药" />
+
+                    <CheckBox
+                        android:id="@+id/cb_food"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="餐饮" />
+                </com.project.zhinan.view.AutoLinefeedLayout>
+
+
+                <Button
+                    android:id="@+id/bt_fabu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="30dp"
+                    android:layout_weight="1"
+                    android:background="@mipmap/upload"
+                    android:text="发布"
+                    android:textColor="@color/ivory"
+                    android:textSize="18sp" />
             </LinearLayout>
+        </ScrollView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="广告预算金币"
-                android:textColor="#000" />
-
-            <EditText
-                android:id="@+id/budget"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="单笔奖励金币"
-                android:textColor="#000" />
-
-            <EditText
-                android:id="@+id/sig_money"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="投放分类"
-                android:textColor="#000" />
-
-
-            <com.project.zhinan.view.AutoLinefeedLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/cb_edu"
-                    android:text="教育" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/cb_tour"
-                    android:text="旅游" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/cb_build"
-                    android:text="建材" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/cb_med"
-                    android:text="医药" />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/cb_food"
-                    android:text="餐饮" />
-            </com.project.zhinan.view.AutoLinefeedLayout>
-
-
-            <Button
-                android:id="@+id/bt_fabu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="30dp"
-                android:layout_weight="1"
-                android:background="@mipmap/upload"
-                android:text="发布"
-                android:textColor="@color/ivory"
-                android:textSize="18sp" />
-        </LinearLayout>
-    </ScrollView>
+        <ProgressBar
+            android:id="@+id/fabu_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+    </FrameLayout>
 
 
 </LinearLayout>
