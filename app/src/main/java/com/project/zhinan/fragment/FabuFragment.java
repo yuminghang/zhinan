@@ -72,6 +72,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
@@ -125,6 +126,15 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
     private ArrayList<String> UploadimgUrls;
     private ArrayList<String> mCheckList;
     private ProgressBar mProgress;
+    HashMap<String, String> stringHashMap = new HashMap<>();
+
+    {
+        stringHashMap.put("教育", "jiaoyu");
+        stringHashMap.put("旅游", "lvyou");
+        stringHashMap.put("建材", "jiancai");
+        stringHashMap.put("医药", "yiyao");
+        stringHashMap.put("餐饮", "canyin");
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -237,10 +247,10 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
         mAdKeyEditText.setText("");
         mStartTimeTextView.setText("");
         mStartTimeTextView.setHint("开始时间");
-        mEndTimeTextView .setHint("结束时间");
-        mEndTimeTextView .setText("");
+        mEndTimeTextView.setHint("结束时间");
+        mEndTimeTextView.setText("");
         mBudgetEditText.setText("");
-        mSigMoneyEditText .setText("");
+        mSigMoneyEditText.setText("");
         CheckBox[] cbs = {mEduCheckBox,
                 mTourCheckBox,
                 mBuildCheckBox,
@@ -253,7 +263,7 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onDestroy() {
-        handler=null;
+        handler = null;
         super.onDestroy();
     }
 
@@ -315,7 +325,7 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
             @Override
             public void run() {
                 SharedPreferences cookie = getActivity().getSharedPreferences("cookie", Context.MODE_PRIVATE);
-                String my_cookie = cookie.getString("my_cookie", "");
+                final String my_cookie = cookie.getString("my_cookie", "");
                 FBBean fbBean = new FBBean();
                 fbBean.setName(mAdname);
                 fbBean.setAd_put_begintime(mAdStart);
@@ -339,15 +349,43 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
                 try {
                     Response response = client.newCall(request).execute();
                     String string = response.body().string();
+                    JSONObject jsonObject = new JSONObject(string);
+                    final String orderno = jsonObject.getString("orderno");
                     System.out.println(string);
                     if (string.contains("success")) {
-                        handler.sendEmptyMessage(UPLOADSUCCESS);
+                        new Thread(){
+                            @Override
+                            public void run() {
+                                OkHttpClient client = new OkHttpClient();
+                                MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+                                RequestBody body = RequestBody.create(mediaType, "adorder=" +orderno+
+                                        "&lat=" +MyApplication.latitude+
+                                        "&lon="+MyApplication.longitude);
+                                Request request = new Request.Builder()
+                                        .url("http://123.206.84.242:2888/adposition")
+                                        .post(body)
+                                        .addHeader("content-type", "application/x-www-form-urlencoded")
+                                        .addHeader("cache-control", "no-cache")
+                                        .addHeader("cookie", my_cookie)
+                                        .build();
+
+                                try {
+                                    Response response = client.newCall(request).execute();
+                                    System.out.println(response.body().string());
+                                    handler.sendEmptyMessage(UPLOADSUCCESS);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }.start();
                     } else {
                         handler.sendEmptyMessage(UPLOADFAIL);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                     handler.sendEmptyMessage(NETERROR);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
         }.start();
@@ -372,12 +410,12 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
                 mBuildCheckBox,
                 mMedCheckBox,
                 mFoodCheckBox};
-//        String[] tags = {"教育", "旅游", "建材","医药","餐饮"};
+
         mCheckList = new ArrayList<String>();
         for (CheckBox cb :
                 cbs) {
             if (cb.isChecked()) {
-                mCheckList.add(cb.getText().toString());
+                mCheckList.add(stringHashMap.get(cb.getText().toString()));
             }
         }
         if (mCheckList.size() < 1) {
