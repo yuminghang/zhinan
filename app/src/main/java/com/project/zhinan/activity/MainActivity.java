@@ -1,6 +1,8 @@
 package com.project.zhinan.activity;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,6 +26,8 @@ import com.project.zhinan.fragment.FabuFragment;
 import com.project.zhinan.fragment.FaxianFragment;
 import com.project.zhinan.fragment.HomeFragment;
 import com.project.zhinan.fragment.SettingFragment;
+import com.project.zhinan.utils.PermissionsActivity;
+import com.project.zhinan.utils.PermissionsChecker;
 import com.project.zhinan.utils.StatusBarUtil;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
@@ -38,7 +42,13 @@ import java.util.Map;
 
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener {
-
+    private static final int REQUEST_CODE = 0; // 请求码
+    // 所需的全部权限
+    static final String[] PERMISSIONS = new String[]{
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.READ_PHONE_STATE
+    };
     public static final MediaType TEXT
             = MediaType.parse("text/plain; charset=utf-8");
     private static final int POSTED = 1;
@@ -71,6 +81,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             }
         }
     };
+    private PermissionsChecker mPermissionsChecker;
 
 
 //    private void initBadgeView() {
@@ -86,9 +97,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         MyApplication.getInstance().addActivity(this);
         setContentView(R.layout.activity_main);
-
+        mPermissionsChecker = new PermissionsChecker(this);
         sharedPreferences1 = getSharedPreferences("collect_upload_state", Context.MODE_PRIVATE);
         edit1 = sharedPreferences1.edit();
         fragment_container = (FrameLayout) findViewById(R.id.fragment_container);
@@ -259,8 +271,23 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // 拒绝时, 关闭页面, 缺少主要权限, 无法运行
+        if (requestCode == REQUEST_CODE && resultCode == PermissionsActivity.PERMISSIONS_DENIED) {
+            finish();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     protected void onResume() {
+        if (mPermissionsChecker.lacksPermissions(PERMISSIONS)) {
+            startPermissionsActivity();
+        }
         super.onResume();
+    }
+    private void startPermissionsActivity() {
+        PermissionsActivity.startActivityForResult(this, REQUEST_CODE, PERMISSIONS);
     }
 }
 
