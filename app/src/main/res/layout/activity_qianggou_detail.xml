@@ -104,15 +104,13 @@
                     android:textColor="@color/title_color"
                     android:textSize="12sp" />
 
-                <ImageView
+                <com.project.zhinan.view.VerificationCodeView
                     android:id="@+id/iv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="200px"
                     android:layout_alignLeft="@id/tv1"
                     android:layout_below="@id/tv1"
-                    android:layout_marginTop="20dp"
-                    android:src="@mipmap/pop" />
-
+                    android:layout_marginTop="20dp" />
 
                 <EditText
                     android:id="@+id/et"

@@ -11,6 +11,8 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.SDKInitializer;
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechUtility;
 import com.project.zhinan.utils.LocationService;
 
 import java.util.ArrayList;
@@ -92,6 +94,9 @@ public class MyApplication extends Application {
         isLogin = sharedPreferences.getBoolean("isLogin", false);
         sharedPreferences1 = getSharedPreferences("collect_upload_state", Context.MODE_PRIVATE);
         count = sharedPreferences1.getInt("isUpload", 0);
+        //初始化科大讯飞语音
+        // 将“12345678”替换成您申请的APPID，申请地址：http://open.voicecloud.cn
+        SpeechUtility.createUtility(getApplicationContext(), SpeechConstant.APPID + "=58783312");
         super.onCreate();
     }
 

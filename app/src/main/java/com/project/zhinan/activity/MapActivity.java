@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -115,12 +116,13 @@ public class MapActivity extends Activity {
             LatLng point = new LatLng(list.get(i).getLat(), list.get(i).getLon());
             // 构建Marker图标
             BitmapDescriptor bitmap = null;
-            bitmap = BitmapDescriptorFactory.fromResource(R.drawable.qqbig2); // 非推算结果
+            bitmap = BitmapDescriptorFactory.fromResource(R.drawable.qqbig); // 非推算结果
             // 构建MarkerOption，用于在地图上添加Marker
             OverlayOptions option = new MarkerOptions().position(point).icon(bitmap);
             // 在地图上添加Marker，并显示
             mBaiduMap.addOverlay(option);
             mBaiduMap.setMapStatus(MapStatusUpdateFactory.newLatLng(point));
+            Toast.makeText(MapActivity.this, list.get(i).getUser().getName(), Toast.LENGTH_SHORT).show();
         }
         mBaiduMap.setOnMarkerClickListener(new BaiduMap.OnMarkerClickListener() {
             @Override
