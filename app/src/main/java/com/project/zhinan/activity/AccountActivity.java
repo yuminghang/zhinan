@@ -90,7 +90,7 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
         Thread thread = new Thread() {
             @Override
             public void run() {
-                String s = HttpUtils.doGetWithCookie("http://123.206.84.242:2888/logout", getApplicationContext());
+                String s = HttpUtils.doGetWithCookie("http://120.27.41.245:2888/logout", getApplicationContext());
                 finish();
             }
         };

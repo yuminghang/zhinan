@@ -82,7 +82,7 @@ public class paymentActivity extends Activity {
 
     private void sendPayPost() {
         try {
-            HttpUtils.doGetAsynwithCookie("http://123.206.84.242:2888/pay?odernumber=" + order, this, new HttpUtils.CallBack() {
+            HttpUtils.doGetAsynwithCookie("http://120.27.41.245:2888/pay?odernumber=" + order, this, new HttpUtils.CallBack() {
                 @Override
                 public void onRequestComplete(String result) {
                     if (result.contains("success")) {

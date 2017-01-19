@@ -13,8 +13,12 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.zhinan.MyApplication;
@@ -75,6 +79,12 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
     };
+    private RadioButton individualRadioButton;
+    private RadioButton enterpriseRadioButton;
+    private EditText enterpriseNameEditText;
+    private EditText enterpriseIdEditText;
+    private EditText legalPersonEditText;
+    private LinearLayout enterpriseLinearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +92,24 @@ public class RegisterActivity extends AppCompatActivity {
         MyApplication.getInstance().addActivity(this);
 
         setContentView(R.layout.activity_register);
+        individualRadioButton = (RadioButton) findViewById(R.id.individual);
+        individualRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (!isChecked) {
+                    enterpriseLinearLayout.setVisibility(View.VISIBLE);
+                } else {
+                    enterpriseLinearLayout.setVisibility(View.GONE);
+                }
+            }
+        });
+        enterpriseRadioButton = (RadioButton) findViewById(R.id.enterprise);
+        enterpriseNameEditText = (EditText) findViewById(R.id.enterprise_name);
+        enterpriseIdEditText = (EditText) findViewById(R.id.enterprise_id);
+        legalPersonEditText = (EditText) findViewById(R.id.legal_person);
+        enterpriseLinearLayout = (LinearLayout) findViewById(R.id.ll_enterprise);
+
+
         initView();
 
 
@@ -112,12 +140,20 @@ public class RegisterActivity extends AppCompatActivity {
         mEmailEditText.setError(null);
         mPassEditText.setError(null);
         mRePassEditText.setError(null);
+        enterpriseNameEditText.setError(null);
+        enterpriseIdEditText.setError(null);
+        legalPersonEditText.setError(null);
+
         // Store values at the time of the login attempt.
         String name = mUsernameEditText.getText().toString();
         String phone = mPhoneEditText.getText().toString();
         String email = mEmailEditText.getText().toString();
         String pass = mPassEditText.getText().toString();
         String re_pass = mRePassEditText.getText().toString();
+        String enterprisename = enterpriseNameEditText.getText().toString();
+        String enterpriseid = enterpriseIdEditText.getText().toString();
+        String legalperson = legalPersonEditText.getText().toString();
+
         boolean cancel = false;
         View focusView = null;
         if (TextUtils.isEmpty(name)) {
@@ -173,6 +209,25 @@ public class RegisterActivity extends AppCompatActivity {
             focusView = mPhoneEditText;
             cancel = true;
         }
+        if (!individualRadioButton.isChecked()){
+            if (TextUtils.isEmpty(enterprisename)) {
+                enterpriseNameEditText.setError(getString(R.string.error_no_enterprise_name));
+                focusView = enterpriseNameEditText;
+                cancel = true;
+            }
+            if (TextUtils.isEmpty(enterpriseid)) {
+                enterpriseIdEditText.setError(getString(R.string.error_no_enterprise_id));
+                focusView = enterpriseIdEditText;
+                cancel = true;
+            }
+            if (TextUtils.isEmpty(legalperson)) {
+                legalPersonEditText.setError(getString(R.string.error_no_legalperson));
+                focusView = legalPersonEditText;
+                cancel = true;
+            }
+
+
+        }
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
@@ -189,6 +244,10 @@ public class RegisterActivity extends AppCompatActivity {
                 jsonObject.put("password-repeat", re_pass);
                 jsonObject.put("email", email);
                 jsonObject.put("phone", phone);
+                jsonObject.put("enterprise",!individualRadioButton.isChecked());
+                jsonObject.put("enterprisename",enterprisename);
+                jsonObject.put("enterpriseid",enterpriseid);
+                jsonObject.put("legalperson",legalperson);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

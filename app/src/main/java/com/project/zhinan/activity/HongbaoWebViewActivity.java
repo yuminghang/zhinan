@@ -36,7 +36,7 @@ public class HongbaoWebViewActivity extends AppCompatActivity {
     }
 
     private void startQiangGou() {
-        HttpUtils.doGetAsynwithCookie("http://123.206.84.242:2888/duobao?goodsid=123231321",this, new HttpUtils.CallBack() {
+        HttpUtils.doGetAsynwithCookie("http://120.27.41.245:2888/duobao?goodsid=123231321",this, new HttpUtils.CallBack() {
             @Override
             public void onRequestComplete(String result) {
                 if (result.contains("success")) {

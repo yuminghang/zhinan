@@ -255,7 +255,7 @@ public class MapActivity extends Activity {
                 super.run();
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder()
-                        .url("http://123.206.84.242:2888/adposition")
+                        .url("http://120.27.41.245:2888/adposition")
                         .get()
                         .addHeader("cache-control", "no-cache")
                         .addHeader("postman-token", "c3e76af9-a4ca-d71d-e5bf-fdb041a46bd1")

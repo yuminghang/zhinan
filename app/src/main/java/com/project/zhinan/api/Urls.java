@@ -4,9 +4,9 @@ package com.project.zhinan.api;
  * Created by ymh on 2016/4/11.
  */
 public class Urls {
-    //http://123.206.84.242:2888/getAds?tag=fangchan&page=1
+    //http://120.27.41.245:2888/getAds?tag=fangchan&page=1
     public static final String BaseUrl = "http://120.27.41.245:3000/";
-    public static final String TagUrl = "http://123.206.84.242:2888/getAds?tag=";
+    public static final String TagUrl = "http://120.27.41.245:2888/getAds?tag=";
     public static final String PageNum = "&page=1";
     public static final String BaoxiangUrl = TagUrl + "jiaoyu" + PageNum;
     public static final String CanyinUrl = TagUrl + "canyin" + PageNum;
@@ -29,6 +29,6 @@ public class Urls {
     public static final String ZhaopinUrl = TagUrl + "jiaoyu" + PageNum;
     public static final String ZhaoshangUrl = TagUrl + "jiaoyu" + PageNum;
     public static final String DetailUrl = "http://120.27.41.245:2888/tryhtml.html";
-    public static final String Collection_Url = "http://123.206.84.242:2888/collection_c";
+    public static final String Collection_Url = "http://120.27.41.245:2888/collection_c";
 
 }

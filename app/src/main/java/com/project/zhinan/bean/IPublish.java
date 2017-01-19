@@ -15,7 +15,7 @@ public class IPublish {
      * addesc : 广告标底。****促销信息。****广告内容。
      * tags : [null,null,null]
      * adurl : www.baidu.com
-     * imgurl : http://123.206.84.242:2888/images/1edc664135aa750be2394bf73ed24efc.jpg
+     * imgurl : http://120.27.41.245:2888/images/1edc664135aa750be2394bf73ed24efc.jpg
      * icons : 2
      * comments : []
      * reprint_info : []

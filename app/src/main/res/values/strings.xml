@@ -68,4 +68,7 @@
     </string-array>
     <string name="title_activity_questionnaire_list">QuestionnaireListActivity</string>
     <string name="questionnaire">问卷调查</string>
+    <string name="error_no_enterprise_name">企业名称不能为空</string>
+    <string name="error_no_enterprise_id">企业号不能为空</string>
+    <string name="error_no_legalperson">法人不能为空</string>
 </resources>

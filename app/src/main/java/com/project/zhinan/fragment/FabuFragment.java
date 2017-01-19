@@ -340,7 +340,7 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
                 Gson gson = new Gson();
                 RequestBody body = RequestBody.create(mediaType, gson.toJson(fbBean));
                 Request request = new Request.Builder()
-                        .url("http://123.206.84.242:2888/mpostNew")
+                        .url("http://120.27.41.245:2888/mpostNew")
                         .post(body)
                         .addHeader("content-type", "application/json")
                         .addHeader("cache-control", "no-cache")
@@ -362,7 +362,7 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
                                         "&lat=" +MyApplication.latitude+
                                         "&lon="+MyApplication.longitude);
                                 Request request = new Request.Builder()
-                                        .url("http://123.206.84.242:2888/adposition")
+                                        .url("http://120.27.41.245:2888/adposition")
                                         .post(body)
                                         .addHeader("content-type", "application/x-www-form-urlencoded")
                                         .addHeader("cache-control", "no-cache")
@@ -575,7 +575,7 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
                     OkHttpClient client = new OkHttpClient();
 
                     Request request = new Request.Builder()
-                            .url("http://123.206.84.242:2888/tx/img")
+                            .url("http://120.27.41.245:2888/tx/img")
                             .get()
                             .addHeader("cache-control", "no-cache")
                             .build();
