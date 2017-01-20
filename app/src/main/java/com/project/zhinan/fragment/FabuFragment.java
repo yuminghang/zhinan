@@ -127,6 +127,8 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
     private ArrayList<String> mCheckList;
     private ProgressBar mProgress;
     HashMap<String, String> stringHashMap = new HashMap<>();
+    private EditText mAdReadEditText;
+    private String mAdRead;
 
     {
         stringHashMap.put("教育", "jiaoyu");
@@ -144,6 +146,7 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
         mAddImgImageButton = (ImageButton) view.findViewById(R.id.add_img);
         mAddImgImageButton.setOnClickListener(this);
         mAdKeyEditText = (EditText) view.findViewById(R.id.et_ad_key);
+        mAdReadEditText = (EditText) view.findViewById(R.id.et_ad_read);
         mStartTimeTextView = (TextView) view.findViewById(R.id.start_time);
         mStartTimeTextView.setOnClickListener(this);
         mEndTimeTextView = (TextView) view.findViewById(R.id.end_time);
@@ -335,6 +338,7 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
                 fbBean.setImgurls(UploadimgUrls);
                 fbBean.setKey(mKeywords);
                 fbBean.setTags(mCheckList);
+                fbBean.setRead(mAdRead);
                 OkHttpClient client = new OkHttpClient();
                 MediaType mediaType = MediaType.parse("application/json");
                 Gson gson = new Gson();
@@ -353,14 +357,14 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
                     final String orderno = jsonObject.getString("orderno");
                     System.out.println(string);
                     if (string.contains("success")) {
-                        new Thread(){
+                        new Thread() {
                             @Override
                             public void run() {
                                 OkHttpClient client = new OkHttpClient();
                                 MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
-                                RequestBody body = RequestBody.create(mediaType, "adorder=" +orderno+
-                                        "&lat=" +MyApplication.latitude+
-                                        "&lon="+MyApplication.longitude);
+                                RequestBody body = RequestBody.create(mediaType, "adorder=" + orderno +
+                                        "&lat=" + MyApplication.latitude +
+                                        "&lon=" + MyApplication.longitude);
                                 Request request = new Request.Builder()
                                         .url("http://120.27.41.245:2888/adposition")
                                         .post(body)
@@ -397,11 +401,20 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
     private boolean infoCheck() {
         mAdname = mAdNameEditText.getText().toString().trim();
         mKeywords = mAdKeyEditText.getText().toString().trim();
+        mAdRead = mAdReadEditText.getText().toString().trim();
         mAdStart = mStartTimeTextView.getText().toString().trim();
         mAdEnd = mEndTimeTextView.getText().toString().trim();
         mAdBuget = mBudgetEditText.getText().toString().trim();
         mAdSigleMoney = mSigMoneyEditText.getText().toString().trim();
-        return isNameValid(mAdname) && isKeywordsValid(mKeywords) && isTimeValid(mAdStart, mAdEnd) && isBugetValid(mAdBuget) && isSigleMoneyValid(mAdSigleMoney) && isCkValid();
+        return isNameValid(mAdname) && isKeywordsValid(mKeywords) && isReadValid(mAdRead) && isTimeValid(mAdStart, mAdEnd) && isBugetValid(mAdBuget) && isSigleMoneyValid(mAdSigleMoney) && isCkValid();
+    }
+
+    private boolean isReadValid(String s) {
+        if (s.length() >= 4 && s.length() <= 30)
+            return true;
+        mAdReadEditText.requestFocus();
+        toast("朗读文本长度错误,请控制在4～30个字");
+        return false;
     }
 
     private boolean isCkValid() {

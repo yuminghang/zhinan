@@ -28,6 +28,16 @@ public class FBBean {
     private String sig_money;
     private String addesc;
 
+    public String getRead() {
+        return read;
+    }
+
+    public void setRead(String read) {
+        this.read = read;
+    }
+
+    private String read;
+
     public List<String> getImgurls() {
         return imgurls;
     }
