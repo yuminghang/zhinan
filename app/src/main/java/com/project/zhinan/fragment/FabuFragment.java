@@ -139,8 +139,8 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
     private CheckBox mPublicWelfareCheckBox;
 
     {
-        stringHashMap.put("教育", "jiaoyu");
-        stringHashMap.put("旅游", "lvyou");
+        stringHashMap.put("教育", "edu");
+        stringHashMap.put("旅游", "tour");
         stringHashMap.put("房产", "property");
         stringHashMap.put("建材", "build");
         stringHashMap.put("医药", "med");
