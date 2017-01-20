@@ -254,6 +254,7 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
         mEndTimeTextView.setText("");
         mBudgetEditText.setText("");
         mSigMoneyEditText.setText("");
+        mAdReadEditText.setText("");
         CheckBox[] cbs = {mEduCheckBox,
                 mTourCheckBox,
                 mBuildCheckBox,
