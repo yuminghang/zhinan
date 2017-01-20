@@ -129,18 +129,43 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
     HashMap<String, String> stringHashMap = new HashMap<>();
     private EditText mAdReadEditText;
     private String mAdRead;
+    private CheckBox mPropertyCheckBox;
+    private CheckBox mRecruitmentCheckBox;
+    private CheckBox mCarCheckBox;
+    private CheckBox mFinancialCheckBox;
+    private CheckBox mCommuicationCheckBox;
+    private CheckBox mMakeupsCheckBox;
+    private CheckBox mServiceCheckBox;
+    private CheckBox mPublicWelfareCheckBox;
 
     {
         stringHashMap.put("教育", "jiaoyu");
         stringHashMap.put("旅游", "lvyou");
-        stringHashMap.put("建材", "jiancai");
-        stringHashMap.put("医药", "yiyao");
-        stringHashMap.put("餐饮", "canyin");
+        stringHashMap.put("房产", "property");
+        stringHashMap.put("建材", "build");
+        stringHashMap.put("医药", "med");
+        stringHashMap.put("餐饮", "food");
+        stringHashMap.put("招聘", "recruitment");
+        stringHashMap.put("汽车", "car");
+        stringHashMap.put("金融", "financial");
+        stringHashMap.put("通信", "commuication");
+        stringHashMap.put("美妆", "makeups");
+        stringHashMap.put("服务", "service");
+        stringHashMap.put("公益", "public_welfare");
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fabufragment_layout, container, false);
+        mPropertyCheckBox = (CheckBox) view.findViewById(R.id.cb_property);
+        mRecruitmentCheckBox = (CheckBox) view.findViewById(R.id.cb_recruitment);
+        mCarCheckBox = (CheckBox) view.findViewById(R.id.cb_car);
+        mFinancialCheckBox = (CheckBox) view.findViewById(R.id.cb_financial);
+        mCommuicationCheckBox = (CheckBox) view.findViewById(R.id.cb_commuication);
+        mMakeupsCheckBox = (CheckBox) view.findViewById(R.id.cb_makeups);
+        mServiceCheckBox = (CheckBox) view.findViewById(R.id.cb_service);
+        mPublicWelfareCheckBox = (CheckBox) view.findViewById(R.id.cb_public_welfare);
         mAdNameEditText = (EditText) view.findViewById(R.id.et_ad_name);
         mImgContainerLinearLayout = (LinearLayout) view.findViewById(R.id.img_container);
         mAddImgImageButton = (ImageButton) view.findViewById(R.id.add_img);
@@ -259,7 +284,15 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
                 mTourCheckBox,
                 mBuildCheckBox,
                 mMedCheckBox,
-                mFoodCheckBox};
+                mFoodCheckBox,
+                mPropertyCheckBox,
+                mRecruitmentCheckBox,
+                mCarCheckBox,
+                mFinancialCheckBox,
+                mCommuicationCheckBox,
+                mMakeupsCheckBox,
+                mServiceCheckBox,
+                mPublicWelfareCheckBox};
         for (CheckBox cb : cbs) {
             cb.setChecked(false);
         }

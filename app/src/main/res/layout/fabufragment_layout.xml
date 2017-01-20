@@ -84,6 +84,7 @@
                     android:id="@+id/et_ad_key"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -95,6 +96,7 @@
                     android:id="@+id/et_ad_read"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -173,6 +175,12 @@
                         android:text="旅游" />
 
                     <CheckBox
+                        android:id="@+id/cb_property"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="房产" />
+
+                    <CheckBox
                         android:id="@+id/cb_build"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -189,6 +197,46 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="餐饮" />
+
+                    <CheckBox
+                        android:id="@+id/cb_recruitment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="招聘" />
+
+                    <CheckBox
+                        android:id="@+id/cb_car"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="汽车" />
+
+                    <CheckBox
+                        android:id="@+id/cb_financial"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="金融" />
+
+                    <CheckBox
+                        android:id="@+id/cb_commuication"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="通信" />
+                    <CheckBox
+                        android:id="@+id/cb_makeups"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="美妆" />
+                    <CheckBox
+                        android:id="@+id/cb_service"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="服务" />
+                    <CheckBox
+                        android:id="@+id/cb_public_welfare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="公益" />
+
                 </com.project.zhinan.view.AutoLinefeedLayout>
 
 
