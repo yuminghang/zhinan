@@ -84,15 +84,15 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
         holder.newstitleTextView.setText(object.getKey()); //广告关键词
         holder.tv1.setText((Math.random() * 10 + "").substring(0, 3) + "折起");//折扣
         holder.tv2.setText(object.getTitle());//广告标题
-        if (object.getImgurls() instanceof String) {
-            Glide.with(context).load(object.getImgurls()).placeholder(R.mipmap.pic1).into(holder.ivPic);//广告图片
-        } else {
-            try {
-                Glide.with(context).load(((ArrayList) object.getImgurls()).get(0)).placeholder(R.mipmap.bg).into(holder.ivPic);//广告图片
-            } catch (Exception e) {
-                Glide.with(context).load(R.mipmap.bg).into(holder.ivPic);
-            }
+//        if (object.getImgurls() instanceof String) {
+//            Glide.with(context).load(object.getImgurls()).placeholder(R.mipmap.pic1).into(holder.ivPic);//广告图片
+//        } else {
+        try {
+            Glide.with(context).load(object.getImgurls()[0]).placeholder(R.mipmap.bg).into(holder.ivPic);//广告图片
+        } catch (Exception e) {
+            Glide.with(context).load(R.mipmap.bg).into(holder.ivPic);
         }
+//        }
 
     }
 

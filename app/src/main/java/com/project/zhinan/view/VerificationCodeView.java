@@ -179,7 +179,7 @@ public class VerificationCodeView extends View {
         Canvas myCanvas = new Canvas(mbitmap);
         Canvas canvas = new Canvas(codebitmap);
         tempCode=getCharAndNumr();
-        Log.e("21212121", tempCode.length() + "");
+//        Log.e("21212121", tempCode.length() + "");
         //画背景
         myCanvas.drawColor(YELLOW_BG_COLOR);
         if (tempCode != null && tempCode.length() > 0) {

@@ -23,7 +23,6 @@ import com.project.zhinan.R;
 import com.project.zhinan.activity.QianggouDetailActivity;
 import com.project.zhinan.adapter.NewsinglepicLayoutAdapter;
 import com.project.zhinan.bean.bean_version2;
-import com.project.zhinan.bean.jsonbean;
 import com.project.zhinan.utils.HttpUtils;
 import com.project.zhinan.view.CircleIndicatorHelper;
 import com.project.zhinan.view.HomeFragment_MyViewPager;
@@ -65,7 +64,8 @@ public class BaseFragment_version2 extends Fragment {
                     }
                     break;
                 case HttpUtils.DATA_GET:
-                    datas = (gson.fromJson(msg.getData().getString("content"), new TypeToken<bean_version2>() {}.getType()));
+                    datas = (gson.fromJson(msg.getData().getString("content"), new TypeToken<bean_version2>() {
+                    }.getType()));
                     objects.addAll(datas.getData());
                     adapter.notifyDataSetChanged();
                     break;
@@ -105,8 +105,14 @@ public class BaseFragment_version2 extends Fragment {
                 Bundle bundle = new Bundle();
 //                bundle.putString("url", Urls.DetailUrl);
                 Intent intent = new Intent(getContext(), QianggouDetailActivity.class);
+                bundle.putStringArray("img_urls", objects.get(i - 1).getImgurls());
                 intent.putExtras(bundle);
-                intent.putExtra("pos", i);
+                intent.putExtra("pos", i - 1);
+                intent.putExtra("key", objects.get(i - 1).getKey());
+                intent.putExtra("read", objects.get(i - 1).getRead());
+                intent.putExtra("uuid", objects.get(i - 1).getUuid());
+//                intent.putExtra("img_urls", objects.get(i - 1).getImgurls());
+
                 getContext().startActivity(intent);
             }
         });

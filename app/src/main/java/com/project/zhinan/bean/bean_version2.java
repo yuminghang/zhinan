@@ -9,30 +9,32 @@ public class bean_version2 {
 
     /**
      * success : true
-     * data : [{"_id":"58202f4482382715b557bd03","orderno":"14785042607679242","name":"admin","head":null,"title":"eeee","time":{"date":"2016-11-07T07:37:40.767Z","year":2016,"month":"2016-11","day":"2016-11-7","minute":"2016-11-7 15:37"},"addesc":"快来买呀！便宜处理了","tags":["jiaoyu","fangchan"],"imgurls":"http://guide-10035266.image.myqcloud.com/guide1478504205168","budget":"2444","ad_put_begintime":"2016-11-07","ad_put_endtime":"2016-11-16","key":"eeee","icons":"2444","sig_money":null,"comments":[],"reprint_info":[],"pv":0,"isPaid":false},{"_id":"581ff50282382715b557bd01","orderno":"14784893462762682","name":"dengyi","head":"http://www.gravatar.com/avatar/1a885ae77be414b8e1beda9298e08f7a?s=48","title":"123123","time":{"date":"2016-11-07T03:29:06.276Z","year":2016,"month":"2016-11","day":"2016-11-7","minute":"2016-11-7 11:29"},"addesc":"快来买呀！便宜处理了","tags":["jiaoyu","lvyou","fangchan"],"imgurls":"http://guide-10035266.image.myqcloud.com/guide1478489320330","budget":"123","ad_put_begintime":"2016-11-01","ad_put_endtime":"2016-11-09","key":"12312","icons":"123","sig_money":null,"comments":[],"reprint_info":[],"pv":0,"isPaid":false},{"_id":"581ff4dc82382715b557bd00","orderno":"14784893088140556","name":"dengyi","head":"http://www.gravatar.com/avatar/1a885ae77be414b8e1beda9298e08f7a?s=48","title":"name","time":{"date":"2016-11-07T03:28:28.814Z","year":2016,"month":"2016-11","day":"2016-11-7","minute":"2016-11-7 11:28"},"addesc":"快来买呀！便宜处理了","tags":["jiaoyu","lvyou"],"imgurls":["http://guide-10035266.image.myqcloud.com/guide1478489272074","http://guide-10035266.image.myqcloud.com/guide1478489282373"],"budget":"1000","ad_put_begintime":"2016-11-08","ad_put_endtime":"2016-11-08","key":"key","icons":"1000","sig_money":null,"comments":[],"reprint_info":[],"pv":0,"isPaid":false}]
+     * data : [{"_id":"5881c23a498c2d05dd23a435","orderno":"14848988744072649","name":"123456","head":"http://www.gravatar.com/avatar/d6600cb4ea0715340349bccc14034059?s=48","title":"教育2","uuid":"aede9a80-dee5-11e6-aebd-1ff799a23fc6","time":{"date":"2017-01-20T07:54:34.407Z","year":2017,"month":"2017-1","day":"2017-1-20","minute":"2017-1-20 15:54"},"addesc":null,"tags":["edu","tour"],"imgurls":["http://guide-10035266.image.myqcloud.com/guide6f1a4b20-00b4-41e9-aad0-1900c1960f3c","http://guide-10035266.image.myqcloud.com/guide25fed752-e2a0-421c-bf3d-3a57556213e0"],"budget":"200","ad_put_begintime":"2017-01-20 15:54","ad_put_endtime":"2017-01-20 15:54","key":"福到财神到","read":"读一读，试一试","icons":"200","sig_money":"5","comments":[],"reprint_info":[],"pv":0,"isPaid":false},{"_id":"5881c1ba498c2d05dd23a433","orderno":"14848987469239677","name":"123456","head":"http://www.gravatar.com/avatar/d6600cb4ea0715340349bccc14034059?s=48","title":"教育广告","uuid":"62e216c0-dee5-11e6-aebd-1ff799a23fc6","time":{"date":"2017-01-20T07:52:26.923Z","year":2017,"month":"2017-1","day":"2017-1-20","minute":"2017-1-20 15:52"},"addesc":null,"tags":["edu","tour"],"imgurls":["http://guide-10035266.image.myqcloud.com/guide2d1d5c4e-1f0b-4c9b-a279-412e665cb961"],"budget":"200","ad_put_begintime":"2017-01-20 15:52","ad_put_endtime":"2017-01-20 15:52","key":"优惠大酬宾","read":"读一读，试一试","icons":"200","sig_money":"5","comments":[],"reprint_info":[],"pv":0,"isPaid":false},{"_id":"5881c04a498c2d05dd23a431","orderno":"14848983787196664","name":"123456","head":"http://www.gravatar.com/avatar/d6600cb4ea0715340349bccc14034059?s=48","title":"测试","uuid":"876a76f0-dee4-11e6-aebd-1ff799a23fc6","time":{"date":"2017-01-20T07:46:18.719Z","year":2017,"month":"2017-1","day":"2017-1-20","minute":"2017-1-20 15:46"},"addesc":null,"tags":["edu"],"imgurls":["http://guide-10035266.image.myqcloud.com/guide77a2dd7d-a12f-414f-a4bd-06ad496619c3"],"budget":"200","ad_put_begintime":"2017-01-20 15:45","ad_put_endtime":"2017-01-20 15:45","key":"。。。。。。","read":"123456789","icons":"200","sig_money":"5","comments":[],"reprint_info":[],"pv":0,"isPaid":false},{"_id":"5881bfc4498c2d05dd23a42f","orderno":"14848982445365111","name":"123456","head":"http://www.gravatar.com/avatar/d6600cb4ea0715340349bccc14034059?s=48","title":"教育","uuid":"376fc380-dee4-11e6-aebd-1ff799a23fc6","time":{"date":"2017-01-20T07:44:04.536Z","year":2017,"month":"2017-1","day":"2017-1-20","minute":"2017-1-20 15:44"},"addesc":null,"tags":["edu","tour"],"imgurls":["http://guide-10035266.image.myqcloud.com/guide265e47ca-1bea-412a-8b41-b56456b7a157"],"budget":"200","ad_put_begintime":"2017-01-20 15:43","ad_put_endtime":"2017-01-20 15:43","key":"便宜，优惠！","read":"欢迎抢购！！","icons":"200","sig_money":"5","comments":[],"reprint_info":[],"pv":0,"isPaid":false}]
      * page : 1
-     * total : 3
+     * total : 4
      */
 
     private boolean success;
     private String page;
     private int total;
     /**
-     * _id : 58202f4482382715b557bd03
-     * orderno : 14785042607679242
-     * name : admin
-     * head : null
-     * title : eeee
-     * time : {"date":"2016-11-07T07:37:40.767Z","year":2016,"month":"2016-11","day":"2016-11-7","minute":"2016-11-7 15:37"}
-     * addesc : 快来买呀！便宜处理了
-     * tags : ["jiaoyu","fangchan"]
-     * imgurls : http://guide-10035266.image.myqcloud.com/guide1478504205168
-     * budget : 2444
-     * ad_put_begintime : 2016-11-07
-     * ad_put_endtime : 2016-11-16
-     * key : eeee
-     * icons : 2444
-     * sig_money : null
+     * _id : 5881c23a498c2d05dd23a435
+     * orderno : 14848988744072649
+     * name : 123456
+     * head : http://www.gravatar.com/avatar/d6600cb4ea0715340349bccc14034059?s=48
+     * title : 教育2
+     * uuid : aede9a80-dee5-11e6-aebd-1ff799a23fc6
+     * time : {"date":"2017-01-20T07:54:34.407Z","year":2017,"month":"2017-1","day":"2017-1-20","minute":"2017-1-20 15:54"}
+     * addesc : null
+     * tags : ["edu","tour"]
+     * imgurls : ["http://guide-10035266.image.myqcloud.com/guide6f1a4b20-00b4-41e9-aad0-1900c1960f3c","http://guide-10035266.image.myqcloud.com/guide25fed752-e2a0-421c-bf3d-3a57556213e0"]
+     * budget : 200
+     * ad_put_begintime : 2017-01-20 15:54
+     * ad_put_endtime : 2017-01-20 15:54
+     * key : 福到财神到
+     * read : 读一读，试一试
+     * icons : 200
+     * sig_money : 5
      * comments : []
      * reprint_info : []
      * pv : 0
@@ -41,217 +43,235 @@ public class bean_version2 {
 
     private List<DataEntity> data;
 
-    public boolean isSuccess() {
-        return success;
-    }
-
     public void setSuccess(boolean success) {
         this.success = success;
-    }
-
-    public String getPage() {
-        return page;
     }
 
     public void setPage(String page) {
         this.page = page;
     }
 
-    public int getTotal() {
-        return total;
-    }
-
     public void setTotal(int total) {
         this.total = total;
-    }
-
-    public List<DataEntity> getData() {
-        return data;
     }
 
     public void setData(List<DataEntity> data) {
         this.data = data;
     }
 
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public String getPage() {
+        return page;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public List<DataEntity> getData() {
+        return data;
+    }
+
     public static class DataEntity {
         private String _id;
         private String orderno;
         private String name;
-        private Object head;
+        private String head;
         private String title;
+        private String uuid;
         /**
-         * date : 2016-11-07T07:37:40.767Z
-         * year : 2016
-         * month : 2016-11
-         * day : 2016-11-7
-         * minute : 2016-11-7 15:37
+         * date : 2017-01-20T07:54:34.407Z
+         * year : 2017
+         * month : 2017-1
+         * day : 2017-1-20
+         * minute : 2017-1-20 15:54
          */
 
         private TimeEntity time;
-        private String addesc;
-        private Object imgurls;
+        private Object addesc;
         private String budget;
         private String ad_put_begintime;
         private String ad_put_endtime;
         private String key;
+        private String read;
         private String icons;
-        private Object sig_money;
+        private String sig_money;
         private int pv;
         private boolean isPaid;
-        private Object tags;
+        private List<String> tags;
+        private String[] imgurls;
         private List<?> comments;
         private List<?> reprint_info;
 
-        public String get_id() {
-            return _id;
-        }
-
         public void set_id(String _id) {
             this._id = _id;
-        }
-
-        public String getOrderno() {
-            return orderno;
         }
 
         public void setOrderno(String orderno) {
             this.orderno = orderno;
         }
 
-        public String getName() {
-            return name;
-        }
-
         public void setName(String name) {
             this.name = name;
         }
 
-        public Object getHead() {
-            return head;
-        }
-
-        public void setHead(Object head) {
+        public void setHead(String head) {
             this.head = head;
-        }
-
-        public String getTitle() {
-            return title;
         }
 
         public void setTitle(String title) {
             this.title = title;
         }
 
-        public TimeEntity getTime() {
-            return time;
+        public void setUuid(String uuid) {
+            this.uuid = uuid;
         }
 
         public void setTime(TimeEntity time) {
             this.time = time;
         }
 
-        public String getAddesc() {
-            return addesc;
-        }
-
-        public void setAddesc(String addesc) {
+        public void setAddesc(Object addesc) {
             this.addesc = addesc;
-        }
-
-        public Object getImgurls() {
-            return imgurls;
-        }
-
-        public void setImgurls(Object imgurls) {
-            this.imgurls = imgurls;
-        }
-
-        public String getBudget() {
-            return budget;
         }
 
         public void setBudget(String budget) {
             this.budget = budget;
         }
 
-        public String getAd_put_begintime() {
-            return ad_put_begintime;
-        }
-
         public void setAd_put_begintime(String ad_put_begintime) {
             this.ad_put_begintime = ad_put_begintime;
-        }
-
-        public String getAd_put_endtime() {
-            return ad_put_endtime;
         }
 
         public void setAd_put_endtime(String ad_put_endtime) {
             this.ad_put_endtime = ad_put_endtime;
         }
 
-        public String getKey() {
-            return key;
-        }
-
         public void setKey(String key) {
             this.key = key;
         }
 
-        public String getIcons() {
-            return icons;
+        public void setRead(String read) {
+            this.read = read;
         }
 
         public void setIcons(String icons) {
             this.icons = icons;
         }
 
-        public Object getSig_money() {
-            return sig_money;
-        }
-
-        public void setSig_money(Object sig_money) {
+        public void setSig_money(String sig_money) {
             this.sig_money = sig_money;
-        }
-
-        public int getPv() {
-            return pv;
         }
 
         public void setPv(int pv) {
             this.pv = pv;
         }
 
-        public boolean isIsPaid() {
-            return isPaid;
-        }
-
         public void setIsPaid(boolean isPaid) {
             this.isPaid = isPaid;
         }
 
-        public Object getTags() {
-            return tags;
-        }
-
-        public void setTags(Object tags) {
+        public void setTags(List<String> tags) {
             this.tags = tags;
         }
 
-        public List<?> getComments() {
-            return comments;
+        public void setImgurls(String[] imgurls) {
+            this.imgurls = imgurls;
         }
 
         public void setComments(List<?> comments) {
             this.comments = comments;
         }
 
-        public List<?> getReprint_info() {
-            return reprint_info;
-        }
-
         public void setReprint_info(List<?> reprint_info) {
             this.reprint_info = reprint_info;
+        }
+
+        public String get_id() {
+            return _id;
+        }
+
+        public String getOrderno() {
+            return orderno;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getHead() {
+            return head;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public String getUuid() {
+            return uuid;
+        }
+
+        public TimeEntity getTime() {
+            return time;
+        }
+
+        public Object getAddesc() {
+            return addesc;
+        }
+
+        public String getBudget() {
+            return budget;
+        }
+
+        public String getAd_put_begintime() {
+            return ad_put_begintime;
+        }
+
+        public String getAd_put_endtime() {
+            return ad_put_endtime;
+        }
+
+        public String getKey() {
+            return key;
+        }
+
+        public String getRead() {
+            return read;
+        }
+
+        public String getIcons() {
+            return icons;
+        }
+
+        public String getSig_money() {
+            return sig_money;
+        }
+
+        public int getPv() {
+            return pv;
+        }
+
+        public boolean isIsPaid() {
+            return isPaid;
+        }
+
+        public List<String> getTags() {
+            return tags;
+        }
+
+        public String[] getImgurls() {
+            return imgurls;
+        }
+
+        public List<?> getComments() {
+            return comments;
+        }
+
+        public List<?> getReprint_info() {
+            return reprint_info;
         }
 
         public static class TimeEntity {
@@ -261,44 +281,44 @@ public class bean_version2 {
             private String day;
             private String minute;
 
-            public String getDate() {
-                return date;
-            }
-
             public void setDate(String date) {
                 this.date = date;
-            }
-
-            public int getYear() {
-                return year;
             }
 
             public void setYear(int year) {
                 this.year = year;
             }
 
-            public String getMonth() {
-                return month;
-            }
-
             public void setMonth(String month) {
                 this.month = month;
-            }
-
-            public String getDay() {
-                return day;
             }
 
             public void setDay(String day) {
                 this.day = day;
             }
 
-            public String getMinute() {
-                return minute;
-            }
-
             public void setMinute(String minute) {
                 this.minute = minute;
+            }
+
+            public String getDate() {
+                return date;
+            }
+
+            public int getYear() {
+                return year;
+            }
+
+            public String getMonth() {
+                return month;
+            }
+
+            public String getDay() {
+                return day;
+            }
+
+            public String getMinute() {
+                return minute;
             }
         }
     }
