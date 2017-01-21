@@ -31,6 +31,10 @@ public class CircleIndicatorHelper {
 
         parentView.addView(mCircleIndicator);
         mCircleIndicator.setViewPager(viewPager);
+
+    }
+    public void removeChildIndicatorView(ViewGroup parentView){
+        parentView.removeView(mCircleIndicator);
     }
 
     public void setFillColor(String colorString) {

@@ -137,6 +137,7 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
     private CheckBox mMakeupsCheckBox;
     private CheckBox mServiceCheckBox;
     private CheckBox mPublicWelfareCheckBox;
+    private CheckBox[] cbs;
 
     {
         stringHashMap.put("教育", "edu");
@@ -193,7 +194,7 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
         mProgress = (ProgressBar) view.findViewById(R.id.fabu_progress);
         imgList = new ArrayList<>();
         UploadimgUrls = new ArrayList<>();
-
+        initData();
         return view;
     }
 
@@ -280,7 +281,7 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
         mBudgetEditText.setText("");
         mSigMoneyEditText.setText("");
         mAdReadEditText.setText("");
-        CheckBox[] cbs = {mEduCheckBox,
+        cbs = new CheckBox[]{mEduCheckBox,
                 mTourCheckBox,
                 mBuildCheckBox,
                 mMedCheckBox,
@@ -452,15 +453,9 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
     }
 
     private boolean isCkValid() {
-        CheckBox[] cbs = {mEduCheckBox,
-                mTourCheckBox,
-                mBuildCheckBox,
-                mMedCheckBox,
-                mFoodCheckBox};
 
         mCheckList = new ArrayList<String>();
-        for (CheckBox cb :
-                cbs) {
+        for (CheckBox cb :cbs) {
             if (cb.isChecked()) {
                 mCheckList.add(stringHashMap.get(cb.getText().toString()));
             }

@@ -13,8 +13,8 @@ public class Urls {
     public static final String FangchanUrl = TagUrl + "property" + PageNum;
     public static final String FuwuUrl = TagUrl + "service" + PageNum;
     public static final String GongyiUrl = TagUrl + "public_welfare" + PageNum;
-    public static final String HongbaoUrl = TagUrl + "jiaoyu" + PageNum;
-    public static final String HuodongUrl = TagUrl + "jiaoyu" + PageNum;
+    public static final String HongbaoUrl = TagUrl + "edu" + PageNum;
+    public static final String HuodongUrl = TagUrl + "edu" + PageNum;
     public static final String JiancaiUrl = TagUrl + "build" + PageNum;
     public static final String JinrongUrl = TagUrl + "financial" + PageNum;
     public static final String Jiaoyu = TagUrl + "edu" + PageNum;
@@ -22,13 +22,15 @@ public class Urls {
     public static final String MeizhuangUrl = TagUrl + "makeups" + PageNum;
     public static final String QianggouUrl = "http://119.29.191.229:2888/com/try";
     public static final String QicheUrl = TagUrl + "car" + PageNum;
-    public static final String ShangquanUrl = TagUrl + "jiaoyu" + PageNum;
+    public static final String ShangquanUrl = TagUrl + "edu" + PageNum;
     public static final String TongxunUrl = TagUrl + "commuication" + PageNum;
-    public static final String XiuxianUrl = TagUrl + "jiaoyu" + PageNum;
+    public static final String XiuxianUrl = TagUrl + "edu" + PageNum;
     public static final String YiyaoUrl = TagUrl + "med" + PageNum;
     public static final String ZhaopinUrl = TagUrl + "recruitment" + PageNum;
-    public static final String ZhaoshangUrl = TagUrl + "jiaoyu" + PageNum;
+    public static final String ZhaoshangUrl = TagUrl + "edu" + PageNum;
     public static final String DetailUrl = "http://120.27.41.245:2888/tryhtml.html";
     public static final String Collection_Url = "http://120.27.41.245:2888/collection_c";
+    public static final String Map_Url = "http://120.27.41.245:2888/adposition";
+    public static final String Map_Detail_Url = "http://120.27.41.245:2888/ad_detail?adorder=";
 
 }

@@ -12,6 +12,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
 import com.project.zhinan.api.Urls;
 import com.project.zhinan.base.fragment.BaseFragment;
+import com.project.zhinan.bean.mapdetailBean;
 import com.project.zhinan.bean.returnBean;
 import com.project.zhinan.dao.HistorySqlliteHelper;
 import com.project.zhinan.view.VerificationCodeView;
@@ -40,10 +42,12 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
+import java.io.IOException;
+
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
-public class QianggouDetailActivity extends Activity {
+public class QianggouDetailActivity2 extends Activity {
     private static boolean first = true;
     private int pos;
     private Button mGetRmbButton;
@@ -93,6 +97,9 @@ public class QianggouDetailActivity extends Activity {
     private Response response;
     private ImageView share;
     private String returnData;
+    private Object adData;
+    private String detailData;
+    private mapdetailBean detailDataList;
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -101,20 +108,60 @@ public class QianggouDetailActivity extends Activity {
                     et.setVisibility(View.VISIBLE);
                     break;
                 case 1:
-                    Toast.makeText(QianggouDetailActivity.this, "领取成功！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(QianggouDetailActivity2.this, "领取成功！", Toast.LENGTH_SHORT).show();
 //                    AddHistory();
                     finish();
                     break;
                 case 2:
                     Gson gson = new Gson();
                     returnBean returnBean = gson.fromJson(returnData, com.project.zhinan.bean.returnBean.class);
-                    Toast.makeText(QianggouDetailActivity.this, returnBean.getError(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(QianggouDetailActivity2.this, returnBean.getError(), Toast.LENGTH_SHORT).show();
+                    break;
+                case 3:
+                    parseDetailData();
                     break;
                 default:
                     break;
             }
         }
     };
+    private String ad_order;
+
+    private void parseDetailData() {
+        uuid = detailDataList.getData().getUuid();
+        content = detailDataList.getData().getKey();
+        readContent = detailDataList.getData().getRead();
+        String[] img_urls = detailDataList.getData().getImgurls();
+        initImg(img_urls);
+        iv1.setvCode(content);
+    }
+
+    public void getAdData() {
+
+        Log.e("dsfsd", Urls.Map_Detail_Url + ad_order);
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .url(Urls.Map_Detail_Url + ad_order)
+                        .get()
+                        .addHeader("cache-control", "no-cache")
+                        .addHeader("postman-token", "c3e76af9-a4ca-d71d-e5bf-fdb041a46bd1")
+                        .build();
+                try {
+                    response = client.newCall(request).execute();
+                    detailData = response.body().string();
+                    Gson gson = new Gson();
+                    detailDataList = gson.fromJson(detailData, mapdetailBean.class);
+                    handler.sendEmptyMessage(3);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,11 +172,8 @@ public class QianggouDetailActivity extends Activity {
         Intent intent = getIntent();//getIntent将该项目中包含的原始intent检索出来，将检索出来的intent赋值给一个Intent类型的变量intent
         Bundle bundle = intent.getExtras();//
         pos = bundle.getInt("pos");
-        content = intent.getStringExtra("key");
-        readContent = intent.getStringExtra("read");
-        uuid = intent.getStringExtra("uuid");
-        String[] img_urls = bundle.getStringArray("img_urls");
-        initImg(img_urls);
+        ad_order = intent.getStringExtra("ad_order");
+        getAdData();
         initVoice();
 
         back = (ImageView) findViewById(R.id.back);
@@ -147,7 +191,7 @@ public class QianggouDetailActivity extends Activity {
             }
         });
         iv1 = (VerificationCodeView) findViewById(R.id.iv1);
-        iv1.setvCode(content);
+
         iv1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -169,8 +213,8 @@ public class QianggouDetailActivity extends Activity {
                 sharedPreferences = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
                 isLogin = sharedPreferences.getBoolean("isLogin", false);
                 if (!isLogin) {
-                    Toast.makeText(QianggouDetailActivity.this, "您还未登陆。。。", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(QianggouDetailActivity.this, LoginActivity.class));
+                    Toast.makeText(QianggouDetailActivity2.this, "您还未登陆。。。", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(QianggouDetailActivity2.this, LoginActivity.class));
                 } else {
                     rbs = 1;
                     BaseFragment.lastRead = pos;
@@ -184,7 +228,7 @@ public class QianggouDetailActivity extends Activity {
                             }
                         }.start();
                     } else {
-                        Toast.makeText(QianggouDetailActivity.this, "核心记忆词错误", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(QianggouDetailActivity2.this, "核心记忆词错误", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -218,7 +262,7 @@ public class QianggouDetailActivity extends Activity {
     }
 
     private void sendData() {
-        SharedPreferences cookie = QianggouDetailActivity.this.getSharedPreferences("cookie", Context.MODE_PRIVATE);
+        SharedPreferences cookie = QianggouDetailActivity2.this.getSharedPreferences("cookie", Context.MODE_PRIVATE);
         final String my_cookie = cookie.getString("my_cookie", "");
         OkHttpClient client = new OkHttpClient();
 
@@ -261,14 +305,14 @@ public class QianggouDetailActivity extends Activity {
             iv.setLayoutParams(vlp);//设置TextView的布局
             iv.setPadding(0, 0, 0, 0);//设置边距
             image_container.addView(iv);//将TextView 添加到子View 中
-            Glide.with(QianggouDetailActivity.this).load(img_urls[i]).into(iv);
+            Glide.with(QianggouDetailActivity2.this).load(img_urls[i]).into(iv);
         }
         handler.sendEmptyMessageDelayed(0, 500);
     }
 
     private void initVoice() {
         //1.创建SpeechSynthesizer对象, 第二个参数：本地合成时传InitListener
-        mTts = SpeechSynthesizer.createSynthesizer(QianggouDetailActivity.this, null);
+        mTts = SpeechSynthesizer.createSynthesizer(QianggouDetailActivity2.this, null);
         //2.合成参数设置，详见《科大讯飞MSC API手册(Android)》SpeechSynthesizer 类
         mTts.setParameter(SpeechConstant.VOICE_NAME, "xiaoyan");//设置发音人
         mTts.setParameter(SpeechConstant.SPEED, "50");//设置语速
@@ -281,11 +325,11 @@ public class QianggouDetailActivity extends Activity {
          * 增加领取记录
          */
         String adID = "12313132";
-        HistorySqlliteHelper historySqlliteHelper = new HistorySqlliteHelper(QianggouDetailActivity.this);
+        HistorySqlliteHelper historySqlliteHelper = new HistorySqlliteHelper(QianggouDetailActivity2.this);
         SQLiteDatabase writableDatabase = historySqlliteHelper.getWritableDatabase();
         Cursor cursor = writableDatabase.rawQuery("select * from history_table where ad_id= " + adID, null);
         if (cursor.getCount() > 0) {
-            Toast.makeText(QianggouDetailActivity.this, "已经领取过了", Toast.LENGTH_SHORT).show();
+            Toast.makeText(QianggouDetailActivity2.this, "已经领取过了", Toast.LENGTH_SHORT).show();
             return;
         }
         ContentValues initialValues = new ContentValues();
@@ -293,9 +337,10 @@ public class QianggouDetailActivity extends Activity {
         initialValues.put("rbs", rbs);
 //        initialValues.put("ad_url", url);
         initialValues.put("if_get", 1);
-        Toast.makeText(QianggouDetailActivity.this, "领取成功", Toast.LENGTH_SHORT).show();
+        Toast.makeText(QianggouDetailActivity2.this, "领取成功", Toast.LENGTH_SHORT).show();
         writableDatabase.insert("history_table", null, initialValues);
         writableDatabase.close();
     }
+
 
 }

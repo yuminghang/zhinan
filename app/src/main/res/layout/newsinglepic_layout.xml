@@ -78,18 +78,10 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true">
 
-            <TextView
-                android:id="@+id/tv1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="8dp"
-                android:text="1.1折起"
-                android:textColor="@color/crimson"
-                android:textSize="@dimen/textSize" />
 
             <TextView
                 android:id="@+id/tv2"
+                android:textColor="@color/crimson"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -97,7 +89,6 @@
                 android:lines="1"
                 android:maxEms="15"
                 android:text="LAVI女童童装专场"
-                android:textColor="@color/black"
                 android:textSize="@dimen/textSize" />
 
             <TextView

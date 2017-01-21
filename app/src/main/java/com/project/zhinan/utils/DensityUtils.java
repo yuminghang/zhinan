@@ -4,8 +4,10 @@ package com.project.zhinan.utils;
  * Created by ymh on 2016/4/23.
  */
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.TypedValue;
+import android.view.WindowManager;
 
 /**
  * 常用单位转换的辅助类
@@ -61,6 +63,11 @@ public class DensityUtils {
      */
     public static float px2sp(Context context, float pxVal) {
         return (pxVal / context.getResources().getDisplayMetrics().scaledDensity);
+    }
+
+    public static int getHeight(Activity context) {
+        WindowManager wm = context.getWindowManager();
+        return wm.getDefaultDisplay().getHeight();
     }
 
 }

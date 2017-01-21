@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment {
         titleContainer.add("建材");
         titleContainer.add("医药");
         titleContainer.add("餐饮");
-        titleContainer.add("抢购");
+//        titleContainer.add("抢购");
         titleContainer.add("一元抢购");
         titleContainer.add("宝箱");
         titleContainer.add("活动");
@@ -102,7 +102,7 @@ public class HomeFragment extends Fragment {
         Jingcai jiancai = new Jingcai();
         Yiyao yiyao = new Yiyao();
         Canyin canyin = new Canyin();
-        Qianggou qianggouFragment = new Qianggou();
+//        Qianggou qianggouFragment = new Qianggou();
         Hongbao hongbaoFragment = new Hongbao();
         Baoxiang baoxiangFragment = new Baoxiang();
         Huodong huodong = new Huodong();
@@ -124,7 +124,7 @@ public class HomeFragment extends Fragment {
         fragmentList.add(jiancai);
         fragmentList.add(yiyao);
         fragmentList.add(canyin);
-        fragmentList.add(qianggouFragment);
+//        fragmentList.add(qianggouFragment);
         fragmentList.add(hongbaoFragment);
         fragmentList.add(huodong);
         fragmentList.add(baoxiangFragment);

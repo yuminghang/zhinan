@@ -26,6 +26,7 @@ import com.baidu.mapapi.utils.DistanceUtil;
 import com.google.gson.Gson;
 import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
+import com.project.zhinan.api.Urls;
 import com.project.zhinan.bean.posBean;
 import com.project.zhinan.utils.LocationService;
 import com.project.zhinan.utils.Utils;
@@ -34,11 +35,14 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class MapActivity extends Activity {
 
+    public static Map<String, String> pointList = new HashMap<>();
     private MapView mMapView = null;
     private BaiduMap mBaiduMap;
     private Button reset;
@@ -113,6 +117,10 @@ public class MapActivity extends Activity {
 
     private void addPoints(List<posBean.DataEntity> list) {
         for (int i = 0; i < list.size(); i++) {
+            String key = "" + list.get(i).getLat() + list.get(i).getLon();
+            if (!pointList.containsKey(key)) {
+                pointList.put(key, list.get(i).getAd_order());
+            }
             LatLng point = new LatLng(list.get(i).getLat(), list.get(i).getLon());
             // 构建Marker图标
             BitmapDescriptor bitmap = null;
@@ -128,10 +136,10 @@ public class MapActivity extends Activity {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 Log.e("wwww", marker.getPosition().latitude + "  " + marker.getPosition().longitude);
-                Intent intent = new Intent(getApplicationContext(), QianggouDetailActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putInt("pos", 1);
-                intent.putExtras(bundle);
+                String pointKey = "" + marker.getPosition().latitude + marker.getPosition().longitude;
+                String ad_order = pointList.get(pointKey);
+                Intent intent = new Intent(MapActivity.this, QianggouDetailActivity2.class);
+                intent.putExtra("ad_order", ad_order);
                 startActivity(intent);
                 return true;
             }
@@ -140,7 +148,6 @@ public class MapActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         mMapView = (MapView) findViewById(R.id.bmapView);
@@ -255,7 +262,7 @@ public class MapActivity extends Activity {
                 super.run();
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder()
-                        .url("http://120.27.41.245:2888/adposition")
+                        .url(Urls.Map_Url)
                         .get()
                         .addHeader("cache-control", "no-cache")
                         .addHeader("postman-token", "c3e76af9-a4ca-d71d-e5bf-fdb041a46bd1")

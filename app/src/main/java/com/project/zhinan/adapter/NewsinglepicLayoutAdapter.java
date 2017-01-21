@@ -82,7 +82,6 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
             }
         });
         holder.newstitleTextView.setText(object.getKey()); //广告关键词
-        holder.tv1.setText((Math.random() * 10 + "").substring(0, 3) + "折起");//折扣
         holder.tv2.setText(object.getTitle());//广告标题
 //        if (object.getImgurls() instanceof String) {
 //            Glide.with(context).load(object.getImgurls()).placeholder(R.mipmap.pic1).into(holder.ivPic);//广告图片
@@ -99,7 +98,6 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
     protected class ViewHolder {
         private ImageView ivPic;
         private TextView newstitleTextView;
-        private TextView tv1;
         private TextView tv2;
         private TextView tv3;
         private CheckBox cb;
@@ -110,7 +108,6 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
             havesee = (ImageView) view.findViewById(R.id.havesee);
             newstitleTextView = (TextView) view.findViewById(R.id.newstitle_TextView);
             cb = (CheckBox) view.findViewById(R.id.scb);
-            tv1 = (TextView) view.findViewById(R.id.tv1);
             tv2 = (TextView) view.findViewById(R.id.tv2);
             tv3 = (TextView) view.findViewById(R.id.tv3);
         }
