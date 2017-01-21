@@ -102,6 +102,7 @@ public class QianggouDetailActivity extends Activity {
                     break;
                 case 1:
                     Toast.makeText(QianggouDetailActivity.this, "领取成功！", Toast.LENGTH_SHORT).show();
+                    addJiFen();
 //                    AddHistory();
                     finish();
                     break;
@@ -115,6 +116,13 @@ public class QianggouDetailActivity extends Activity {
             }
         }
     };
+    private int sigmoney;
+
+    private void addJiFen() {
+        sharedPreferences = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
+        int account = sharedPreferences.getInt("account", 0);
+        sharedPreferences.edit().putInt("account", account + sigmoney).apply();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +136,7 @@ public class QianggouDetailActivity extends Activity {
         content = intent.getStringExtra("key");
         readContent = intent.getStringExtra("read");
         uuid = intent.getStringExtra("uuid");
+        sigmoney = Integer.parseInt(intent.getStringExtra("sigmoney"));
         String[] img_urls = bundle.getStringArray("img_urls");
         initImg(img_urls);
         initVoice();

@@ -101,7 +101,7 @@ public class bean_version2 {
         private String sig_money;
         private int pv;
         private boolean isPaid;
-        private List<String> tags;
+//        private List<String> tags;
         private String[] imgurls;
         private List<?> comments;
         private List<?> reprint_info;
@@ -174,9 +174,9 @@ public class bean_version2 {
             this.isPaid = isPaid;
         }
 
-        public void setTags(List<String> tags) {
-            this.tags = tags;
-        }
+//        public void setTags(List<String> tags) {
+//            this.tags = tags;
+//        }
 
         public void setImgurls(String[] imgurls) {
             this.imgurls = imgurls;
@@ -258,9 +258,9 @@ public class bean_version2 {
             return isPaid;
         }
 
-        public List<String> getTags() {
-            return tags;
-        }
+//        public List<String> getTags() {
+//            return tags;
+//        }
 
         public String[] getImgurls() {
             return imgurls;

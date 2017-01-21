@@ -43,6 +43,7 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+import java.util.List;
 
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
@@ -109,6 +110,7 @@ public class QianggouDetailActivity2 extends Activity {
                     break;
                 case 1:
                     Toast.makeText(QianggouDetailActivity2.this, "领取成功！", Toast.LENGTH_SHORT).show();
+                    addJiFen();
 //                    AddHistory();
                     finish();
                     break;
@@ -125,13 +127,21 @@ public class QianggouDetailActivity2 extends Activity {
             }
         }
     };
+
+    private void addJiFen() {
+        sharedPreferences = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
+        int account = sharedPreferences.getInt("account", 0);
+        sharedPreferences.edit().putInt("account", account + Integer.parseInt(detailDataList.getData().getSig_money())).apply();
+    }
+
     private String ad_order;
 
     private void parseDetailData() {
+
         uuid = detailDataList.getData().getUuid();
         content = detailDataList.getData().getKey();
         readContent = detailDataList.getData().getRead();
-        String[] img_urls = detailDataList.getData().getImgurls();
+        List<String> img_urls = detailDataList.getData().getImgurls();
         initImg(img_urls);
         iv1.setvCode(content);
     }
@@ -291,21 +301,19 @@ public class QianggouDetailActivity2 extends Activity {
         }
     }
 
-    public void initImg(String[] img_urls) {
-        for (int i = 0; i < img_urls.length; i++) {
+    public void initImg(List<String> img_urls) {
+        for (int i = 0; i < img_urls.size(); i++) {
             //定义子View中两个元素的布局
             ViewGroup.LayoutParams vlp = new ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
-            ViewGroup.LayoutParams vlp2 = new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
+
 
             ImageView iv = new ImageView(this);
             iv.setLayoutParams(vlp);//设置TextView的布局
             iv.setPadding(0, 0, 0, 0);//设置边距
             image_container.addView(iv);//将TextView 添加到子View 中
-            Glide.with(QianggouDetailActivity2.this).load(img_urls[i]).into(iv);
+            Glide.with(QianggouDetailActivity2.this).load(img_urls.get(i)).into(iv);
         }
         handler.sendEmptyMessageDelayed(0, 500);
     }

@@ -138,6 +138,9 @@ public class MapActivity extends Activity {
                 Log.e("wwww", marker.getPosition().latitude + "  " + marker.getPosition().longitude);
                 String pointKey = "" + marker.getPosition().latitude + marker.getPosition().longitude;
                 String ad_order = pointList.get(pointKey);
+                if(pointList.get(pointKey)==null){
+                    return true;
+                }
                 Intent intent = new Intent(MapActivity.this, QianggouDetailActivity2.class);
                 intent.putExtra("ad_order", ad_order);
                 startActivity(intent);

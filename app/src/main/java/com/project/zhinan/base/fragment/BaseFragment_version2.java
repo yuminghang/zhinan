@@ -39,7 +39,7 @@ import java.util.TimerTask;
  */
 
 public class BaseFragment_version2 extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
-    public  bean_version2 datas;
+    public bean_version2 datas;
     public static int lastRead = 0;
     public static int[] isRead = new int[21];
     private final int VPRUN = 1;
@@ -88,6 +88,7 @@ public class BaseFragment_version2 extends Fragment implements SwipeRefreshLayou
                         intent.putExtra("key", entity.getKey());
                         intent.putExtra("read", entity.getRead());
                         intent.putExtra("uuid", entity.getUuid());
+                        intent.putExtra("sigmoney", entity.getSig_money());
                         getContext().startActivity(intent);
                     }
                 });
@@ -138,8 +139,8 @@ public class BaseFragment_version2 extends Fragment implements SwipeRefreshLayou
                             bean_version2.DataEntity dataEntity = objects.get(i);
                             topList.add(dataEntity);
                         }
-                    }catch (Exception e){
-
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
 
 //                    if (firstAttempt == 0) {
@@ -187,7 +188,7 @@ public class BaseFragment_version2 extends Fragment implements SwipeRefreshLayou
                 intent.putExtra("key", objects.get(i - 1).getKey());
                 intent.putExtra("read", objects.get(i - 1).getRead());
                 intent.putExtra("uuid", objects.get(i - 1).getUuid());
-
+                intent.putExtra("sigmoney", objects.get(i - 1).getSig_money());
                 getContext().startActivity(intent);
             }
         });
