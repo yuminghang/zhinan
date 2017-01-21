@@ -130,7 +130,7 @@ public class MapActivity extends Activity {
             // 在地图上添加Marker，并显示
             mBaiduMap.addOverlay(option);
             mBaiduMap.setMapStatus(MapStatusUpdateFactory.newLatLng(point));
-            Toast.makeText(MapActivity.this, list.get(i).getUser().getName(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MapActivity.this, list.get(i).getUser().getName(), Toast.LENGTH_SHORT).show();
         }
         mBaiduMap.setOnMarkerClickListener(new BaiduMap.OnMarkerClickListener() {
             @Override
