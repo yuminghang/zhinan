@@ -18,6 +18,8 @@ public class Urls {
     public static final String JiancaiUrl = TagUrl + "build" + PageNum;
     public static final String JinrongUrl = TagUrl + "financial" + PageNum;
     public static final String Jiaoyu = TagUrl + "edu" + PageNum;
+    public static final String Quanbu = "http://120.27.41.245:2888/getAds";//全部
+//    public static final String Quanbu = TagUrl +  PageNum;//全部
     public static final String LvyouUrl = TagUrl + "tour" + PageNum;
     public static final String MeizhuangUrl = TagUrl + "makeups" + PageNum;
     public static final String QianggouUrl = "http://119.29.191.229:2888/com/try";

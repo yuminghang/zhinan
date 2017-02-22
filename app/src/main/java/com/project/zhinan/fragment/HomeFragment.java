@@ -26,6 +26,7 @@ import com.project.zhinan.fragment.HomeTabFragmentSons.Jinrong;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Lvyou;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Meizhuang;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Qiche;
+import com.project.zhinan.fragment.HomeTabFragmentSons.Quanbu;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Shangquan;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Tongxun;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Xiuxian;
@@ -54,6 +55,7 @@ public class HomeFragment extends Fragment {
 
     private static void initTitle() {
         //页签项
+        titleContainer.add("全部");
         titleContainer.add("教育");
         titleContainer.add("商圈");
         titleContainer.add("旅游");
@@ -116,6 +118,7 @@ public class HomeFragment extends Fragment {
     private void initViewpager() {
         initTitle();
         fragmentList = new ArrayList<Fragment>();
+        Quanbu quanbu = new Quanbu();
         Jiaoyu jiaoyu = new Jiaoyu();
         Shangquan shangquan = new Shangquan();
         Lvyou lvyou = new Lvyou();
@@ -138,6 +141,7 @@ public class HomeFragment extends Fragment {
         Gongyi gongyi = new Gongyi();
 
 
+        fragmentList.add(quanbu);
         fragmentList.add(jiaoyu);
         fragmentList.add(shangquan);
         fragmentList.add(lvyou);

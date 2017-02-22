@@ -127,6 +127,8 @@ public class QianggouDetailActivity2 extends Activity {
             }
         }
     };
+    private LinearLayout show_LinearLayout;
+    private Button submit_rmb;
 
     private void addJiFen() {
         sharedPreferences = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
@@ -179,6 +181,7 @@ public class QianggouDetailActivity2 extends Activity {
         setContentView(R.layout.activity_qianggou_detail);
         MyApplication.getInstance().addActivity(this);
         image_container = (LinearLayout) findViewById(R.id.image_container);//动态添加view尚未父View
+        show_LinearLayout = (LinearLayout) findViewById(R.id.show_LinearLayout);
         Intent intent = getIntent();//getIntent将该项目中包含的原始intent检索出来，将检索出来的intent赋值给一个Intent类型的变量intent
         Bundle bundle = intent.getExtras();//
         pos = bundle.getInt("pos");
@@ -220,6 +223,14 @@ public class QianggouDetailActivity2 extends Activity {
         mGetRmbButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                show_LinearLayout.setVisibility(View.VISIBLE);
+                et.setVisibility(View.VISIBLE);
+            }
+        });
+        submit_rmb = (Button) findViewById(R.id.submit_rmb);
+        submit_rmb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 sharedPreferences = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
                 isLogin = sharedPreferences.getBoolean("isLogin", false);
                 if (!isLogin) {
@@ -238,11 +249,12 @@ public class QianggouDetailActivity2 extends Activity {
                             }
                         }.start();
                     } else {
-                        Toast.makeText(QianggouDetailActivity2.this, "核心记忆词错误", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(QianggouDetailActivity2.this, "核心记忆词错误11", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
+
     }
 
     private void showShare() {
