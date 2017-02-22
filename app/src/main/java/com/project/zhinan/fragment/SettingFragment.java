@@ -73,7 +73,7 @@ public class SettingFragment extends Fragment {
         strings.add("我的红包");
         strings.add("指南客服");
         strings.add("指南活动");
-        strings.add("关于指南");
+        strings.add("法律条款");
         List<Map<String, Object>> listems = new ArrayList<Map<String, Object>>();
         for (int i = 0; i < strings.size(); i++) {
             Map<String, Object> listem = new HashMap<String, Object>();

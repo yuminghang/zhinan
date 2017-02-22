@@ -1,0 +1,13 @@
+﻿/*
+<h2 class="title-bar"></h2> 
+*/
+.title-bar {
+    background: #f1f1f5;
+    border: solid #c8c7cc;
+    border-width: 1px 0px 1px 0px;
+    color: #666666;
+    font-size: 15px;
+    font-weight: bold;
+    height: 15px;
+    padding: 15px 0px 10px 10px;
+}

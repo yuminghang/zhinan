@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -175,14 +176,6 @@ public class MapActivity extends Activity {
     }
 
 
-    /***
-     * 平滑策略代码实现方法，主要通过对新定位和历史定位结果进行速度评分，
-     * 来判断新定位结果的抖动幅度，如果超过经验值，则判定为过大抖动，进行平滑处理,若速度过快，
-     * 则推测有可能是由于运动速度本身造成的，则不进行低速平滑处理 ╭(●｀∀´●)╯
-     *
-     * @param
-     * @return Bundle
-     */
     private Bundle Algorithm(BDLocation location) {
         Bundle locData = new Bundle();
         double curSpeed = 0;
@@ -204,7 +197,7 @@ public class MapActivity extends Activity {
                 curSpeed = distance / (System.currentTimeMillis() - locationList.get(i).time) / 1000;
                 score += curSpeed * Utils.EARTH_WEIGHT[i];
             }
-            if (score > 0.00000999 && score < 0.00005) { // 经验值,开发者可根据业务自行调整，也可以不使用这种算法
+            if (score > 0.00000999 && score < 0.00005) {
                 location.setLongitude(
                         (locationList.get(locationList.size() - 1).location.getLongitude() + location.getLongitude())
                                 / 2);
@@ -239,15 +232,15 @@ public class MapActivity extends Activity {
         super.onResume();
         // 在activity执行onResume时执行mMapView. onResume ()，实现地图生命周期管理
         mMapView.onResume();
-//        reset.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                // TODO Auto-generated method stub
-//                if (mBaiduMap != null)
-//                    mBaiduMap.clear();
-//            }
-//        });
+        reset.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                if (mBaiduMap != null)
+                    mBaiduMap.clear();
+            }
+        });
     }
 
     @Override
