@@ -12,7 +12,16 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.project.zhinan.activity.DetailActivity"
     tools:showIn="@layout/activity_questionnaire_list">
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:paddingLeft="20dp"
+        android:text="网页版调查问卷发布地址：\nhttp://115.159.0.155:8080/manage/ \n网页可以自行设计调查问卷\n(用户名，密码请询问管理员)"
+        android:textColor="@color/title_color"
+        android:textSize="18sp" />
     <ListView
+        android:layout_below="@id/tv"
         android:id="@+id/lv_content_questionnaire_list"
         android:dividerHeight="@dimen/sp_15"
         android:divider="@color/transparent"

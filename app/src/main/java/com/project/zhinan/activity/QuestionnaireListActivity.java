@@ -5,13 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.project.zhinan.R;
@@ -31,6 +31,9 @@ public class QuestionnaireListActivity extends AppCompatActivity {
     private ListView questionnaireList;
     private QuestionnaireItemAdapter adapter;
     private List<QuestionnaireItem.QuestionnairesBean> questionnaires;
+    private Toolbar toolbar;
+    private TextView tv;
+    private int count = 0;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -43,18 +46,34 @@ public class QuestionnaireListActivity extends AppCompatActivity {
             }
         }
     };
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionnaire_list);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        tv = (TextView) findViewById(R.id.tv);
         setSupportActionBar(toolbar);
         questionnaireList = (ListView) findViewById(R.id.lv_content_questionnaire_list);
         questionnaires = new ArrayList<>();
         adapter = new QuestionnaireItemAdapter(this, questionnaires);
         questionnaireList.setAdapter(adapter);
+        questionnaireList.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if (count > 3) {
+                    tv.setVisibility(View.GONE);
+                } else {
+                    count++;
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+
+            }
+        });
         questionnaireList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -62,7 +81,7 @@ public class QuestionnaireListActivity extends AppCompatActivity {
 //                intent.putExtra("question_id", questionnaires.get(position).get_id());
 //                startActivity(intent);
                 Intent intent = new Intent(QuestionnaireListActivity.this, DetailActivity.class);
-                intent.putExtra("id",questionnaires.get(position).get_id());
+                intent.putExtra("id", questionnaires.get(position).get_id());
                 startActivity(intent);
             }
         });
@@ -78,9 +97,9 @@ public class QuestionnaireListActivity extends AppCompatActivity {
                 getList();
             }
         }.start();
-        if (toolbar!=null){
+        if (toolbar != null) {
             toolbar.setTitle("问卷调查");
-        }else {
+        } else {
             toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             toolbar.setTitle("问卷调查");

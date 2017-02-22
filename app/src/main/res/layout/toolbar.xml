@@ -22,14 +22,15 @@
             android:src="@mipmap/logo" />
 
         <TextView
+            android:id="@+id/city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="22dp"
+            android:layout_marginRight="12dp"
             android:text="西安"
             android:textColor="@color/dimgray"
-            android:textSize="11sp" />
+            android:textSize="13sp" />
     </RelativeLayout>
 
 

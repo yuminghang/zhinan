@@ -1,5 +1,6 @@
 package com.project.zhinan.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.project.zhinan.R;
 import com.project.zhinan.adapter.MyFragmentPagerAdapter;
@@ -23,7 +25,6 @@ import com.project.zhinan.fragment.HomeTabFragmentSons.Jingcai;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Jinrong;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Lvyou;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Meizhuang;
-import com.project.zhinan.fragment.HomeTabFragmentSons.Qianggou;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Qiche;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Shangquan;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Tongxun;
@@ -31,6 +32,7 @@ import com.project.zhinan.fragment.HomeTabFragmentSons.Xiuxian;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Yiyao;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Zhaopin;
 import com.project.zhinan.fragment.HomeTabFragmentSons.Zhaoshang;
+import com.zaaach.citypicker.CityPickerActivity;
 
 import java.util.ArrayList;
 
@@ -45,6 +47,7 @@ public class HomeFragment extends Fragment {
     private View view;
     private TabLayout mTabLayout;
     private LinearLayout linear_layout;
+    private TextView city;
 
     public HomeFragment() {
     }
@@ -88,8 +91,26 @@ public class HomeFragment extends Fragment {
 
     private void findViews() {
         mTabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
+        city = (TextView) view.findViewById(R.id.city);
+        city.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //启动
+                startActivityForResult(new Intent(getActivity(), CityPickerActivity.class), 0);
+            }
+        });
         mViewPager = (ViewPager) view.findViewById(R.id.view_pager);
         linear_layout = (LinearLayout) view.findViewById(R.id.linear_layout);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 0) {
+            if (data != null) {
+                String content = data.getStringExtra(CityPickerActivity.KEY_PICKED_CITY);
+                city.setText(content);
+            }
+        }
     }
 
     private void initViewpager() {

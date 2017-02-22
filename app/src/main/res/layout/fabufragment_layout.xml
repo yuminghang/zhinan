@@ -251,6 +251,12 @@
                     android:text="发布"
                     android:textColor="@color/ivory"
                     android:textSize="18sp" />
+                <TextView
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="网页版广告发布地址：\nhttp://120.27.41.245:2888/publish \n网页发广告更加方便快捷！"/>
             </LinearLayout>
         </ScrollView>
 

@@ -54,6 +54,7 @@ dependencies {
     compile 'com.feezu.liuli:timeselector:1.1.3+'
     compile project(':filepicker')
     compile files('libs/Sunflower.jar')
+    compile 'com.zaaach:citypicker:1.1'
 }
 
 repositories {
