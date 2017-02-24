@@ -22,16 +22,13 @@
             android:src="@mipmap/pic1" />
 
         <LinearLayout
-            android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignBottom="@+id/iv_pic"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv2"
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:lines="1"
@@ -40,21 +37,14 @@
                 android:textColor="@color/black"
                 android:textSize="16dp" />
 
-            <TextView
-                android:id="@+id/tv1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="1.1折起"
-                android:textColor="@color/crimson"
-                android:textSize="@dimen/textSize" />
 
             <TextView
-                android:id="@+id/tv3"
+                android:id="@+id/cancel_collection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:layout_marginLeft="10dp"
-                android:text="剩2天"
+                android:text="取消收藏"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/SmalltextSize" />
 

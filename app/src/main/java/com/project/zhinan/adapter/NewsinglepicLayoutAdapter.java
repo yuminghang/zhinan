@@ -2,6 +2,7 @@ package com.project.zhinan.adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,15 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
+import com.project.zhinan.activity.MyCollection;
 import com.project.zhinan.bean.bean_version2;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,9 +79,12 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
             public void onClick(View v) {
                 if (MyApplication.getInstance().isLogin()) {
                     if (holder.cb.isChecked()) {
-                        Toast.makeText(context, "收藏成功", Toast.LENGTH_SHORT).show();
+                        ColletionTask colletionTask = new ColletionTask();
+                        colletionTask.execute(object);
+//                        Toast.makeText(context, "收藏成功", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(context, "取消收藏", Toast.LENGTH_SHORT).show();
+                        CancelTask cancelTask = new CancelTask();
+                        cancelTask.execute(object);
                     }
                 } else {
                     holder.cb.setChecked(false);
@@ -94,6 +105,93 @@ public class NewsinglepicLayoutAdapter extends BaseAdapter {
 //        }
 
     }
+
+    private class ColletionTask extends AsyncTask<bean_version2.DataEntity, String, String> {
+
+        @Override
+        protected String doInBackground(bean_version2.DataEntity... params) {
+            OkHttpClient client = new OkHttpClient();
+            SharedPreferences cookie = context.getSharedPreferences("cookie", Context.MODE_PRIVATE);
+            String my_cookie = cookie.getString("my_cookie", "");
+            bean_version2.DataEntity param = params[0];
+            MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+            RequestBody body = RequestBody.create(mediaType, "adid=" + param.getUuid() +
+                    "&order_id=" + param.getOrderno() +
+                    "&title=" + param.getTitle() +
+                    "&imgurl=" + param.getImgurls()[0]);
+            Request request = new Request.Builder()
+                    .url("http://120.27.41.245:2888/collection_c")
+                    .post(body)
+                    .addHeader("content-type", "application/x-www-form-urlencoded")
+                    .addHeader("cache-control", "no-cache")
+                    .addHeader("Cookie", my_cookie)
+                    .build();
+
+            try {
+                Response response = client.newCall(request).execute();
+                return response.body().string();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            if (s == null) {
+                Toast.makeText(context, "网络错误", Toast.LENGTH_SHORT).show();
+            } else {
+                if (s.contains("success")) {
+                    Toast.makeText(context, "收藏成功", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "收藏失败", Toast.LENGTH_SHORT).show();
+                }
+            }
+            super.onPostExecute(s);
+        }
+    }
+
+    private class CancelTask extends AsyncTask<bean_version2.DataEntity, String, String> {
+
+        private bean_version2.DataEntity object;
+
+        @Override
+        protected String doInBackground(bean_version2.DataEntity... params) {
+            OkHttpClient client = new OkHttpClient();
+            object = params[0];
+            SharedPreferences cookie = context.getSharedPreferences("cookie", Context.MODE_PRIVATE);
+            String my_cookie = cookie.getString("my_cookie", "");
+            MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+            RequestBody body = RequestBody.create(mediaType, "adid=" +
+                    params[0].getUuid());
+            Request request = new Request.Builder()
+                    .url("http://120.27.41.245:2888/collection_d")
+                    .post(body)
+                    .addHeader("content-type", "application/x-www-form-urlencoded")
+                    .addHeader("cache-control", "no-cache")
+                    .addHeader("Cookie", my_cookie)
+                    .build();
+
+            try {
+                Response response = client.newCall(request).execute();
+                return response.body().string();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            if (s.contains("success")) {
+                Toast.makeText(context, "取消收藏成功", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context, "取消收藏失败", Toast.LENGTH_SHORT).show();
+            }
+            super.onPostExecute(s);
+        }
+    }
+
 
     protected class ViewHolder {
         private ImageView ivPic;
