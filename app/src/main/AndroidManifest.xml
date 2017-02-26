@@ -39,8 +39,8 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="oise4r7gFr2MvTGFhPeGmIMawoN1EiG8" />
-        <meta-data android:name="com.amap.api.v2.apikey"
-            android:value="1fe47e313d7cadd55ea2a5d6ec231638"/>
+        <!--<meta-data android:name="com.amap.api.v2.apikey"-->
+            <!--android:value="1fe47e313d7cadd55ea2a5d6ec231638"/>-->
 
         <activity
             android:name=".activity.MainActivity"
