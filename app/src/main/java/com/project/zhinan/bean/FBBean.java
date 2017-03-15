@@ -27,6 +27,15 @@ public class FBBean {
     private String budget;
     private String sig_money;
     private String addesc;
+    private String paytype;
+
+    public String getPaytype() {
+        return paytype;
+    }
+
+    public void setPaytype(String paytype) {
+        this.paytype = paytype;
+    }
 
     public String getRead() {
         return read;

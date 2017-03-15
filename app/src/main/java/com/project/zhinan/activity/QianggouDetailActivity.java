@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -93,6 +94,7 @@ public class QianggouDetailActivity extends Activity {
     private Response response;
     private ImageView share;
     private String returnData;
+    private int sigmoney;
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -116,9 +118,9 @@ public class QianggouDetailActivity extends Activity {
             }
         }
     };
-    private int sigmoney;
     private LinearLayout show_LinearLayout;
     private Button submit_rmb;
+    private ScrollView scrollView;
 
     private void addJiFen() {
         sharedPreferences = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
@@ -131,6 +133,7 @@ public class QianggouDetailActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qianggou_detail);
         MyApplication.getInstance().addActivity(this);
+        scrollView = (ScrollView) findViewById(R.id.scrollView);
         show_LinearLayout = (LinearLayout) findViewById(R.id.show_LinearLayout);
         image_container = (LinearLayout) findViewById(R.id.image_container);//动态添加view尚未父View
         Intent intent = getIntent();//getIntent将该项目中包含的原始intent检索出来，将检索出来的intent赋值给一个Intent类型的变量intent
@@ -180,6 +183,13 @@ public class QianggouDetailActivity extends Activity {
             public void onClick(View view) {
                 show_LinearLayout.setVisibility(View.VISIBLE);
                 et.setVisibility(View.VISIBLE);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                    }
+                }, 500);
+
             }
         });
         submit_rmb = (Button) findViewById(R.id.submit_rmb);

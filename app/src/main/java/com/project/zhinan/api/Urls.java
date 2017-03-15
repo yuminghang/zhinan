@@ -34,5 +34,6 @@ public class Urls {
     public static final String Collection_Url = "http://120.27.41.245:2888/collection_c";
     public static final String Map_Url = "http://120.27.41.245:2888/adposition";
     public static final String Map_Detail_Url = "http://120.27.41.245:2888/ad_detail?adorder=";
+    public static final String get_Account_Info_Url = "http://120.27.41.245:2888/getOwnInfo";
 
 }

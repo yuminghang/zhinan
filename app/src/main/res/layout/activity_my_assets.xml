@@ -40,7 +40,7 @@
             android:padding="10dp"
             android:id="@+id/noCrash"
             android:textColor="@color/black"
-            android:text="口袋里没有一分钱,快去看广告挣零花钱吧~"
+            android:text=""
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <LinearLayout
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="0 金币"
+                android:text="0"
                 android:id="@+id/currentAcc"
                 />
 

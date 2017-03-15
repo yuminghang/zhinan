@@ -57,25 +57,87 @@ public class HomeFragment extends Fragment {
         //页签项
         titleContainer.add("全部");
         titleContainer.add("教育");
-        titleContainer.add("商圈");
         titleContainer.add("旅游");
         titleContainer.add("房产");
         titleContainer.add("建材");
         titleContainer.add("医药");
         titleContainer.add("餐饮");
-//        titleContainer.add("抢购");
-        titleContainer.add("一元抢购");
-        titleContainer.add("宝箱");
-        titleContainer.add("活动");
         titleContainer.add("休闲");
-        titleContainer.add("招商");
         titleContainer.add("招聘");
-        titleContainer.add("汽车");
         titleContainer.add("金融");
         titleContainer.add("通讯");
-        titleContainer.add("美妆");
+        titleContainer.add("商圈");
+
+
+//        titleContainer.add("抢购");
+        titleContainer.add("家电维修");
+        titleContainer.add("房屋租赁");
+        titleContainer.add("家政");
+
+        titleContainer.add("服务");
+
+        titleContainer.add("其他");
+
+        titleContainer.add("二手物品");
         titleContainer.add("服务");
         titleContainer.add("公益");
+    }
+
+    private void initViewpager() {
+        initTitle();
+        fragmentList = new ArrayList<Fragment>();
+        Quanbu quanbu = new Quanbu();
+        Jiaoyu jiaoyu = new Jiaoyu();
+        Shangquan shangquan = new Shangquan();
+        Lvyou lvyou = new Lvyou();
+        Fangchan fangchan = new Fangchan();
+        Jingcai jiancai = new Jingcai();
+        Yiyao yiyao = new Yiyao();
+        Canyin canyin = new Canyin();
+//        Qianggou qianggouFragment = new Qianggou();
+        Hongbao hongbaoFragment = new Hongbao();
+        Baoxiang baoxiangFragment = new Baoxiang();
+        Huodong huodong = new Huodong();
+        Xiuxian xiuxian = new Xiuxian();
+        Zhaoshang zhaoshang = new Zhaoshang();
+        Zhaopin zhaopin = new Zhaopin();
+        Qiche qiche = new Qiche();
+        Jinrong jinrong = new Jinrong();
+        Tongxun tongxun = new Tongxun();
+        Meizhuang meizhuang = new Meizhuang();
+        Fuwu fuwu = new Fuwu();
+        Gongyi gongyi = new Gongyi();
+        fragmentList.add(quanbu);
+        fragmentList.add(jiaoyu);
+        fragmentList.add(lvyou);
+        fragmentList.add(fangchan);
+        fragmentList.add(jiancai);
+        fragmentList.add(yiyao);
+        fragmentList.add(canyin);
+        fragmentList.add(xiuxian);
+        fragmentList.add(zhaopin);
+
+        fragmentList.add(jinrong);
+        fragmentList.add(tongxun);
+
+        fragmentList.add(shangquan);
+//        fragmentList.add(qianggouFragment);
+        fragmentList.add(hongbaoFragment);
+        fragmentList.add(huodong);
+        fragmentList.add(baoxiangFragment);
+
+        fragmentList.add(zhaoshang);
+
+        fragmentList.add(qiche);
+
+        fragmentList.add(meizhuang);
+        fragmentList.add(fuwu);
+        fragmentList.add(gongyi);
+        myFragmentPagerAdapter = new MyFragmentPagerAdapter(getChildFragmentManager(), fragmentList, titleContainer);
+        mViewPager.setAdapter(myFragmentPagerAdapter);
+        mViewPager.setCurrentItem(0);//设置当前显示标签页为第一页
+        mTabLayout.setupWithViewPager(mViewPager);
+        mTabLayout.setTabsFromPagerAdapter(myFragmentPagerAdapter);
     }
 
     @Override
@@ -115,58 +177,5 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private void initViewpager() {
-        initTitle();
-        fragmentList = new ArrayList<Fragment>();
-        Quanbu quanbu = new Quanbu();
-        Jiaoyu jiaoyu = new Jiaoyu();
-        Shangquan shangquan = new Shangquan();
-        Lvyou lvyou = new Lvyou();
-        Fangchan fangchan = new Fangchan();
-        Jingcai jiancai = new Jingcai();
-        Yiyao yiyao = new Yiyao();
-        Canyin canyin = new Canyin();
-//        Qianggou qianggouFragment = new Qianggou();
-        Hongbao hongbaoFragment = new Hongbao();
-        Baoxiang baoxiangFragment = new Baoxiang();
-        Huodong huodong = new Huodong();
-        Xiuxian xiuxian = new Xiuxian();
-        Zhaoshang zhaoshang = new Zhaoshang();
-        Zhaopin zhaopin = new Zhaopin();
-        Qiche qiche = new Qiche();
-        Jinrong jinrong = new Jinrong();
-        Tongxun tongxun = new Tongxun();
-        Meizhuang meizhuang = new Meizhuang();
-        Fuwu fuwu = new Fuwu();
-        Gongyi gongyi = new Gongyi();
-
-
-        fragmentList.add(quanbu);
-        fragmentList.add(jiaoyu);
-        fragmentList.add(shangquan);
-        fragmentList.add(lvyou);
-        fragmentList.add(fangchan);
-        fragmentList.add(jiancai);
-        fragmentList.add(yiyao);
-        fragmentList.add(canyin);
-//        fragmentList.add(qianggouFragment);
-        fragmentList.add(hongbaoFragment);
-        fragmentList.add(huodong);
-        fragmentList.add(baoxiangFragment);
-        fragmentList.add(xiuxian);
-        fragmentList.add(zhaoshang);
-        fragmentList.add(zhaopin);
-        fragmentList.add(qiche);
-        fragmentList.add(jinrong);
-        fragmentList.add(tongxun);
-        fragmentList.add(meizhuang);
-        fragmentList.add(fuwu);
-        fragmentList.add(gongyi);
-        myFragmentPagerAdapter = new MyFragmentPagerAdapter(getChildFragmentManager(), fragmentList, titleContainer);
-        mViewPager.setAdapter(myFragmentPagerAdapter);
-        mViewPager.setCurrentItem(0);//设置当前显示标签页为第一页
-        mTabLayout.setupWithViewPager(mViewPager);
-        mTabLayout.setTabsFromPagerAdapter(myFragmentPagerAdapter);
-    }
 
 }

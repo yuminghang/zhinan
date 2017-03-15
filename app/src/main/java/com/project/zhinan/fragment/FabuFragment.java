@@ -3,16 +3,13 @@ package com.project.zhinan.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -21,32 +18,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.target.Target;
 import com.google.gson.Gson;
-import com.lzy.imagepicker.ImagePicker;
-import com.lzy.imagepicker.bean.ImageItem;
-import com.lzy.imagepicker.loader.GlideImageLoader;
-import com.lzy.imagepicker.ui.ImageGridActivity;
-import com.lzy.imagepicker.view.CropImageView;
 import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
-import com.project.zhinan.activity.LoginActivity;
+import com.project.zhinan.api.Urls;
 import com.project.zhinan.bean.FBBean;
-import com.project.zhinan.utils.ConstantValue;
-import com.squareup.okhttp.Call;
-import com.squareup.okhttp.Callback;
+import com.project.zhinan.bean.InfoBean;
+import com.project.zhinan.net.HttpUtils;
 import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.MultipartBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
@@ -60,27 +43,22 @@ import com.tencent.upload.task.impl.PhotoUploadTask;
 import com.vincent.filepicker.Constant;
 import com.vincent.filepicker.activity.ImagePickActivity;
 import com.vincent.filepicker.filter.entity.ImageFile;
-import com.vincent.filepicker.filter.entity.VideoFile;
 
 import org.feezu.liuli.timeselector.TimeSelector;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.regex.Pattern;
 
 import static android.app.Activity.RESULT_OK;
-import static com.vincent.filepicker.Util.getScreenWidth;
 import static com.vincent.filepicker.activity.ImagePickActivity.IS_NEED_CAMERA;
 
 /**
@@ -96,6 +74,10 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
     private static final int UPLOADFAIL = 4;
     private static final int JSONERROR = 5;
     private static final int NETERROR = 6;
+    public String starttime;
+    public ArrayList<String> imgList;
+    HashMap<String, String> stringHashMap = new HashMap<>();
+    HashMap<String, Integer> paymentlist = new HashMap<>();
     private EditText mAdNameEditText;
     private LinearLayout mImgContainerLinearLayout;
     private ImageButton mAddImgImageButton;
@@ -112,8 +94,6 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
     private Button mFabuButton;
     private LinearLayout mEditLinearLayout;
     private ScrollView mEditScrollView;
-    public String starttime;
-    public ArrayList<String> imgList;
     private Handler handler;
     private Button mClearImg;
     private LinearLayout mTime;
@@ -126,7 +106,6 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
     private ArrayList<String> UploadimgUrls;
     private ArrayList<String> mCheckList;
     private ProgressBar mProgress;
-    HashMap<String, String> stringHashMap = new HashMap<>();
     private EditText mAdReadEditText;
     private String mAdRead;
     private CheckBox mPropertyCheckBox;
@@ -138,6 +117,10 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
     private CheckBox mServiceCheckBox;
     private CheckBox mPublicWelfareCheckBox;
     private CheckBox[] cbs;
+    private CheckBox[] pay_cbs;
+    private CheckBox yue, jifen, daijinquan;
+    private Integer paytype = 0;
+    private InfoBean infoBean;
 
     {
         stringHashMap.put("教育", "edu");
@@ -154,6 +137,12 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
         stringHashMap.put("服务", "service");
         stringHashMap.put("公益", "public_welfare");
 
+    }
+
+    {
+        paymentlist.put("积分", 0);
+        paymentlist.put("余额", 1);
+        paymentlist.put("优惠券", 2);
     }
 
     @Override
@@ -184,6 +173,9 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
         mBuildCheckBox = (CheckBox) view.findViewById(R.id.cb_build);
         mMedCheckBox = (CheckBox) view.findViewById(R.id.cb_med);
         mFoodCheckBox = (CheckBox) view.findViewById(R.id.cb_food);
+        yue = (CheckBox) view.findViewById(R.id.yue);
+        jifen = (CheckBox) view.findViewById(R.id.jifen);
+        daijinquan = (CheckBox) view.findViewById(R.id.daijinquan);
         mFabuButton = (Button) view.findViewById(R.id.bt_fabu);
         mFabuButton.setOnClickListener(this);
         mEditLinearLayout = (LinearLayout) view.findViewById(R.id.ll_edit);
@@ -212,11 +204,18 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
 
     }
 
-
     @Override
     public void onResume() {
 
         initHandler();
+        new Thread() {
+            @Override
+            public void run() {
+                String data = HttpUtils.doGetWithCookie(Urls.get_Account_Info_Url, getActivity());
+                Gson gson = new Gson();
+                infoBean = gson.fromJson(data, InfoBean.class);
+            }
+        }.start();
         super.onResume();
     }
 
@@ -268,7 +267,6 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
         mProgress.setVisibility(View.VISIBLE);
     }
 
-
     private void initData() {
         mProgress.setVisibility(View.GONE);
         mAdNameEditText.setText("");
@@ -297,6 +295,13 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
         for (CheckBox cb : cbs) {
             cb.setChecked(false);
         }
+        pay_cbs = new CheckBox[]{yue,
+                jifen,
+                daijinquan};
+        for (CheckBox cb : pay_cbs) {
+            cb.setChecked(false);
+        }
+
     }
 
     @Override
@@ -374,6 +379,7 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
                 fbBean.setKey(mKeywords);
                 fbBean.setTags(mCheckList);
                 fbBean.setRead(mAdRead);
+                fbBean.setPaytype(paytype + "");
                 OkHttpClient client = new OkHttpClient();
                 MediaType mediaType = MediaType.parse("application/json");
                 Gson gson = new Gson();
@@ -432,7 +438,6 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
 
     }
 
-
     private boolean infoCheck() {
         mAdname = mAdNameEditText.getText().toString().trim();
         mKeywords = mAdKeyEditText.getText().toString().trim();
@@ -441,8 +446,54 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
         mAdEnd = mEndTimeTextView.getText().toString().trim();
         mAdBuget = mBudgetEditText.getText().toString().trim();
         mAdSigleMoney = mSigMoneyEditText.getText().toString().trim();
-        return isNameValid(mAdname) && isKeywordsValid(mKeywords) && isReadValid(mAdRead) && isTimeValid(mAdStart, mAdEnd) && isBugetValid(mAdBuget) && isSigleMoneyValid(mAdSigleMoney) && isCkValid();
+        return isNameValid(mAdname) && isKeywordsValid(mKeywords) && isReadValid(mAdRead)
+                && isTimeValid(mAdStart, mAdEnd) && isBugetValid(mAdBuget)
+                && isSigleMoneyValid(mAdSigleMoney) && isCkValid() && isPayValid();
     }
+
+    private boolean isPayValid() {
+        int count = 0;
+        for (CheckBox cb : pay_cbs) {
+            if (cb.isChecked()) {
+                count++;
+                paytype = paymentlist.get(cb.getText().toString().trim());
+            }
+        }
+        //0 ：积分 1：余额  2：优惠券
+        if (count == 1) {
+            int account = infoBean.getSub().getAccount();
+            int yue = infoBean.getSub().getYue();
+            String[] quan = infoBean.getSub().getQuan();
+            if (paytype == 0) {
+                if (account >= Integer.parseInt(mAdBuget)) {
+                    return true;
+                } else {
+                    toast("积分不足！");
+                    return false;
+                }
+            } else if (paytype == 1) {
+                if (yue >= (Integer.parseInt(mAdBuget) / 100)) {
+                    return true;
+                } else {
+                    toast("余额不足！");
+                    return false;
+                }
+            } else {
+                if (quan.length > 0) {
+                    return true;
+                } else {
+                    toast("没有优惠券");
+                    return false;
+                }
+            }
+        } else if (count == 0) {
+            toast("至少选择一种支付方式");
+        } else {
+            toast("最多只能选择一种支付方式");
+        }
+        return false;
+    }
+
 
     private boolean isReadValid(String s) {
         if (s.length() >= 4 && s.length() <= 30)
@@ -455,7 +506,7 @@ public class FabuFragment extends Fragment implements View.OnClickListener {
     private boolean isCkValid() {
 
         mCheckList = new ArrayList<String>();
-        for (CheckBox cb :cbs) {
+        for (CheckBox cb : cbs) {
             if (cb.isChecked()) {
                 mCheckList.add(stringHashMap.get(cb.getText().toString()));
             }

@@ -313,9 +313,9 @@ public class HttpUtils {
                     baos.close();
             } catch (IOException e) {
             }
-            conn.disconnect();
-        }
 
+        }
+        conn.disconnect();
         return null;
 
     }

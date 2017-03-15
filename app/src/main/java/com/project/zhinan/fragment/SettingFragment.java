@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.project.zhinan.MyApplication;
 import com.project.zhinan.R;
 import com.project.zhinan.activity.AboutActivity;
@@ -27,6 +30,9 @@ import com.project.zhinan.activity.MyUpload;
 import com.project.zhinan.activity.RegisterActivity;
 import com.project.zhinan.activity.ServiceActivity;
 import com.project.zhinan.activity.ZNActActivity;
+import com.project.zhinan.api.Urls;
+import com.project.zhinan.bean.InfoBean;
+import com.project.zhinan.net.HttpUtils;
 import com.project.zhinan.utils.ToolFor9Ge;
 import com.project.zhinan.view.MyPopupWindow;
 
@@ -45,6 +51,8 @@ public class SettingFragment extends Fragment {
     private ArrayList<String> strings;
     private SharedPreferences sharedPreferences;
     private boolean isLogin;
+    private InfoBean infoBean;
+    private TextView txtJifen;
     //    private Context context;
 //
 //    public SettingFragment(Context context) {
@@ -61,7 +69,27 @@ public class SettingFragment extends Fragment {
     @Override
     public void onResume() {
         initData();
+        getJifen();
         super.onResume();
+    }
+
+    Handler handler =new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            txtJifen.setText("积分：" + infoBean.getSub().getAccount());
+        }
+    };
+    private void getJifen() {
+        new Thread() {
+            @Override
+            public void run() {
+                String data = HttpUtils.doGetWithCookie(Urls.get_Account_Info_Url, getActivity());
+                Gson gson = new Gson();
+                infoBean = gson.fromJson(data, InfoBean.class);
+                handler.sendEmptyMessage(0);
+            }
+        }.start();
     }
 
     private void initData() {
@@ -71,7 +99,6 @@ public class SettingFragment extends Fragment {
         strings.add("我的收藏");
         strings.add("我的上传");
         strings.add("我的红包");
-        strings.add("指南客服");
         strings.add("指南活动");
         strings.add("法律条款");
         List<Map<String, Object>> listems = new ArrayList<Map<String, Object>>();
@@ -133,17 +160,12 @@ public class SettingFragment extends Fragment {
                         }
                         break;
                     case 5:
-                        intent.setClass(getContext(), ServiceActivity.class);
-                        startActivity(intent);
-                        break;
-                    case 6:
                         intent.setClass(getContext(), ZNActActivity.class);
                         startActivity(intent);
                         break;
-                    case 7:
+                    case 6:
                         intent.setClass(getContext(), AboutActivity.class);
                         startActivity(intent);
-//                        new MyPopupWindow(getActivity(), view, pos);
                         break;
                     default:
                         break;
@@ -171,9 +193,9 @@ public class SettingFragment extends Fragment {
      */
     private void initLoginData(String name, int account) {
         TextView txtName = (TextView) mLayoutUserinclude.findViewById(R.id.txtName);
-        TextView txtJifen = (TextView) mLayoutUserinclude.findViewById(R.id.txtJifen);
+        txtJifen = (TextView) mLayoutUserinclude.findViewById(R.id.txtJifen);
         txtName.setText(name);
-        txtJifen.setText("积分：" + account);
+//        txtJifen.setText("积分：" + account);
         mLayoutUserinclude.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

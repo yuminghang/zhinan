@@ -39,6 +39,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
         android:background="@color/white">
 
 
@@ -113,7 +114,7 @@
                     android:layout_gravity="end"
                     android:layout_weight="1"
                     android:background="@color/firebrick"
-                    android:text="领取金币"
+                    android:text="领钱"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
             </LinearLayout>

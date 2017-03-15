@@ -32,7 +32,6 @@ public class MyUpload extends Activity {
             switch (msg.what) {
                 case GETMYPOST:
                     if (myUploadInfo.contains("success")) {
-                        Toast.makeText(MyUpload.this, "查询到数据", Toast.LENGTH_SHORT).show();
                         Gson gson = new Gson();
                         MyUploadBean myUploadBean = gson.fromJson(myUploadInfo, MyUploadBean.class);
                         objects.clear();

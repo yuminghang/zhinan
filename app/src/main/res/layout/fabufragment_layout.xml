@@ -130,7 +130,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="广告预算金币"
+                    android:text="广告预算积分 （100积分 = 1元）"
                     android:textColor="#000" />
 
                 <EditText
@@ -141,7 +141,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="单笔奖励金币"
+                    android:text="单笔奖励积分"
                     android:textColor="#000"
                     android:textSize="16sp" />
 
@@ -221,16 +221,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="通信" />
+
                     <CheckBox
                         android:id="@+id/cb_makeups"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="美妆" />
+
                     <CheckBox
                         android:id="@+id/cb_service"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="服务" />
+
                     <CheckBox
                         android:id="@+id/cb_public_welfare"
                         android:layout_width="wrap_content"
@@ -239,6 +242,44 @@
 
                 </com.project.zhinan.view.AutoLinefeedLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="发布账户选择"
+                        android:textColor="#000"
+                        android:textSize="16sp" />
+
+
+                    <com.project.zhinan.view.AutoLinefeedLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <CheckBox
+                            android:id="@+id/yue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="余额" />
+
+                        <CheckBox
+                            android:id="@+id/jifen"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="积分" />
+
+                        <CheckBox
+                            android:id="@+id/daijinquan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="优惠券" />
+
+
+                    </com.project.zhinan.view.AutoLinefeedLayout>
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/bt_fabu"
@@ -251,12 +292,13 @@
                     android:text="发布"
                     android:textColor="@color/ivory"
                     android:textSize="18sp" />
+
                 <TextView
-                    android:textStyle="bold"
-                    android:textSize="18sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="网页版广告发布地址：\nhttp://120.27.41.245:2888/publish \n网页发广告更加方便快捷！"/>
+                    android:text="网页版广告发布地址：\nhttp://120.27.41.245:2888/publish \n网页发广告更加方便快捷！"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </ScrollView>
 
